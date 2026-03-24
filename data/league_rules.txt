@@ -1,0 +1,925 @@
+================================================================================
+MOONLIGHT GRAHAM LEAGUE RULES
+Scraped from OnRoto (FanGraphs) on 2026-03-23 09:42:40
+================================================================================
+
+--------------------------------------------------------------------------------
+  BASIC SETUP
+--------------------------------------------------------------------------------
+
+  Q: What is the name of your league?
+  A: Moonlight Graham
+
+  Q: What player pool do you use?
+  A: American League Only
+
+  Q: Check the teams in your player pool
+  A: Bal; Bos; Cle; CWS; Det; Hou; KC; LAA; Min; NYY; Oak; Sea; TB; Tex; Tor
+
+  Q: What happens when a player gets traded to a team not in your player pool?
+  A: His future stats continue to accumulate
+
+  Q: Do you let owners select players from the "other" league and stash them on their reserve list?
+  A: No
+
+  Q: One league, (1 -- and it almost certainly was not yours), has asked that only Astros show on the lists of players from the "other league." Do you need this rule?
+  A: No
+
+  Q: Can the same player be on more than one team in your league?
+  A: No
+
+  Q: How do you keep score?
+  A: Rotisserie style, ranking teams by category using their YTD stats
+
+  Q: For non-head-to-head leagues, would you like the "Standings for the Past Week Only" printed in addition to the regular standings?
+  A: No
+
+  Q: Also for non-head-to-head leagues, would you like the standings over some period that's not your regular scoring cycle (like the current month, or the current half season) printed in addition to the regular standings? (Answer "yes" here if you have a split season, with all stats reverting to zero half-way through.)
+  A: No
+
+  Q: Which additional standings period are you interest in seeing?
+  A: Every other Monday
+
+  Q: Do you use divisions?
+  A: No
+
+  Q: How many divisions do you use? (You'll be able to enter their names on a subsequent page)
+  A: 2
+
+  Q: What is the first day for which you want stats to count (regardless of when you hold your draft) for your season?
+  A: Wednesday, March 25 (Opening Day)
+
+  Q: Some leagues stop scoring prior to the end of the regular season. If your league does, this, what is the last day for which you'd like stats to count?
+  A: September 27
+
+  Q: What is the effective date of the first transaction period after the start of your season? This question is only important if you want to freeze rosters after Opening Day through the first full week afterwards. If you have daily transactions, you'll be able to make moves any day regardless of what you select, so chose "Monday, 3/30" to set up a Monday-Sunday scoring cycle. If you have weekly transactions and you want a ten-day roster freeze after Opening Day, select "Monday, April 6" (or "Tuesday, April 7", if you're a Tuesday-Monday league, etc). If you want to allow transactions during the first full week, then select "Monday, March 30" (or "Tuesday, March 31", etc).
+  A: Monday, March 30
+
+  Q: If you have weekly transactions that fall during the week of the All-Star Game (Mon - Thu are off days, how would you like to deal with your transaction deadline (be careful about the Thursday vs. Friday options depending on whether you're an AL/NL or Mixed League):
+  A: Treat AS week as a normal transaction period (for example, keep your Monday transaction deadline on Monday)
+
+  Q: When are you holding your draft or auction?
+  A: March 25
+
+  Q: VERY IMPORTANT question about "waivers": Sometimes there is some confusion about the meaning of "waivers" for leagues new to our site, especially if they have used one of the larger, Media-based sites in the past (like Yahoo). At OnRoto, players not on the roster of any team in a league are generally considered to be what we call "free agents." Leagues may, however, treat certain types of untaken players differently -- as being "on waivers" instead of being "free agents." In most cases, "waivers" refers to only those players who were recently dropped by a team in the league, though sometimes "waivers" refers to players recently called up or traded in from the other MLB league. Note that in leagues which use "waivers," the rules governing how teams pick up players on waivers are different from the rules governing how free agents are picked up -- there's no point in making a distinction otherwise. Everyone at OnRoto uses "free agents", but only leagues which wish to distinguish between free agents and recently cut or added players use "waivers". Do you use waivers? If this question is at all confusing or refers to any concept you are not familiar with, you almost certainly do not use waivers.
+  A: We use both a free agent pool and a waiver wire
+
+  Q: A very small number of leagues (4, so far), distinguish between players who are waived and players who are "dropped" or released. Do you use this option? Almost everyone should say "No", and please note that this does not give a 'release' option on the Bid Meister. Note also, if you generally remove players from teams via waivers but you consider waived minor leaguers or players on the MLB DL to be dropped, you should still say "no" here. On a later set-up page, you can specify that waived minor leaguers and DL players are not eligible to be claimed, and so are, in effect, dropped.
+  A: No, we do not use this.  All players who are cut are waived
+
+  Q: The Ohtani question: How does your league plan to treat potential two-way player Shohei Ohtani this year?
+  A: As two completely distinct players, Hitter Ohtani and Pitcher Ohtani, who can be on different teams
+
+  Q: How will you permit his owner to use Ohtani this year? Note that if you select the first option, when Ohtani is active as a hitter AND a pitcher at the same time, he will occupy two of his owner's active roster slots - one hitter slot AND one pitcher slot.
+  A: As either a hitter or a pitcher -- or both at the same time
+
+  Q: How many total slots does Ohtani count against your roster limits? There are three options. From the feedback we received, we think that most leagues will want Ohtani to be count as just one player (except when both his hitter and pitcher halves are active at the same time, if that is permitted). In this option, when Ohtani is active as either a hitter or pitcher, his other half will not count as a bench player against your reserve limit; similarly, when both his selves are reserved, he'll count as just one bench player. The second option is for leagues which have suggested they want Ohtani to be counted as taking up two roster slots regardless of whether he's active or not. In this option, when Ohtani is active as a hitter or a pitcher, his other half still counts as a reserve player. Finally, we've had enough requests to permit Ohtani to count as just one player even when he's active as both a hitter and a pitcher that we have decided to include that option. But in this case, both Ohtanis MUST be active or must be reserved. It is not permitted to have his pitcher half active and his hitter half reserved for example. And in this case, his hitter half will count against the roster, and his pitcher half will not. So in effect, you will get a free extra pitcher.
+  A: One slot (although 2 if it's allowed to have both Ohtanis active at the same time)
+
+
+--------------------------------------------------------------------------------
+  LINEUPS AND ROSTERS
+--------------------------------------------------------------------------------
+
+  Q: What is the maximum number of player (hitters + pitchers) in a normal, legal, starting line-up? (Almost everyone has their minimum equal to their maximum. NOTE: If you use roster expansion, you set that up in questions found later on this page. For this question, please enter the 'normal' number of active players. )
+  A: 26
+
+  Q: What is the minimum number of player (hitters + pitchers) a team can have in a normal, legal, starting line-up? Please note that almost everyone has their minimum equal to their maximum. If you set the starting line-up min to be different from the max, a lot of the line-up and roster integrity checks we routinely do at OnRoto will be turned off. If you allow teams to be under the minimum temporarily (because of trades, etc), it's better to use the "Dummy Player" option described below than to set the minimum and maximums to be unequal. If you use roster expansion, you can set that up later.
+  A: 23
+
+  Q: What is the maximum number of hitters in a starting line-up? Note: if you permit roster expansion in September, you will set that up later. Do not account for that here.
+  A: 15
+
+  Q: What is the minimum number of hitters in a starting line-up?
+  A: 15
+
+  Q: Which hitter positions do you use, and how many are used at the maximum and minimum at each position? Note: in almost all cases, the mins and maxes below should be the same -- especially if you use a UT or DH. Also Note: if you permit roster expansion in September, you will set that up later. Do not account for that here.
+  A: 1B; 1; 1; 2B; 1; 1; SS; 1; 1; 3B; 1; 1; OF; 5; 5; C; 2; 2; UT (Any); 2; 2; CI (1B/3B); 1; 1; MI (2B/SS); 1; 1
+
+  Q: One league (1) has asked to include DH's with their corner slot - CM or CI. Is this you?
+  A: No
+
+  Q: In a very small number of leagues, hitters are eligible at only one fielding position, pre-determined by the league in advance of the season, regardless of how many games they may play at other positions. Do you use this rule (almost everyone should answer "No" -- we know of only one or two leagues which uses this rule.)?
+  A: No
+
+  Q: How many games must a hitter play at a given position this year in order to be eligible at that position?
+  A: 1
+
+  Q: How many games did a hitter have to have played at a given position last year in order to be eligible at that position?
+  A: 7
+
+  Q: In a very small number of leagues, once the season starts position eligibility from the previous year is ignored. Do you use this rule (note that you probably do not ).
+  A: No
+
+  Q: In an even smaller number of leagues, position eligibility is determined by the previous year only, and games played this year are ignored. Do you use this rule (note that you probably do not ).
+  A: No
+
+  Q: If you draft after Opening Day, it's possible that some players will have earned extra eligibility. In many leagues, any eligibility earned in the new season does NOT count as draft day eligibility. Is yours such a league?
+  A: YES!  Draft eligibility is based on the previous year only
+
+  Q: If a rookie didn't play last year in the majors and he hasn't yet reach the minimum games played at any position this year, is he:
+  A: Eligible at his default position
+
+  Q: Do rookies keep their default position once they earn eligibility at a new position? For example, if a rookie was a SS in the minors (and so starts with SS eligibility), does he keep SS if he plays only 2B after he gets called up?
+  A: No -- once he qualifies at a new position, he loses his default position
+
+  Q: If a hitter didn't reach the minimum games played at any position last year, is he:
+  A: Eligible at the position(s) he played the most
+
+  Q: If you use a DH, can any player be used there, or must he be eligible at DH, based on your eligibility rules? And similarly, if a player is eligible only at DH, can he be put at his regular fielding position?
+  A: Anyone can DH and DH-only MLB players can not play the field
+
+  Q: Two (2) leagues have requested that the eligibility requirement for the DH position based on the previous year be different from that for true fielding positions. Do you use this rule? Almost everyone should say "No".
+  A: No, the requirement to qualify at DH's is the same as for other positions
+
+  Q: In leagues which do not use a DH, if a player would be eligible at DH only according to your rules governing previous year eligibility, is he:
+  A: Eligible only at UT
+
+  Q: Should we force all owners to have exactly the specified number of players at each position? Note: even though selecting this option will result in an error message if a team has a 1B and 2 3B instead of a 1B, a 3B and a CI, for example, we encourage most leagues to use it.
+  A: Yes
+
+  Q: A very small number of leagues have asked that on the commissioner roster and line-up manager pages, all reserve/bench/DL players be listed as being eligible at any position. Would you like to us this option? (Almost everyone should say "no").
+  A: No
+
+  Q: A very small number of leagues (as in, "1") let owners put players at any position during the season (for players who are expected to become eligible at new positions eventually). Would you like to us this option? (Almost everyone should say "no").
+  A: Yes
+
+  Q: What is the maximum number of pitchers in a starting line-up? Note: if you permit roster expansion in September, you will set that up later. Do not account for that here.
+  A: 11
+
+  Q: What is the minimum number of pitchers in a starting line-up?
+  A: 11
+
+  Q: Which pitcher positions do you use, and how many are used at the maximum and minimum at each position? Note: if you permit roster expansion in September, you will set that up later. Do not account for that here.
+  A: P; 11; 11
+
+  Q: A small number of leagues use "Team Pitchers" -- all of the pitchers on the staff of a single MLB team -- instead individual pitchers. Do you do this?
+  A: No
+
+  Q: Do you allow ACTIVE line-up roster expansion on (or about) September 1?
+  A: Yes
+
+  Q: What is the first date on which teams are allowed to expand their rosters?
+  A: September 1
+
+  Q: What is the maximum total number of players a team may add to its active line-up after September 1?
+  A: 1
+
+  Q: What is the maximum number of hitters a team may add to its active line-up after September 1?
+  A: 1
+
+  Q: What is the maximum number of pitchers a team may add to its active line-up after September 1?
+  A: 1
+
+  Q: If teams in your league will sometimes have fewer players in their starting line-ups than the usual minimum (because of trades, etc), would you like to be able to temporarily fill those empty slots with Dummy Players as place holders?
+  A: No
+
+  Q: Under the original Rotisserie League Rules from the 80's, reserve rosters were very limited and players taken on draft day could not be removed from active line-ups simply because they were playing badly -- draft-day mistakes could only be shed if they were injured or sent to the minors. Additionally, players added as replacements were "tied" to the player they were replacing, and if the original player was recalled from the minors or activated off the DL, either the replacement or the original player had to be waived (or traded). Both players couldnotremain on the same team. Do you use this rule or some form of it? Please note that very, very, few leagues still use the hard-core version of this rule, and if you allow a reserve list of more than just DL and minor leaguers, you almost certainly do not want to select this option. NOTE ALSO PLEASE: you CAN prohibit owners from replacing non-injured player WITHOUT using this strict rule about tying players to their replacements. See the question about "Old School" rules on the Overall Transactions set-up page for that. IMPORTANT! This version of the tied or linked replacement option is going away! If you want to use this feature, please use the option below.
+  A: No, we do not tie replacement players to the player they replaced
+
+  Q: We just finished a new system for linking players with their replacements that does not involve numbering the player positions, as the previous one (see above) did. Would you like to switch to the new system? Almost everyone should switch. Once you do, you'll find links the Transactions section of the Commish Pages Nav to pages where you can link players and also remove all the numbered positions from your rosters and set-up.
+  A: Yes, we tie players to their replacements and we do not allow owners to replace active players unless they are placed on the DL or sent to the minors
+
+  Q: Do you have bench/reserve players, what types of reserves do you wish to track, and what is the maximum number allowed of each type? We have three distinct types of reserve players: disabled MLB players, minor leaguers (including college players, etc), and "generic". If you don't treat either disabled players or minor league players distinctly, they will be automatically included as "generic" reserves.
+  A: DL; 10; FARM; 10; RES; 10
+
+  Q: What is the maximum total number of reserves -- DL, bench, and farm system, that you allow? Use this only if your max total reserves is not equal to the sum of the maxes of each category of reserves entered above. For example, if you allow a maximum of 10 total combined DL and bench players, you would enter '10' in the boxes above for both the DL and bench maxes, and then '10' here also to enforce the max total of 10. If you leave this blank or enter '0', it will default to the sum of the maxes you entered above.
+  A: 26
+
+  Q: One league (1) has a special rule whereby the maximum reserves is unique to each team, and given by the total above plus the number of players currently on the team's FARM system. Do you use this rule? Almost everyone should say "No"
+  A: No
+
+  Q: Two leagues (2) have rules regarding the balance of reserve hitters and reserve pitchers. In one league, teams must carry a fixed, exact number of reserve hitters and a fixed, exact number of reserve pitchers. In the other, there are limits on the maximum number of reserve hitters and pitchers. Do you use this rule? Note that you almost certainly DO NOT.
+  A: No, reserve rosters can have any make-up of hitters and pitchers
+
+  Q: How many of a teams reserves must be hitters?
+  A: 1
+
+  Q: How many of a teams reserves must be pitchers?
+  A: 1
+
+  Q: What is the maximum number of reserve hitters a team can carry?
+  A: 1
+
+  Q: What is the maximum number of reserve pitchers a team can carry?
+  A: 1
+
+  Q: One (1) league has requested that owners be allowed to reserve players traded out of the league player pool without having such players counted against their total reserve roster limit. Would you like to use this rule? Note that you almost certainly do NOT.
+  A: No
+
+  Q: If you use a Farm system, is it restricted to players with Rookie MLB status who have been acquired at your draft?
+  A: Yes -- after the draft, no player can be added to a team's farm system (except by trade)
+
+  Q: Do teams get to keep or carry-over some of their players from one year to the next (are you a keeper league) ?
+  A: Yes
+
+  Q: Do you keep track of player salaries?
+  A: Yes
+
+  Q: What's the largest salary a player is ever likely to have? Note: The main purpose of this question is to determine the maximum number of characters in your player salaries, which we need to format the .pdf print reports. So if you have salaries that are in fractions of dollars (i.e., $2.35), make sure to include the decimal places here. If you don't use fractions of dollar, please don't include them here, and, as always, please don't include a dollar sign.
+  A: 75
+
+  Q: Do you use a league salary cap?
+  A: Yes -- one for the starting line-up and a different one for the full roster
+
+  Q: When a team tries to enter line-up changes and/or roster moves which put them over the salary cap, by default, our system will not allow the owner to submit them. A handful of leagues, however, have asked that we allow moves to pass through, even if they result in a team being over the salary cap. Do you want to do this? (Almost everyone should answer "No").
+  A: No -- owners can not submit moves if the result is that they exceed the salary cap
+
+  Q: What is salary cap on starting line-up players?
+  A: 350
+
+  Q: What is salary cap on the full (active + reserve) roster?
+  A: 500
+
+  Q: Do you use salary caps that are unique to each owner (you'll set them up on a later page)? Note, this is a very rare request -- only two leagues have asked for it.
+  A: No
+
+  Q: Do the salaries of player on a team's DL count against the full roster salary cap?
+  A: No
+
+  Q: Do the salaries of player in their team's FARM system count against their full roster salary cap? Note, this only applies to leagues which have a distinct set of reserve minor leagues specifically designated as in the FARM system.
+  A: No
+
+  Q: Do you have a minimum active roster salary requirement (a floor)?
+  A: No
+
+  Q: Do you keep track of player contract years? This pertains only to "legacy" or "keeper" leagues, in which teams can carry over some of their players from year to year, but only for a limited number of year, and so they need to keep track of how many years it's been since each player was drafted.
+  A: Yes
+
+  Q: How many characters are in the widest contract field you use? For example, if you use a contract of "Opt2" for a player 2 years away from his option year, you would enter "4" here.
+  A: 5
+
+  Q: One league has a special rule whereby the contracts of traded players automatically go back to year one. Do you use this rule? HINT: NO.
+  A: No
+
+  Q: Would you like player MLB statuses (DL, minors, etc) to be updated continually throughout the day? By default, we set the player statuses at roughly 6:00 AM each day, and don't change them until the following morning. This assures that all owners see the same free agent lists, etc, and that no owner misses out on a player because he/she doesn't have 24/7 access to their fantasy team web site. (Some people have to work.) However, for leagues which want to reward owners for being first to pick up on an MLB player move or which are just a little impatient, we provide the option to have player MLB roster statuses updated throughout the day. Do you wish to do this?
+  A: No
+
+  Q: What do you want to do about players on the restricted list? NOTES: 1.) the restricted list applies to players taking extensive absences as well as those suspended for illegal substance violations. 2.) the options below pertain to what owners of restricted players can do to move them around on their rosters. These options do NOT apply to the free agent status of restricted players. Restricted players are treated like other inactive players for those purposes.
+  A: Treat them as ordinary inactive players (similar to the way we treat minor leaguers)
+
+  Q: By default, OnRoto treats players on the Bereavement, Paternity, and Family Medical Emergency Leave lists as being active. One league has requested that these players be treated as being on the DL. Would you like to do that also?No -- just leave those players on the active MLB roster listYes -- please shift those players to the DL so we can replace them
+  A: No -- just leave those players on the active MLB roster list
+
+  Q: Some leagues which draft after Opening Day need the Free Agent Lists as of Opening Day rosters for their draft -- do you need this?
+  A: No
+
+  Q: Somewhat related to the above, some leagues also wish to exclude DL players from their draft. Do you wwish to do this?
+  A: No, we don't use this -- DL players can be drafted in our league
+
+  Q: Also somewhat related to the above, and pertaining primarily to the 2020 season, do wish to exclude from your draft those players who have opted out of playing in 2020? (If you use only active MLB players at your draft, you still need to use this option as well).
+  A: No, we won't use this -- players on the restricted list can be drafted in our league
+
+  Q: As we did for all of last year, for the start of 2025, we have forced the Pitcher half of Shohei Ohtani to be on IL. When he's scheduled to take the mound, we'll change this and make him active. Unless then, we're giving leagues the option to force his pitcher half to be active from the start. Do you want to do this?
+  A: No -- leave Ohtani the Pitcher on IL
+
+  Q: 1B(max)(min)
+  A: 2B; 1; 1; SS; 1; 1; 3B; 1; 1; OF; 5; 5; C; 2; 2; UT (Any); 2; 2
+
+  Q: CI (1B/3B)(max)(min)
+  A: MI (2B/SS); 1; 1
+
+
+--------------------------------------------------------------------------------
+  SCORING CATEGORIES
+--------------------------------------------------------------------------------
+
+  Q: Hitter scoring categories
+  A: R, HR, RBI, SB, AVG
+
+  Q: Pitcher scoring categories
+  A: W, SV, ERA, WHIP, SO
+
+
+--------------------------------------------------------------------------------
+  DISPLAY (NON-SCORING) CATEGORIES
+--------------------------------------------------------------------------------
+
+  Q: Hitter scoring categories
+  A: G, AB
+
+  Q: Pitcher scoring categories
+  A: G, IP
+
+
+--------------------------------------------------------------------------------
+  TRANSACTION RULES
+--------------------------------------------------------------------------------
+
+  Q: How does your league want the site to handle line-up changes? A note to leagues thinking of selecting the second to last option, "Owners may set line-ups and drop/add most free agents, but must submit claims to acquire waived players and FAAB for players new to the league." That option was implemented specially for just a couple of leagues. IT WILL NOT WORK if you play "old school rules" (see below), and it requires that FAAB bidding take place just once per week. "Old School Rules" leagues who use FAAB for players new to the league should use the last option "Owners may set line-ups and drop/add free agents to replace DL/demoted players, but must submit claims to acquire waiver wire and FAAB players". SUPER IMPORTANT: IF YOU DON'T USE OLD SCHOOL RULES, THAT LAST OPTION WILL NOT WORK for you. It will force you into Old School rules.
+  A: Owners may set line-ups but must submit bids/claims to add players.  Owners cannot add free agents directly to their rosters
+
+  Q: We have 1 league which won't let owners replace injured players first-come/first-serve, but they still want those owners to be able to place those players on the DL immediately -- days in advance of when they'll be replaced -- even though this creates illegal line-ups. The only way this works is if the owners pick up dummy players to fill out their roster and preserve a legal active line-up. Do you need this option? NOTE: Unless we explicitly told you you must use this, you most definitely need to say "No" here.
+  A: No
+
+  Q: We've had one (1) league request that owner line-up changes be restricted to only placing players at different positions -- no activations or reserves, etc. Do you wish to prevent owners from doing anything other than changing player positions?
+  A: No
+
+  Q: Would you like us to provide a feature so you can track a rotating free agent pick-up priority list for your league? You'll have to keep it current, since you're handling all free agent moves, but everyone in the league will be able to see it.
+  A: No
+
+  Q: Are team owners allowed to make their own moves in the off-season -- even in the pre-season, before the team rosters have been fully loaded?
+  A: No
+
+  Q: Are team owners allowed to change their own player contracts and salaries in the off-season? Almost no one should say "yes" to this -- this option was developed for old-style leagues which want to have their owners make their own long-term contract signings.
+  A: No
+
+  Q: Would you like to use our automated Bid Meister for sorting out your league's free agent bids and/or waiver claims?
+  A: Yes
+
+  Q: Which day or days do team line-up changes take effect ? Note that changes can be entered into the system at any time. Here, we're just asking about when the moves actually take effect for the purposes of scoring. Note also that you almost certainly do NOT want to select the "Retro-active to Opening Day" option. Only two or three leagues use this very special option.
+  A: Mondays
+
+  Q: One league has requested that owners NOT be allowed to make line-up change transactions more that one day ahead. Would you like to use this option?
+  A: No -- we want owners to be able to set their line-ups up to a week ahead of time
+
+  Q: Would you like the Commissioner to have the ability to make line-up changes (for things like trades or DL movement) which are effective in the middle of your regular transaction cycle? Say "Yes" to this if you have normally have Monday transactions, but you want to allow DL'ed players to be replaced on any day of the week, but only by the commissioner.
+  A: No
+
+  Q: Would you like individual owners to have the ability to make line-up changes to replace injured or demoted players in the middle of your regular transaction cycle? Please note -- this refers to when the transactions take effect. Moves can always be entered at any time. Say "yes" here only if you want moves entered into the system to take effect immediately, rather than at your next transaction deadline.
+  A: No
+
+  Q: Can owners place players on the DL mid-week even if the player hasn't officially been placed on the DL? WARNING: If you select this option, teams will be allowed to place any of their players on their DL at any time -- even those players who are not even injured at all
+  A: No
+
+  Q: Would you like owners to be have the ability to activate players who come off the DL in the middle of a transaction cycle? Please note -- this refers to when the transactions take effect. Moves can always be entered at any time. Say "yes" here only if you want moves entered into the system to take effect immediately, rather than at your next transaction deadline.
+  A: No
+
+  Q: One league has requested that owners be allowed to activate players mid-week if they came off the DL or were brought up from the minors anytime in the prior two weeks (the default is one week). This would allow a team to sit on a player through a complete transaction cycle and still be allowed to bring him up in the middle of that second week. Is this league you?
+  A: No -- the players have to be called up during the current week to be eligible to be activated
+
+  Q: Can owners activate players mid-week even if the player hasn't yet come off the DL? WARNING: If you select this option, teams will be allowed to activate any of their DL players at any time -- even those DL players who are out for the season.
+  A: No
+
+  Q: On what day is the deadline for owners to submit line-up changes? In this question we're asking for the last day that owners can make line-up changes in time for them to be effective for the upcoming transaction period. Almost everyone should select "the same day that they take effect". Only leagues which require moves to be in place a day prior to when they take effect will select something else. NOTE: We consider 12:00 Midnight on a given night to be 0:00 AM on the following day, so if your deadline is Midnight Sunday for moves taking effect on Monday, you would still select "the same day they take effect".
+  A: The same day they take effect
+
+  Q: At what time are owner line-up changes due? (all times EDT)
+  A: 1:00 PM
+
+  Q: Would you like to permit owners to make line-up changes until game time of each individual game (i.e., different deadlines for different MLB teams, based on game-by-game start times)?
+  A: No
+
+  Q: Is it okay for owners to change player positions after games have started -- they can't activate or reserve players after games start, just change their positions.
+  A: No
+
+  Q: How are Free Agents awarded to your teams? Note, you've indicated that the commissioner handles entry of all free agent adds/drops/etc -- we're asking this question so we know how to help you set that up.
+  A: A pick-up process administered by the commissioner
+
+  Q: Do your first-come/first-serve free agent drops and adds take effect on a different cycle than your line-up changes? Unless your league permits something like daily line-up changes but weekly free agent pick-ups, you almost certainly want to answer "No"
+  A: No
+
+  Q: On which days do free agent adds and drops become effective?
+  A: Mondays
+
+  Q: Is the deadline for owner first-come/first-serve free agent pick-ups different from the line-up change deadline?
+  A: No
+
+  Q: At what time are owner first-come/first-serve free agent drops and adds due? (all times Eastern)
+  A: 12:00 Midnight the night before
+
+  Q: When is the first time that owners can add free agents to their teams? (Note that this is a rarely used feature -- almost all leagues should select "First regular transaction period.")
+  A: First regular transaction period
+
+  Q: When is the last time that owners can add free agents to their teams? (This option applies mainly to legacy leagues, in which players carry over on the same team from one year to the next).
+  A: There's no cut-off -- free agents can be added during all regular transaction periods
+
+  Q: What is the last August/September/October effective transaction date for which free agent pick-ups are allowed?
+  A: 07.01
+
+  Q: Would you like the ability to activate an MLB player before he actually comes off the DL?
+  A: Yes, but only for the commissioner
+
+  Q: If you use a DL, would you like the ability to place a player on the DL if he's injured but not on the MLB DL?
+  A: No
+
+  Q: One (1) league has requested a special option that prohibits owners from making any DL moves whatsoever on the line-up pages. The commissioner and the commissioner alone can place teams' players on the DL. (If you use the Bid-Meister, owners can still DL players there.) Do you want to use this rule?
+  A: No
+
+  Q: If you use a Farm system, can an owner place a player on his Farm team, even if the player is on a Major League active roster or DL?"
+  A: No -- only players not on MLB rosters and DL are eligible
+
+  Q: Would you like the ability to activate a player while he's still in the minors (or otherwise not available)?
+  A: No
+
+  Q: A very small number of leagues require that players in the active starting line-up be moved to the reserve roster (as either a reserve, farm or disabled player) before being released or waived (so it takes two transactions to get rid of an active player). Do you use this rule?
+  A: No
+
+  Q: A small number of leagues do not allow owners to release or waive a player who is on the active roster of his major league team -- if you have this player on your team (from the draft or as a pick-up or otherwise), you're stuck with him. Do you use this rule? HINT: Most likely not -- the more usual 'old school' rule is found several questions below this one. This option is extremely restrictive.
+  A: No
+
+  Q: One league has a rule that players on the FARM team can not be released directly -- they must be activated or reserved first, then they can be released/waived. Do you need this rule?
+  A: No
+
+  Q: An even smaller number of leagues do not want owners to ever be allowed to release players on their own - only the commish is allowed to do that. (Note -- this applies to the line-up page -- if you use the Bid-Meister, owners will still be able to release players there.) Do you want to use this option (Note, you almost certainly want to answer "No" here.)?
+  A: No, it's okay for owners to release or waive players on their own
+
+  Q: "Old School" leagues typically forbid team from replacing their active players unless they had been injured, demoted, released, etc. Active roster players could not be taken out of the active line-up if they were still on an active MLB rosters, no matter how poorly they were performing. (They can be released/waived when being replaced by a waiver claim or to make room for a DL or farm player who is activated or called up.) Does your league use these "Old School" rules?
+  A: We do use this -- active line-up players can not be replaced by a free agent unless they are no longer active in the MLB.
+
+  Q: Do you need to be able to created a list of players who may not be traded during the season?
+  A: No
+
+  Q: Do you need to be able to create a list of players who may not be released or waived during the season?
+  A: No
+
+  Q: When players get injured in September, their MLB teams will often not bother placing them on the DL. Since they technically remain actively, owners may be prvented from replacing them. Would you like to be able to create a list of players to be considered to be on the DL, even if they are not listed that way by their MLB team?
+  A: No
+
+  Q: A handful of leagues have asked if they can penalize miscreant owners by temporarily freezing some of their players in place (for infractions such as not activating a player from the DL after two weeks). Would you like to have this option?
+  A: No
+
+  Q: One (1, and it almost certainly was not you) league asked that the commissioner only be allowed to submit rosters for teams that are missing some of the active players. Would you like to use this option -- probably not.
+  A: No
+
+
+--------------------------------------------------------------------------------
+  TRADE RULES
+--------------------------------------------------------------------------------
+
+  Q: How do you wish to handle trades on the site?
+  A: Owners propose/accept trades on the site. Trades accepted by all parties must then be approved by the commissioner
+
+  Q: If your league tracks draft picks, we offer the ability to future draft picks in trades. Would you like to DISABLE this?
+  A: Don't disable trading of draft picks
+
+  Q: If your league uses FAAB for free agent bidding, we offer the ability to include FAAB dollars in trades. Would you like to DISABLE this?
+  A: Yes, we wish to turn FAAB money trading OFF
+
+  Q: When a team acquires FAAB dollars in a trade, is it available immediately, or must they wait until the next set of transactions before they can use it? Example: Suppose Monday is your transaction day, and on Saturday a trade is made (effective Monday, of course) in which one team receives some FAAB dollars. Can they use that money for Monday's bids, or must they wait until the following Monday before the money is available?
+  A: No, they don't have to wait -- the money is available right away
+
+  Q: What is the deadline for Owner-to-Owner trades after which no trades can be proposed?
+  A: The All-Star Break
+
+  Q: What is the September date after which Owner-to-Owner trades are no longer allowed?
+  A: 07.01
+
+  Q: After a trade is accepted by all teams involved, when is the deadline for the other owners to vote on it?
+  A: 1 day later
+
+  Q: If an owner fails to vote on a trade by the time the deadline has passed, is he considered to have voted for or against the trade. Almost all leagues should choose "In favor of it" here. If non-votes are considered to be votes against, a lot of trades will be vetoed.
+  A: Failure to vote is considered a vote in favor of a trade
+
+  Q: What fraction of teams must approve a trade in order for it to pass?
+  A: All of the teams in the league
+
+  Q: Would you like to see a list of which owners voted to approve and deny the trades being voted on?
+  A: No, keep the voting anonymous
+
+  Q: One (1) league has a special rule whereby the weekly trade deadline is tied to the Bid-Meister deadline. Any trade made between the Bid-Meister deadline and the line-up change deadline is pushed to the following week. Is this league yours?
+  A: No
+
+
+--------------------------------------------------------------------------------
+  FREE AGENT RULES
+--------------------------------------------------------------------------------
+
+  Q: What happens when a free agent is added to a team?
+  A: He must be added to the active roster / starting line-up and must remain there for one transaction cycle
+
+  Q: One league has a rule whereby players added directly to the bench can't be activated until the transaction period following the one in which they were added -- it's like the option above requiring that players added as actives need to remain active for a week, but in this case it applies to reserves also. Do you need this rule?
+  A: No
+
+  Q: How do you deal with free agents who are in the minor leagues or on the DL?
+  A: Neither types are eligible to be added to teams as free agents
+
+  Q: In order to keep the free agent stat reports at a manageable size, we exclude minor leaguers from those listings. A small number of leagues have asked to have minor leaguers on MLB 40-man rosters included on free agent stat reports in addition MLB players. Would you like to use this option?
+  A: No
+
+  Q: Is there a limit to the number of free agents a team may add during any one transaction cycle?
+  A: No
+
+  Q: What is the yearly limit on the number of free agent pick-ups?
+  A: 1
+
+  Q: A very, very, small number of leagues -- as in three (3) (now 5, as of 4/12/14) -- and almost certainly not your league, players just called up from the minors or recently traded in from the opposite league go immediately to a special pool of free agents, distinct from other free agents and from the waiver wire. Players in this pool (and ONLY players in this pool) are added to teams via FAAB. Do you use this rule? Almost everyone really needs to answer "no" to this.
+  A: No
+
+  Q: Does your special, limited pool of players new to the league for FAAB also include players just activated off the DL
+  A: No
+
+  Q: When players are new to the league, do they become eligible for the FAAB pool immediately, or is there a waiting period? For example, if a player comes into the pool on Sunday morning and your FAAB bids occur on Sunday night, is that player eligible to be bid upon on that first Sunday, or does he have to wait until the next Sunday?
+  A: No waiting period -- players are eligible for bids the same period they up
+
+  Q: What contract status do players have their first year on a team when acquired at the draft? (Note, this is not their salary, but rather a designation of which year they are in, as in "A" or "1st". Also, the reports will look better if you say just "1st" instead of "1st Year" or "1st Yr")
+  A: a
+
+  Q: What contract status indicates that a player is currently in the last or option year of his contract? "C" and "Opt" are common. Note, leagues which make an explicit distinction between the final year of a long term contract and the option year should enter the final year contract here.
+  A: c
+
+  Q: What contract status is assigned to players added as free agents? (Usually it's the same as the 1st year status you entered above)
+  A: a
+
+  Q: Do you use a "Free Agent Acquisition Budget" (FAAB) bidding system for adding free agents?
+  A: No
+
+  Q: One (1) league has a special rule whereby they suspend the use of FAAB and switch to free agents awarded by standings order in September. Do you want to do this?
+  A: No
+
+  Q: How do you determine the salary of a player added as a free agent? Note: please do NOT select the 4th option, "His FAAB bid usually, but the default value set..." unless you have a regular period each week in which owners are allowed to add free agents at will, in addition to a FAAB proceedure. Note Also: if you use the "Vickrey" system in your FAAB bids, select the first option here -- you'll set up the Vickrey details later.
+  A: The greater of his previous salary and a default minimum salary, entered below.
+
+  Q: Two leagues (2) which allow $0 bids allow them ONLY when replacing injured or demoted players. Otherwise they have a different minimum. Do you use this rule? (As of 3/30/13, only 2 leagues should say "yes" here.)
+  A: No
+
+  Q: If a player is not included in your list of pre-defined salaries, is he still an eligible free agent?
+  A: Yes -- we'll just assign him a default salary
+
+  Q: Enter a value for the primary default salary of a free agent
+  A: 10
+
+  Q: Enter a value for the default minimum (or max) salary of a free agent added via FAAB
+  A: 10
+
+  Q: What is the budget for your free agent bidding system
+  A: 1000
+
+  Q: What is the minimum bid for a free agent?
+  A: 1
+
+  Q: Can bids be fractions of a dollar -- $2.50, for example?
+  A: No -- only whole dollar values
+
+  Q: Can teams with a $0 FAAB balance continue to place bids on players -- in the amount of $0?
+  A: No
+
+  Q: In a trivially small number of leagues, players keep the same contract and salary for the entire season, no matter how many times they get released back into the free agent pool and picked up by another team. This is not like waivers, which is how most league enforce salary retention. It's for players who are cut, sit in the FA pool for a month, and then get picked up by someone else. As far as we know, only 3 or 4 leagues need this rule. Do you use this rule (almost everyone should say "No")?
+  A: No
+
+  Q: Do you want the ability to force specific players onto (or keep them off of) your free agent list, regardless of their actual eligibility status? (You do this on their player profile page).
+  A: Yes
+
+
+--------------------------------------------------------------------------------
+  WAIVER RULES
+--------------------------------------------------------------------------------
+
+  Q: How are waiver claims awarded?
+  A: By priority, last place team gets one choice before others choose
+
+  Q: Is there a limit on the number of waiver claims a team may be awarded during any one transaction cycle?
+  A: No
+
+  Q: What is the yearly limit on the number of waiver claims per team?
+  A: 1
+
+  Q: In some leagues, if a team submits a claim on a player that they thelmselves waived during the previous transaction period, their claim has the lowest priority on that player. Do you use this rule?
+  A: No, priority is independent of which team waived the player
+
+  Q: How long is a player on waivers? This question is mainly relevant to leagues with daily transactions and leagues with different transaction cycles for adding free agents and waiver claims. Almost all leagues with weekly waiver claims will want to select "One full transaction cycle." If you allow transactions everyday but have weekly waiver claims and need all waivers to expire on the same day of the week, select the last option, "It varies, depending on when the player was waived."
+  A: One full transaction cycle (one day for leagues with daily transactions)
+
+  Q: One (1) league in our combined 35+ years of experience in rotisserie baseball allows waived players to be claimed the same transaction period that they were waived (essentially using zero-day waivers). Is this league you (hint: NO)?
+  A: No
+
+  Q: Can a player be claimed before his waivers expire -- such as during the first week of a two-cycle waiver period, or on day 1 of a 3-day waiver period?
+  A: No
+
+  Q: When players are waived in between the waiver claim cycles, do their waivers expire at the first waiver period 7 days after he was waived, or at the very next waiver claim date? For example, if your next waiver claims are set for 5/10 and a player is waived on 5/8, do his waivers run through 5/17, or do his waivers expire on 5/10?
+  A: waivers run through the first claim cycle 7 days after he was waived
+
+  Q: If a player on waivers is sent to the minors or placed on the DL:
+  A: He is no longer eligible to be claimed off waivers
+
+  Q: If a player traded to the "other" league is waived or has been waived by his current owner, is he eligible to be claimed?
+  A: No -- once he's waived, he not eligible in our league
+
+  Q: In a small number of leagues, players just called up from the minors or recently traded in from the opposite league go immediately to the waiver wire instead of the free agent pool. Do you use this rule?
+  A: No
+
+  Q: The default in weekly transaction leagues forces players new to the league to be on waivers for at least one full transaction cycle before they can be claimed. This means a player added to the wire the day after the regular claim day could sit on waivers as long as 13 days. A few leagues have requested that players be made available for claim during the first cycle they're on waivers -- at little as half a day, if they're call up the morning your claims run. Do you want to use this 'immediately claimable' option?
+  A: No, we want players new to the league to be on waivers for at least one week before they can be added
+
+  Q: When a player is added to a team as a waiver claim:
+  A: He must be added to the active roster / starting line-up and must remain there for one transaction cycle
+
+  Q: How do you determine the salary of a player claimed on waivers?
+  A: His salary on his previous team
+
+  Q: What is the default contract year of a player added as a waiver claim?
+  A: Same as the free agent default
+
+  Q: In legacy leagues, do players waived in the pre-season (before draft-day rosters are set), stay on waivers so they may be claimed by other teams prior to the draft?
+  A: No
+
+  Q: In legacy leagues, do players waived in the post-season (after the final day), stay on waivers so they may be claimed by other teams?
+  A: No
+
+
+--------------------------------------------------------------------------------
+  BID MEISTER / BLIND BIDDING RULES
+--------------------------------------------------------------------------------
+
+  Q: How are Free Agents bids/claims sorted out? (A note about the "Rotating priority list" option: It's like a pre-determined draft order -- it has nothing to do with the league standings, is maintained by the commissioner and it carries over from one week to the next. Almost no one uses this option.)
+  A: By standings order, last place team gets one choice, then others choose
+
+  Q: One league has asked for the option to use a snake-draft order for sorting bids. Is it yours?
+  A: No
+
+  Q: On which days are owner free agent bids/claims due (check all that apply). Note that this question is asking about the deadline for owners to submit their bids or claims, and NOT when the moves will take effect. NOTE ALSO: We treat "midnight" as "0:00 on the following day", so if you want your deadline to be at midnight, select the next day as the due day -- "Monday at 0:00" for "midnight Sunday," for example.
+  A: Mon
+
+  Q: By what time must owner free agent bids/claims be entered (all times EDT)? (Bids will be sorted and posted within minutes of this deadline).
+  A: 1:00 PM
+
+  Q: On which days do you want the winning free agent bids/claims to take effect? Most leagues should select "the next regular line-up change day". Only leagues which have Bid-Meister deadlines which may sometimes fall after the first game of the day has started need to select "the same day that bidding ended." Note: NO ONE except the ER League should select the 3rd option about the transactions being effective retroactively.
+  A: The same day that bidding ended, even if bids are due after the line-up change deadline
+
+  Q: Do any unfilled DL slots count as open slots that can be filled in the Bid-Meister?
+  A: No
+
+  Q: Can minor leaguers be picked up using the Bid-Meister?
+  A: No
+
+  Q: The list of minor leaguers displayed as available for pick up will include unisgned players -- MLB free agents, international players, college and high school guys, etc. One league has asked that these players be excluded. Do you want to remove such players from the bid-meister listing?
+  A: Don't exclude these guys -- it's okay for our owners to pick them up
+
+  Q: In a very small number of leagues, the sum of an owner's pending bids can not exceed his remaining balance. For instance, if you have $50 left, you may not bid $20 on each of 3 players. You may bid $20 on one player and place contigent bids of $20 on each of two other players as your 2nd and 3rd choices should you not get the first player -- you just can't try to pick up all 3 players at once. Do you use this rule (most leagues will want to say "no" to this).
+  A: No
+
+  Q: Do you use the "Vickrey" system, in which the winning bid for a given player is reduced to the next highest bid on that player plus a given amount (usually $1)?
+  A: No
+
+  Q: Some leagues set a threshold below which Vickrey is turned off, i.e., bids below a certian amount are not reduced. In addition, bids above this threshold are never reduced below the threshold, even if there are no other bids. Do you do this?
+  A: No
+
+  Q: How are competing waiver claims sorted out? (A note about the "Rotating priority list" option: It's like a pre-determined draft order -- it has nothing to do with the league standings, is maintained by the commissioner, and it carries over from one week to the next. Almost no one uses this option.)
+  A: By standings order, last place team gets one choice, then others choose
+
+  Q: On which days are owner waiver claims due (check all that apply)?
+  A: Mon
+
+  Q: By what time must owner waiver claims be entered (all times EDT)?
+  A: 1:00 PM
+
+  Q: On which days do you want the winning waiver claims to take effect?
+  A: The same day that claims are due, even if they are due after the line-up change deadline
+
+  Q: When determining the standings order in which owners are awarded their bids or ties are broken, do you use the current standings or the standings as they were back when the most recent scoring cycle began (which would be the standings as of one week earlier for most leagues)?
+  A: Use the current standings
+
+  Q: For the first week's bids, if there are no standings yet, should we:
+  A: Use a random order
+
+  Q: A very small number of leagues (1, so far), have requested that owners not be allowed to submit "contingent bids" -- such as "Bid $5 on Player A; if I don't get him, bid $4 on Player B". Do you want to prevent owners from submitting contingent bids? Remember, almost everyone should answer "No" -- answering "Yes" means owners will not be allowed to do this.
+  A: No
+
+  Q: Would you like the system to automatically insert your bids or claims, provided that there were no errors? If you don't use this option, the commissioner can enter the moves with a single click if he determines that they are correct upon inspecting them.
+  A: No
+
+  Q: Would you like the commissioner to have the ability to enter Bid-Meister moves for individual teams? Note that if you invoke this option, the commissioner will be able to see (and alter) everyone's bids before they are sorted.
+  A: Yes, we sometimes need the commish to have this ability
+
+  Q: Sometimes a free agent will get hurt or be sent to the minors (and so no longer be a free agent) after an owner has placed a bid on him but before the Bid Meister deadline. When this happens, should the Bid Meister:
+  A: Reject the bid, since the player is no longer an eligible free agent
+
+  Q: The system was originally set up to prevent owners from placing higher value bids on lower priority players in the same bid block. For example, you couldn't say "bid $5 on player A, and if I don't get him, bid $10 on player B." We did this because if multiple owners entered a lot of increasing value bids on the same players, the sort program could get "stuck" and not converge. But we know there are times when owners legitimately want to increase their bids, and we've also improved the sort program so it should now converge most of the time when it sees this. Therefore, we're offering an option to allow higher value bids in the same block. Do you want to permit owners to increase their bids on lower priority players within the same bid block (saying "yes" allows this)?
+  A: No
+
+  Q: A small number of leagues (1, so far) have asked that owners be warned when placing bids to replace players who are still on MLB active rosters. Would you like to have your owners warned of this?
+  A: No
+
+  Q: A small number of leagues (1, so far) have asked that owners be prevented from reserving or activating players in the bid-meister. Would you like to PREVENT owners from doing this?
+  A: No -- we want the default, which is to allow this
+
+  Q: Do you want to allow people to bid on hitters to replace pitchers, and vice versa? This is useful sometimes when an owner's first choice for a pick-up would be a pitcher and his second a hitter, for example. Given the rules in this league, the Bid-Meister would normally prohibit you from trying this. If you answer "Yes" to this question, the Bid-Meister will allow owners to select hitters to replace active pitchers, for example, and assume that the owner will correct his roster after the fact.
+  A: No
+
+  Q: One league has requested that even though all free agents must be added as active, they don't have to remain active through the first transaction cycle. Do you use that rule (Hint: probably not...)
+  A: No
+
+  Q: Do you want to run the Bid-Meister in the pre-season, before your draft, when teams have only partial rosters? Note, we've had only one request for this, so you probably do not want to do this.
+  A: No
+
+  Q: Do you want to continue to run the Bid-Meister in the post-season, after the season is over?
+  A: No
+
+  Q: If you use the Bid-Meister in the post-season and you use FAAB, do you need to reset the FAAB spent to $0?
+  A: No
+
+  Q: A handful of leagues have requested that the full set of bids not be exposed after the Bid Meister has run, so that any contingent bids that ended up not being necessary remain hidden from the rest of the league. This makes sense in leagues which limit the number of pick-ups each week, and exposing all the bids might give away intended pick-ups for later weeks. Would you like to suppress the exposure of bids? (A report will be displayed instead.)
+  A: Don't block the bid listing -- we want to see what other owners had bid
+
+  Q: When do you want the Bid-Meister to first run? This question is mainly relevant to leagues who draft well before Opening Day and don't want to program to run until it gets closer to the start of the season. Note, normally when we refer to dates, we are talking about "effective dates" -- when transactions are to take effect. This is one of the few instances in which we're talking about calendar dates.
+  A: First regular day after draft rosters have been completed
+
+
+--------------------------------------------------------------------------------
+  MISCELLANEOUS RULES
+--------------------------------------------------------------------------------
+
+  Q: Do you need to use an on-line draft room for your draft?
+  A: Yes
+
+  Q: How do you wish to handle trades on the site?
+  A: Owners propose/accept trades on the site. Trades accepted by all parties must then be approved and entered the commissioner
+
+  Q: If your league allows owners to trade future draft picks, would you like us to provide a page where you can track them?
+  A: Yes
+
+  Q: How many draft rounds do you need us to track (please note that if you have a lot of rounds, the pages on which the commish notes draft choice trades may display slowly, so it may be best if you enter here the minimum number of rounds you need to have tracked).
+  A: 4
+
+  Q: Do you want to remove the Front Office -> Owner Info Page?
+  A: No
+
+  Q: Do you want to display owner emails on the Front Office -> Owner Info page?
+  A: Yes
+
+  Q: Do you want to display which owners have commissioner access on the Front Office -> Owner Info page?
+  A: No
+
+  Q: Do you want a page which displays the number of transactions of the various types made by each team?
+  A: No
+
+  Q: Do you want to display a page that summarizes the league fees?
+  A: No
+
+  Q: Do you increase the fees above the amount you entered above after the All-Star Break?
+  A: No -- the fee structure doesn't change over the season
+
+  Q: Would you like to add a custom column in the league transaction fee record, for a special type of fee (note that the fee page contains an "adjustment column," as well as places to enter "winnings" and "payments")?
+  A: No
+
+  Q: Would you like to be able to customize each individual teams initial fee?
+  A: No
+
+  Q: By default, the fee system counts only transcations made after draft-day rosters have been submitted plus any preseason trades. Would you like to exclude preseason trades from the fee system as well?
+  A: Don't exclude preseason trades -- we DO charge for them
+
+  Q: If you, as commissioner, made corrections to owner's opening day rosters after the season started, those corrections could be counting against those owners' transaction fees or add limits. Would you like us to ignore all Opening Day transactions (this would include moves made retro to Opening day by your owners)?
+  A: No
+
+  Q: When do your scoring periods begin?
+  A: Select below
+
+  Q: Some rotisserie-style leagues have special rules concerning how teams are ranked within the various categories. Do you have any such rules?
+  A: No
+
+  Q: What is your maximum for GS after which a spot starter loses his RP eligibility?
+  A: 1
+
+  Q: Do you have a minimum IP requirement that teams must meet for the season, and if so, what happens if they don't make it?
+  A: Teams missing the minimum score 0 in ERA and WHIP; other teams stay the same
+
+  Q: What is your minimum IP requirement?
+  A: 900
+
+  Q: Do you have a minimum AB requirement that teams must meet for the season, and if so, what happens if they don't make it?
+  A: No requirement
+
+  Q: What is your minimum AB requirement?
+  A: 3900
+
+  Q: Do you have a maximum IP limit that teams must not exceed, and what happens if they do?
+  A: No maximum
+
+  Q: What is your maximum IP limit?
+  A: 1000
+
+  Q: Do you have a maximum pitcher games started limit that teams must not exceed, and what happens if they do?
+  A: No maximum
+
+  Q: What is your maximum pitcher GS limit?
+  A: 162
+
+  Q: Would you like the OnRoto player ID numbers displayed along with the data on the stat correction pages?
+  A: No
+
+  Q: Should we suppress the printing of the games played by position data on the stat reports?
+  A: No
+
+  Q: On the Team Stat reports we usually print out the stats of all players who ever constributed to your team's stats, including stats of players no longer in your the active line-up. Should we instead print the full stats for current active line-up players, but just a one-line total for all traded, cut or benched players?
+  A: Print them all -- we like to see the stats contributed by players no longer in the line-up
+
+  Q: By default, we also print out the stats that players earned while you had them on your bench (stats that you wasted or squandered, as it were), even for players no longer on your team. Should we instead print full stats for current bench players only, and just a one-line total for all traded or cut players?
+  A: Print them all
+
+  Q: Some leagues which use "Errors" as a hitter category exclude any errors made by players when they are active as the DH on their league team, even if such players regularly play the field in the MLB. Do you want to do this?
+  A: No
+
+  Q: The default at OnRoto is to display on the league transaction logs only those transactions which were entered after initial rosters were submitted. Would you like to instead be able to see all league transaction, regardless of when they were entered - even those from the preseason ?
+  A: No
+
+  Q: Would you like to remove from the league transaction log transactions that were nothing more than player position changes?
+  A: Always print them on the transaction logs and the team home pages
+
+  Q: Would you like to remove from the league transaction log transactions that were nothing more than player contract adjustments?
+  A: Always print them on the transaction logs and the team home pages
+
+  Q: Would you like to remove from the league transaction log transactions that were nothing more than player salary adjustments?
+  A: Always print them on the transaction logs and the team home pages
+
+  Q: Would you like to remove from the display of the league transaction log all activation and reserve transactions?
+  A: Always print them on the transaction logs and the team home pages
+
+  Q: Even though you suppress the printing of activation and reserve moves, would you like to still see DL moves?
+  A: No
+
+  Q: If you elect to block the display of some of the transactions on the log files, would you like to make an exception for the commissioner so that he/she can see all of the transactions?
+  A: No, the commissioner doesn't want to see any of those transactions either
+
+  Q: Would you like us to print an extra decimal point on stats like ERA, WHIP, AVG, etc?
+  A: No
+
+  Q: A few leagues with goofball owners have requested the ability to prevent owners from changing their team names at will. Instead, owners will be forced to go through the commissioner in order to change their team names. Do wish to do this -- block owners from changing their team names on their own?
+  A: No
+
+  Q: Would you like to include the owner name (in addition to the team name) on message board posts?
+  A: No
+
+  Q: Would you like for your league to use a threaded message board?
+  A: Yes
+
+  Q: One league has requested that the messages inside each thread be posted most recent first and the original message last. If you have a lot of replies within each thread, this is probably more convenient. If not, it probably makes sense to keep the original message that started the thread on top. Do you want to use this option?
+  A: No
+
+  Q: By default, all user can create a new poll. Would you like the power limited to ONLY the Commissioner?
+  A: No
+
+  Q: Would you like the owners names to be displayed under the topic they voted for? Answer 'No' to this question if you want voting to be anonymous
+  A: No, don't show who voted
+
+  Q: One league has asked to block owners from posting comments about polls when then posted their answers. Do you want to prohibit owners from making comments?
+  A: No, we're fine with owners making comments on the polls
+
+  Q: There has been one request that we not show the current poll vote tallies to owners until they have voted (so that their vote isn't influenced by other votes). Do you want to block owners from seeing the poll vote tallies prior to them casting their own vote?
+  A: No, we're fine with owners seeing the current vote tallies before they vote
+
+  Q: Would you like to have the next 8 days MLB schedule for each player printed on the line-up change program?
+  A: No
+
+  Q: A very small number of leagues will not allow a team to be credited with more saves than they have wins. Do you use this rule?
+  A: No
+
+  Q: An even smaller number of leagues will not allow a team to be credited with more RBI than they have runs scored. Do you use this rule?
+  A: No
+
+  Q: One league has requested that owners not be allowed to post to the league message board -- only the commissioner may do so. Would you like to invoke this option also?
+  A: No
+
+  Q: You can print more non-scoring categories on the .pdf reports if you get rid of the hitter games played by position data. Would you like to do that?
+  A: No
+
+  Q: Would you like to have a column on the Owner Info Page in the Front Office that will display owners' phone numbers to other league members?
+  A: Yes
+
+  Q: Would you like to have a column on the Owner Info Page in the Front Office that will display owners' US Mail address to other league members?
+  A: No
+
+  Q: Prior to Opening Day, many injured players who will definitely start the season of the DL will not have yet been placed their officially by their MLB clubs. Because so many leagues want owners to be able to place such players on the DL before Opening Day (or, in 2012, before the North American Opening Day), we manually add players to the DL before it becomes official, provided it's 100% certain that the players will start the season on the DL. Some old school leagues don't want these players on the DL. Do you want to opt out?
+  A: We like being able to DL these players -- don't opt us out
+
+  Q: Each owner is allowed to set their own order in which the stat categories are displayed (AB H R AVG vs AVG AB H R, etc). A couple of leagues have requested that the every owner should instead use the same order, as set by the commissioner. Do you want to use this option?
+  A: No, we'll let everyone set their own order
+
+  Q: One league (1) has requested that we block all player note information on the site. Do you want us to do that for your league also? Note, you almost certainly do not want us to do that, and should say "No" here.
+  A: No
+
+  Q: One league has asked basic owner transactions (activations, reserves, waives, releases etc), not be releaved to the rest of the league until after the current transaction deadline is past. Would you like to use this rule? (Hint: probably not).
+  A: No
+
+  Q: One hen-pecked Commissioner has asked that we suppress printing the League Rules section of the Front Office, as those pages show not only the current set-up, but also all of the options we offer, giving his owners a lot of bad ideas for new things to try. Would you like those pages blocked as well?
+  A: No
+
+  Q: Would you like to display a "Countdown to the Draft" timer on your pages during the preseason?
+  A: Yes
+
+  Q: What time (Eastern Time) is your draft being held?
+  A: 7:00 PM
+
+  Q: Would you like to display a "Countdown to the Keeper Deadline" timer on your team home pages during the preseason?
+  A: No
+
+  Q: What day are your keepers due?
+  A: January 31 or earlier
+
+  Q: What time (Eastern Time) are your keepers due?
+  A: 5:00 AM
+
+  Q: Would you like to have owners create and control a list of their own keepers, which the system would implement at the keeper deadline?
+  A: No
+
+  Q: One league (1) has asked that certain owners be allowed to make transactions for other owners. Do you want to have this ability?
+  A: No
+
+  Q: One league allows owners to keep players on 25-Man MLB active rosters on their FARM team, and so wants to suppress warning messages about having active players on their FARM roster. Is that league yours (highly unlikely)?
+  A: No -- please print the warnings
+
+  Q: We've had a request to allow anonymous posting to the league message board. It's been installed on the threaded version of the boards only -- you just check off a box when you want to post anonymously. Does your league want to allow this?
+  A: No
+
+  Q: One league has asked that we not allow non-commissioners to view the daily Roster Warnings section on the team home pages, because some of them get bent out of shape every time they see a warning. Do you have owners whom you need to tame by blocking this section?
+  A: No
+
+  Q: We've had a request to print our id numbers on the downloadable Free Agents and MLB player data files. Do you want id numbers?
+  A: No
+
+  Q: Normally we block message board messages posted before January 1 of the prior year. So in 2021, you see messages from 1/1/2020 and newer, for example. A handlful of leagues have asked to go back one extra year. Would you like to do that?
+  A: No
+
+
+================================================================================
+Total settings extracted: 289
+================================================================================

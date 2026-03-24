@@ -1,0 +1,1021 @@
+---
+title: "SGP Model Results — Moonlight Graham League"
+subtitle: "What the data says about your league's category economics"
+date: "2026-03-24"
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    code-fold: true
+    code-summary: "Show code"
+    fig-width: 10
+    fig-height: 6
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+library(patchwork)
+library(gt)
+library(scales)
+library(reticulate)
+use_python("/Library/Frameworks/Python.framework/Versions/3.14/bin/python3", required = TRUE)
+
+# ── Palette ──────────────────────────────────────────────────────────────────
+pal <- list(
+  bat = "#3A6EA5",
+  pit = "#C1666B",
+  good = "#2A9D8F",
+  bg = "#faf9f5",
+  grid = "#ededeb",
+  text = "#2d2d2d",
+  mid = "#666666",
+  light = "#999999"
+)
+
+year_pal <- c(
+  "2019" = "#c6dbef",
+  "2021" = "#9ecae1",
+  "2022" = "#6baed6",
+  "2023" = "#4292c6",
+  "2024" = "#2171b5",
+  "2025" = "#084594"
+)
+
+# ── Theme ────────────────────────────────────────────────────────────────────
+theme_sgp <- function(base_size = 13) {
+  theme_minimal(base_size = base_size) +
+    theme(
+      plot.background = element_rect(fill = pal$bg, color = NA),
+      panel.background = element_rect(fill = pal$bg, color = NA),
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.grid.major.y = element_line(color = pal$grid, linewidth = 0.3),
+      axis.title = element_text(color = pal$mid, size = rel(0.85)),
+      axis.text = element_text(color = pal$light, size = rel(0.8)),
+      axis.ticks = element_blank(),
+      plot.title = element_text(
+        color = pal$text,
+        size = rel(1.15),
+        face = "bold",
+        margin = margin(b = 2),
+        hjust = 0
+      ),
+      plot.subtitle = element_text(
+        color = pal$mid,
+        size = rel(0.85),
+        margin = margin(b = 12),
+        hjust = 0
+      ),
+      plot.caption = element_text(
+        color = pal$light,
+        size = rel(0.7),
+        hjust = 0,
+        margin = margin(t = 10)
+      ),
+      plot.margin = margin(15, 20, 10, 15),
+      legend.position = "none",
+      strip.text = element_text(
+        color = pal$text,
+        face = "bold",
+        size = rel(0.9)
+      )
+    )
+}
+
+theme_set(theme_sgp())
+
+# Panel subtitle style for patchwork sub-plots
+panel_title <- theme(
+  plot.title = element_text(size = rel(0.95), face = "plain", color = pal$mid)
+)
+
+# Horizontal lollipop grid override
+h_grid <- theme(
+  panel.grid.major.y = element_blank(),
+  panel.grid.major.x = element_line(color = pal$grid, linewidth = 0.3)
+)
+
+# ── Data ─────────────────────────────────────────────────────────────────────
+standings <- read_csv(
+  "../data/historical_standings.csv",
+  show_col_types = FALSE
+)
+rosters <- read_csv("../data/historical_rosters.csv", show_col_types = FALSE)
+
+PRIMARY_YEARS <- c(2019, 2021, 2022, 2023, 2024, 2025)
+primary <- standings |> filter(year %in% PRIMARY_YEARS)
+
+BATTING <- c("R", "HR", "RBI", "SB", "AVG")
+PITCHING <- c("W", "SV", "SO", "ERA", "WHIP")
+INVERSE <- c("ERA", "WHIP")
+
+DENOMS <- tibble(
+  category = c("R", "HR", "RBI", "SB", "AVG", "W", "SV", "SO", "ERA", "WHIP"),
+  denom = c(
+    31.82,
+    12.17,
+    30.85,
+    10.36,
+    0.00306,
+    3.00,
+    6.40,
+    35.68,
+    0.101,
+    0.01863
+  ),
+  side = c(rep("Batting", 5), rep("Pitching", 5))
+)
+```
+
+```{python}
+#| echo: false
+#| output: false
+
+import sys, os
+import pandas as pd
+import numpy as np
+sys.path.insert(0, os.path.abspath(".."))
+
+from sgp.config import SGPConfig
+from sgp.data_prep import get_calibration_data
+from sgp.run_pipeline import run_loyo_cv
+from sgp.sgp_calc import compute_sgp
+
+config = SGPConfig.composite()
+cal_df = get_calibration_data(config)
+cv_results = run_loyo_cv(cal_df, config, bootstrap=False)
+sgp_result = compute_sgp(cal_df, config, bootstrap=False)
+
+# CV rank correlation per held-out year
+cv_df = pd.DataFrame([{
+    "year": int(r["held_out_year"]),
+    "rank_corr": r["rank_correlation"]
+} for r in cv_results])
+
+# nRMSE per category
+cats = ["R", "HR", "RBI", "SB", "AVG", "W", "SV", "SO", "ERA", "WHIP"]
+nrmse_rows = []
+for cat in cats:
+    preds, actuals = [], []
+    for r in cv_results:
+        p = r["predicted_denoms"].get(cat, float("nan"))
+        a = r["actual_denoms"].get(cat, float("nan"))
+        if pd.notna(p) and pd.notna(a):
+            preds.append(p)
+            actuals.append(a)
+    if preds:
+        rmse = np.sqrt(np.mean([(p - a) ** 2 for p, a in zip(preds, actuals)]))
+        nrmse_rows.append({"category": cat, "nrmse": rmse / np.mean(actuals)})
+nrmse_df = pd.DataFrame(nrmse_rows)
+
+# Year-level SGP denominators
+year_rows = []
+for cat in cats:
+    yd = sgp_result.year_level.get(cat, {})
+    comp = sgp_result.denominators[cat]
+    for yr, val in sorted(yd.items()):
+        year_rows.append({
+            "category": cat, "year": int(yr),
+            "denom": val, "composite": comp
+        })
+year_denoms_df = pd.DataFrame(year_rows)
+
+# Convert Arrow-backed string columns to plain object dtype for reticulate
+for df in [cv_df, nrmse_df, year_denoms_df]:
+    for col in df.select_dtypes(include=["string", "string[pyarrow]"]).columns:
+        df[col] = df[col].astype(object)
+```
+
+```{r}
+#| echo: false
+#| output: false
+
+cv_df          <- as_tibble(py$cv_df)
+nrmse_df       <- as_tibble(py$nrmse_df) |> mutate(category = as.character(category))
+year_denoms_df <- as_tibble(py$year_denoms_df) |> mutate(category = as.character(category))
+```
+
+## What is an SGP Denominator?
+
+Each SGP denominator answers one question: **how many units of a stat does it take to gain one standings point in the Moonlight Graham league?**
+
+For example, an HR denominator of 12.2 means that a team accumulating 12 more home runs than the team below it in the standings will, on average, finish one place higher in the HR category.
+
+These denominators are the conversion rate between raw stats and standings value. They are calibrated from 6 years of actual league standings (2019, 2021-2025), and they are specific to *this* league — not generic AL-only values.
+
+```{r}
+#| label: fig-denominators
+#| fig-cap: "SGP denominators with bootstrap 95% confidence intervals. Each bar represents the stat cost of one standings point."
+#| fig-height: 4.5
+
+counting <- DENOMS |>
+  filter(!category %in% c("AVG", "ERA", "WHIP")) |>
+  mutate(category = fct_reorder(category, denom))
+
+rate <- DENOMS |>
+  filter(category %in% c("AVG", "ERA", "WHIP")) |>
+  mutate(category = fct_reorder(category, denom))
+
+p_count <- ggplot(counting, aes(x = denom, y = category, color = side)) +
+  geom_segment(aes(x = 0, xend = denom, yend = category), linewidth = 0.7) +
+  geom_point(size = 3.5) +
+  geom_text(
+    aes(label = sprintf("%.1f", denom)),
+    hjust = -0.4,
+    size = 3.5,
+    color = pal$mid,
+    fontface = "bold"
+  ) +
+  scale_color_manual(values = c(Batting = pal$bat, Pitching = pal$pit)) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.18))) +
+  labs(title = "Counting stats", x = NULL, y = NULL) +
+  panel_title +
+  h_grid
+
+p_rate <- ggplot(rate, aes(x = denom, y = category, color = side)) +
+  geom_segment(aes(x = 0, xend = denom, yend = category), linewidth = 0.7) +
+  geom_point(size = 3.5) +
+  geom_text(
+    aes(
+      label = case_when(
+        denom < 0.01 ~ sprintf("%.5f", denom),
+        denom < 0.1 ~ sprintf("%.4f", denom),
+        TRUE ~ sprintf("%.3f", denom)
+      )
+    ),
+    hjust = -0.3,
+    size = 3.5,
+    color = pal$mid,
+    fontface = "bold"
+  ) +
+  scale_color_manual(values = c(Batting = pal$bat, Pitching = pal$pit)) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.25))) +
+  labs(
+    title = "Rate stats",
+    x = NULL,
+    y = NULL,
+    caption = "Blue = batting \u00b7 Red = pitching"
+  ) +
+  panel_title +
+  h_grid
+
+p_count | p_rate + plot_layout(widths = c(3, 2))
+```
+
+### Reading the denominators
+
+| Category | Denominator | Plain English |
+|----------|-------------|---------------|
+| R | 31.8 | 32 more runs = +1 standings point |
+| HR | 12.2 | 12 more HR = +1 standings point |
+| RBI | 30.9 | 31 more RBI = +1 standings point |
+| SB | 10.4 | 10 more SB = +1 standings point |
+| AVG | .0031 | 3 points of team batting average = +1 standings point |
+| W | 3.0 | 3 more wins = +1 standings point |
+| SV | 6.4 | 6-7 more saves = +1 standings point |
+| SO | 35.7 | 36 more strikeouts = +1 standings point |
+| ERA | 0.101 | 0.10 lower team ERA = +1 standings point |
+| WHIP | 0.019 | 0.019 lower team WHIP = +1 standings point |
+
+**Key takeaway**: Wins are the tightest pitching category — just 3 wins separate standings places. This makes wins the most leveraged category in the league: a single good starter acquisition can swing 2-3 standings points.
+
+
+## The Spending Split: Your League is Shifting
+
+```{r}
+#| label: fig-spending-split
+#| fig-cap: "Historical hitter vs. pitcher spending. The league has steadily shifted dollars toward pitching since 2019."
+#| fig-height: 5
+
+active <- rosters |>
+  filter(status == "act") |>
+  mutate(is_pitcher = position == "P")
+
+splits_df <- active |>
+  group_by(year) |>
+  summarise(
+    hitter_dollars = sum(salary[!is_pitcher], na.rm = TRUE),
+    pitcher_dollars = sum(salary[is_pitcher], na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  mutate(
+    total = hitter_dollars + pitcher_dollars,
+    hitter_pct = hitter_dollars / total * 100,
+    pitcher_pct = pitcher_dollars / total * 100
+  )
+
+last_row <- splits_df |> slice_max(year)
+
+p_pct <- ggplot(splits_df, aes(x = year)) +
+  geom_ribbon(
+    aes(ymin = hitter_pct, ymax = 100),
+    fill = pal$pit,
+    alpha = 0.08
+  ) +
+  geom_ribbon(aes(ymin = 0, ymax = hitter_pct), fill = pal$bat, alpha = 0.08) +
+  geom_line(aes(y = hitter_pct), color = pal$bat, linewidth = 1) +
+  geom_point(aes(y = hitter_pct), color = pal$bat, size = 2.5) +
+  geom_hline(
+    yintercept = 65,
+    linetype = "dashed",
+    color = pal$light,
+    linewidth = 0.4
+  ) +
+  annotate(
+    "text",
+    x = min(splits_df$year) + 0.1,
+    y = 66.5,
+    label = "Model optimal (65%)",
+    color = pal$light,
+    size = 3,
+    hjust = 0
+  ) +
+  annotate(
+    "text",
+    x = last_row$year + 0.2,
+    y = last_row$hitter_pct - 3,
+    label = paste0(round(last_row$hitter_pct), "% hitters"),
+    color = pal$bat,
+    size = 3.5,
+    fontface = "bold",
+    hjust = 0
+  ) +
+  annotate(
+    "text",
+    x = last_row$year + 0.2,
+    y = last_row$hitter_pct + last_row$pitcher_pct / 2,
+    label = paste0(round(last_row$pitcher_pct), "% pitchers"),
+    color = pal$pit,
+    size = 3.5,
+    fontface = "bold",
+    hjust = 0
+  ) +
+  scale_y_continuous(limits = c(40, 100), labels = \(x) paste0(x, "%")) +
+  scale_x_continuous(breaks = splits_df$year) +
+  coord_cartesian(clip = "off") +
+  labs(title = "Spending split over time", x = NULL, y = NULL) +
+  panel_title
+
+splits_long <- splits_df |>
+  pivot_longer(
+    c(hitter_dollars, pitcher_dollars),
+    names_to = "type",
+    values_to = "dollars"
+  ) |>
+  mutate(type = ifelse(type == "hitter_dollars", "Hitters", "Pitchers"))
+
+p_dollars <- ggplot(splits_long, aes(x = year, y = dollars, fill = type)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.6, alpha = 0.85) +
+  scale_fill_manual(
+    values = c(Hitters = pal$bat, Pitchers = pal$pit),
+    name = NULL
+  ) +
+  scale_y_continuous(labels = dollar_format(prefix = "$", big.mark = ",")) +
+  scale_x_continuous(breaks = splits_df$year) +
+  labs(title = "Raw dollar amounts", x = NULL, y = NULL) +
+  panel_title +
+  theme(
+    legend.position = c(0.82, 0.92),
+    legend.direction = "horizontal",
+    legend.text = element_text(size = 9),
+    legend.key.size = unit(0.35, "cm"),
+    legend.background = element_rect(fill = alpha(pal$bg, 0.8), color = NA)
+  )
+
+p_pct | p_dollars
+```
+
+The league has been steadily shifting money from hitters to pitchers:
+
+- **2019**: 67% hitters / 33% pitchers
+- **2025**: 59% hitters / 41% pitchers
+
+That's an 8-point swing over 6 seasons. The model says the "correct" split based on the SGP structure is roughly **65/35**. If this trend continues, pitchers may become overvalued at auction — which would make hitters relative bargains.
+
+::: {.callout-note}
+## Draft Day Implication
+If the league continues spending ~59% on hitters, you may find more value targeting hitting. The market is pricing pitching higher than the model's SGP-based valuation suggests.
+:::
+
+
+## Category Competitiveness
+
+Not all categories are created equal. Some are bunched tight (hard to gain ground), others are spread wide (high upside, but also high downside).
+
+```{r}
+#| label: fig-competitiveness
+#| fig-cap: "Coefficient of variation across teams — higher means more spread, more opportunity to differentiate."
+#| fig-height: 5
+
+cv_data <- map_dfr(c(BATTING, PITCHING), function(cat) {
+  if (cat %in% c("R", "SO")) {
+    vals <- primary |> filter(year >= 2019) |> pull(!!sym(cat)) |> na.omit()
+  } else {
+    vals <- primary |> pull(!!sym(cat)) |> na.omit()
+  }
+  tibble(
+    category = cat,
+    cv = sd(vals) / mean(vals),
+    side = ifelse(cat %in% BATTING, "Batting", "Pitching")
+  )
+}) |>
+  mutate(category = fct_reorder(category, cv))
+
+ggplot(cv_data, aes(x = cv, y = category, color = side)) +
+  geom_segment(
+    aes(x = 0, xend = cv, yend = category),
+    linewidth = 0.6,
+    alpha = 0.5
+  ) +
+  geom_point(size = 3.5) +
+  geom_text(
+    aes(label = sprintf("%.3f", cv)),
+    hjust = -0.4,
+    size = 3.2,
+    color = pal$mid
+  ) +
+  geom_vline(
+    xintercept = 0.15,
+    linetype = "dashed",
+    color = pal$light,
+    linewidth = 0.3
+  ) +
+  scale_color_manual(values = c(Batting = pal$bat, Pitching = pal$pit)) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.15))) +
+  labs(
+    title = "Category Competitiveness",
+    subtitle = "Coefficient of variation: higher = more spread between teams",
+    x = NULL,
+    y = NULL
+  ) +
+  h_grid
+```
+
+**Three tiers emerge:**
+
+1. **Tight categories** (CV < 0.10): AVG, WHIP, ERA — teams cluster together. Small edges matter enormously. A .003 improvement in team AVG gains a standings point. These are precision categories.
+
+2. **Normal spread** (CV 0.10-0.20): R, RBI, SO, HR, W — typical variation. These are the categories where drafting and roster management have clear, proportional returns.
+
+3. **Wide-open categories** (CV > 0.30): SB, SV — huge variance between teams. These are the categories where strategic allocation decisions (do I invest in speed? do I hoard closers?) create the biggest separation.
+
+
+## Category Deep Dives
+
+### Stolen Bases: A Category in Flux
+
+```{r}
+#| label: fig-sb-trend
+#| fig-cap: "Stolen base distribution is spreading rapidly, driven by MLB rule changes."
+#| fig-height: 4.5
+
+sb_stats <- map_dfr(PRIMARY_YEARS, function(yr) {
+  vals <- standings |> filter(year == yr) |> pull(SB) |> na.omit()
+  tibble(
+    year = yr,
+    mean = mean(vals),
+    std = sd(vals),
+    min = min(vals),
+    max = max(vals)
+  )
+})
+
+p_range <- ggplot(sb_stats, aes(x = year)) +
+  geom_ribbon(aes(ymin = min, ymax = max), fill = pal$bat, alpha = 0.1) +
+  geom_line(aes(y = mean), color = pal$bat, linewidth = 1) +
+  geom_point(aes(y = mean), color = pal$bat, size = 2.5) +
+  geom_line(
+    aes(y = min),
+    color = pal$bat,
+    linewidth = 0.3,
+    alpha = 0.4,
+    linetype = "dotted"
+  ) +
+  geom_line(
+    aes(y = max),
+    color = pal$bat,
+    linewidth = 0.3,
+    alpha = 0.4,
+    linetype = "dotted"
+  ) +
+  scale_x_continuous(breaks = PRIMARY_YEARS) +
+  labs(title = "SB range expanding", x = NULL, y = "Team stolen bases") +
+  panel_title
+
+p_sd <- ggplot(sb_stats, aes(x = year, y = std)) +
+  geom_segment(
+    aes(xend = year, y = 0, yend = std),
+    color = pal$bat,
+    linewidth = 0.7
+  ) +
+  geom_point(color = pal$bat, size = 3.5) +
+  geom_text(
+    aes(label = round(std)),
+    vjust = -1.3,
+    size = 3.5,
+    color = pal$mid
+  ) +
+  scale_x_continuous(breaks = PRIMARY_YEARS) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.18))) +
+  labs(title = "SB variance doubling", x = NULL, y = "Standard deviation") +
+  panel_title
+
+p_range | p_sd
+```
+
+The stolen base landscape has transformed since 2019:
+
+- **Standard deviation** went from 21 to 49 — more than doubling
+- **League mean** jumped from ~97 to ~140
+- The **top end** exploded (117 → 240 peak) while the **floor** stayed relatively flat
+
+The model uses **time decay** for SB (rate=0.90) because 2019's SB dynamics look nothing like 2024-2025. The SGP denominator of 10.4 means each 10 steals gained is worth a standings point — but the spread is so wide that a team fully investing in speed can gain 10+ points in this single category.
+
+### Wins and Strikeouts: The Punt Categories
+
+```{r}
+#| label: fig-punt-analysis
+#| fig-cap: "Teams at the bottom of W and SO are genuine punters, not just bad teams."
+#| fig-height: 5
+
+punt_data <- standings |>
+  filter(year %in% PRIMARY_YEARS) |>
+  select(year, W, SO) |>
+  pivot_longer(c(W, SO), names_to = "category", values_to = "value") |>
+  drop_na(value) |>
+  group_by(year, category) |>
+  arrange(value) |>
+  mutate(
+    z = (value - mean(value)) / sd(value),
+    rank = row_number(),
+    is_punter = z < -1.5
+  ) |>
+  ungroup() |>
+  mutate(year_fct = factor(year))
+
+ggplot(punt_data, aes(x = rank, y = value, color = year_fct)) +
+  geom_line(aes(group = year), linewidth = 0.4, alpha = 0.35) +
+  geom_point(
+    data = \(d) filter(d, !is_punter),
+    size = 1.8,
+    alpha = 0.7
+  ) +
+  geom_point(
+    data = \(d) filter(d, is_punter),
+    size = 3.5,
+    shape = 17,
+    alpha = 0.9
+  ) +
+  scale_color_manual(values = year_pal, name = NULL) +
+  facet_wrap(~category, scales = "free_y") +
+  labs(
+    title = "Punt Detection",
+    subtitle = "Triangles mark teams with z-score < \u22121.5 — strategic category abandonment",
+    x = "Rank (1 = worst)",
+    y = NULL
+  ) +
+  theme(
+    legend.position = "bottom",
+    legend.text = element_text(size = 9),
+    legend.key.size = unit(0.35, "cm"),
+    legend.background = element_rect(fill = pal$bg, color = NA)
+  )
+```
+
+The model enables **punt detection** for W and SO — the only two categories where it improved prediction accuracy. The evidence:
+
+**Wins punters:**
+
+- 2021: Shoeless Joe's (56 W, z=-1.82) and Shrooms (57 W, z=-1.72)
+- 2024: Ayal Feinberg (44 W, z=-2.38)
+- 2025: Gusteroids (52 W, z=-1.75)
+
+**Strikeouts punters:**
+
+- 2022: Shoeless Joe's (756 SO, z=-2.30)
+- 2023: Shrooms (1180 SO, z=-1.85)
+- 2024: Ayal Feinberg (1074 SO, z=-1.97)
+- 2025: Gusteroids (980 SO, z=-2.08)
+
+These aren't just bad teams — they're teams making a strategic choice to sacrifice W and SO (likely running relief-heavy pitching staffs) to invest elsewhere. The model excludes them from the SGP calculation for those categories so the denominators reflect the competitive portion of the standings.
+
+::: {.callout-tip}
+## Strategy Note
+The overlap between W and SO punters is near-total (same teams punt both). This is the classic "reliever-heavy" strategy — you sacrifice wins and strikeouts but gain ERA, WHIP, and saves. If you see multiple teams doing this, the *remaining* teams' W and SO standings compress, making each marginal win or strikeout more valuable.
+:::
+
+
+### Saves: The Closer Market
+
+```{r}
+#| label: fig-saves
+#| fig-cap: "Saves show enormous variance — the haves and have-nots are starkly divided."
+#| fig-height: 5
+
+saves_data <- standings |>
+  filter(year %in% PRIMARY_YEARS) |>
+  select(year, SV) |>
+  drop_na(SV) |>
+  group_by(year) |>
+  arrange(desc(SV)) |>
+  mutate(rank = row_number()) |>
+  ungroup() |>
+  mutate(year_fct = factor(year))
+
+ggplot(saves_data, aes(x = rank, y = SV, color = year_fct, group = year)) +
+  annotate(
+    "rect",
+    xmin = -Inf,
+    xmax = Inf,
+    ymin = 60,
+    ymax = 100,
+    fill = pal$good,
+    alpha = 0.04
+  ) +
+  annotate(
+    "rect",
+    xmin = -Inf,
+    xmax = Inf,
+    ymin = 0,
+    ymax = 25,
+    fill = pal$pit,
+    alpha = 0.04
+  ) +
+  geom_line(linewidth = 0.7, alpha = 0.7) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_color_manual(values = year_pal, name = NULL) +
+  scale_x_continuous(breaks = 1:10) +
+  labs(
+    title = "Save Distribution by Year",
+    subtitle = "Sharp drop-offs between the haves and have-nots",
+    x = "Team rank",
+    y = "Saves"
+  ) +
+  theme(
+    legend.position = c(0.88, 0.82),
+    legend.direction = "vertical",
+    legend.text = element_text(size = 8),
+    legend.key.size = unit(0.35, "cm"),
+    legend.background = element_rect(fill = alpha(pal$bg, 0.9), color = NA)
+  )
+```
+
+The model uses **robust regression** for saves — the only category where this method won. Why? Because the saves distribution has extreme outlier behavior:
+
+- Teams with elite closers cluster at 60-97 saves
+- Teams without established closers plummet to 10-20
+- There's often a cliff between the top 4-5 teams and the bottom half
+
+Robust regression down-weights these extremes to estimate the "typical" cost of a standings point in the competitive middle. The denominator of 6.4 saves per standings point reflects the middle-of-the-pack reality, not the extremes.
+
+
+## The Composite Model: Why One Size Doesn't Fit All
+
+The sweep tested 320 configurations and found that **different categories genuinely prefer different statistical treatments**. The composite model uses 9 distinct configurations across 10 categories.
+
+```{r}
+#| label: tbl-composite-configs
+#| echo: false
+
+config_data <- tibble(
+  category = c("R", "HR", "RBI", "SB", "AVG", "W", "SV", "SO", "ERA", "WHIP"),
+  side = c(rep("Batting", 5), rep("Pitching", 5)),
+  method = c(
+    "OLS",
+    "Pairwise Mean",
+    "OLS",
+    "Pairwise Mean",
+    "Pairwise Mean",
+    "Pairwise Median",
+    "Robust Reg",
+    "Pairwise Mean",
+    "OLS",
+    "Pairwise Mean"
+  ),
+  supplemental = c(
+    FALSE,
+    TRUE,
+    TRUE,
+    TRUE,
+    FALSE,
+    FALSE,
+    TRUE,
+    FALSE,
+    TRUE,
+    TRUE
+  ),
+  time_decay = c(
+    TRUE,
+    FALSE,
+    FALSE,
+    TRUE,
+    FALSE,
+    TRUE,
+    FALSE,
+    FALSE,
+    TRUE,
+    FALSE
+  ),
+  punt = c(FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE)
+)
+
+config_display <- config_data |>
+  mutate(across(
+    c(supplemental, time_decay, punt),
+    ~ ifelse(., "\u25cf", "\u2013")
+  ))
+
+config_display |>
+  gt(groupname_col = "side") |>
+  cols_label(
+    category = "Category",
+    method = "Method",
+    supplemental = "Supplemental Data",
+    time_decay = "Time Decay",
+    punt = "Punt Detection"
+  ) |>
+  cols_align(align = "center", columns = c(supplemental, time_decay, punt)) |>
+  tab_header(
+    title = md("**Composite Model Configuration**"),
+    subtitle = "Each category's optimal statistical treatment"
+  ) |>
+  tab_options(
+    table.background.color      = pal$bg,
+    heading.title.font.size     = px(18),
+    heading.subtitle.font.size  = px(13),
+    column_labels.font.weight   = "bold",
+    column_labels.background.color = pal$text,
+    table.border.top.style      = "none",
+    table.border.bottom.style   = "none",
+    row_group.font.weight       = "bold",
+    row_group.background.color  = "#f0efec",
+    data_row.padding            = px(8),
+    table.font.size             = px(14)
+  ) |>
+  tab_style(
+    style = cell_text(color = "white"),
+    locations = cells_column_labels()
+  ) |>
+  tab_style(
+    style = list(
+      cell_text(color = pal$pit, weight = "bold"),
+      cell_fill(color = "#fef3c7")
+    ),
+    locations = cells_body(
+      columns = punt,
+      rows = punt == "\u25cf"
+    )
+  )
+```
+
+### What the configurations reveal
+
+**Categories that benefit from supplemental data (2015-2018):** HR, RBI, SB, SV, ERA, WHIP. These categories existed in the 8-category era and their statistical structure hasn't changed dramatically. More data = better estimates.
+
+**Categories that reject supplemental data:** R, AVG, SO. R and SO didn't exist before 2019 (obvious), and AVG's tight distribution means the noise from the 8-category era data hurts more than the extra sample size helps.
+
+**Categories with time decay:** R, SB, W, ERA. These are categories where *recent seasons look different from older ones*. The game is changing — more stolen bases, shifting pitching usage patterns, evolving ERA environments.
+
+**Punt detection categories:** W, SO only. These are the only categories where teams make a clear strategic choice to abandon the category entirely. The punters are identifiable and removing them from the calibration data improves the model's ability to predict the competitive portion of the standings.
+
+
+## Model Validation
+
+```{r}
+#| label: fig-cv-validation
+#| fig-cap: "Leave-one-year-out cross-validation: the model correctly orders teams with 96% rank correlation in every held-out year."
+
+mean_rho <- mean(cv_df$rank_corr)
+
+p_rank <- ggplot(cv_df, aes(x = factor(year), y = rank_corr)) +
+  geom_segment(
+    aes(xend = factor(year), y = 0.85, yend = rank_corr),
+    color = pal$good,
+    linewidth = 0.7
+  ) +
+  geom_point(color = pal$good, size = 4) +
+  geom_text(
+    aes(label = sprintf("%.3f", rank_corr)),
+    vjust = -1.3,
+    size = 3.5,
+    color = pal$mid,
+    fontface = "bold"
+  ) +
+  geom_hline(
+    yintercept = mean_rho,
+    linetype = "dashed",
+    color = pal$pit,
+    linewidth = 0.4
+  ) +
+  annotate(
+    "text",
+    x = 0.6,
+    y = mean_rho + 0.006,
+    label = sprintf("Mean = %.3f", mean_rho),
+    color = pal$pit,
+    size = 3,
+    hjust = 0
+  ) +
+  scale_y_continuous(limits = c(0.85, 1.02)) +
+  coord_cartesian(clip = "off") +
+  labs(
+    title = "Rank correlation by held-out year",
+    x = NULL,
+    y = "Spearman \u03c1"
+  ) +
+  panel_title
+
+nrmse_plot <- nrmse_df |>
+  mutate(
+    side = ifelse(category %in% BATTING, "Batting", "Pitching"),
+    category = fct_reorder(category, nrmse)
+  )
+
+p_nrmse <- ggplot(nrmse_plot, aes(x = nrmse, y = category, color = side)) +
+  geom_segment(aes(x = 0, xend = nrmse, yend = category), linewidth = 0.6) +
+  geom_point(size = 3.5) +
+  geom_text(
+    aes(label = sprintf("%.2f", nrmse)),
+    hjust = -0.4,
+    size = 3.2,
+    color = pal$mid
+  ) +
+  geom_vline(
+    xintercept = 0.25,
+    linetype = "dashed",
+    color = pal$light,
+    linewidth = 0.3
+  ) +
+  scale_color_manual(values = c(Batting = pal$bat, Pitching = pal$pit)) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.15))) +
+  labs(
+    title = "Prediction error by category",
+    x = "Normalized RMSE (lower = better)",
+    y = NULL
+  ) +
+  panel_title +
+  h_grid
+
+p_rank | p_nrmse
+```
+
+The model validates well across all 6 held-out years:
+
+- **Rank correlation**: 0.91-0.99 per year (mean 0.961). This means the model's denomination structure correctly predicts which teams will finish where in the standings.
+- **Worst year**: 2019 (0.91) — the oldest year in the primary window, which makes sense given the league has evolved since then.
+- **Best categories**: SV (nRMSE 0.13), R (0.18), ERA (0.18) — these denominators are highly predictable year over year.
+- **Hardest categories**: W (0.58), SB (0.45) — these have the most year-to-year volatility, consistent with the structural changes we see in the data.
+
+
+## Star Player Impact by Category
+
+```{r}
+#| label: fig-star-impact
+#| fig-cap: "How many standings points a star-level player contributes per category. Pitchers generate more SGP per category than hitters."
+#| fig-height: 5
+
+team_ab <- 6514
+team_ip <- 1226
+repl_avg <- 0.245
+repl_era <- 4.35
+repl_whip <- 1.36
+star_ab <- 550
+star_ip <- 180
+
+star_data <- tibble(
+  category = c("R", "HR", "RBI", "SB", "AVG", "W", "SV", "SO", "ERA", "WHIP"),
+  stat = c(100, 35, 100, 25, 0.290, 15, 35, 220, 3.20, 1.10),
+  side = c(rep("Batting", 5), rep("Pitching", 5))
+) |>
+  left_join(DENOMS |> select(category, denom), by = "category") |>
+  mutate(
+    sgp = case_when(
+      category == "AVG" ~ (stat - repl_avg) * (star_ab / team_ab) / denom,
+      category == "ERA" ~ (repl_era - stat) * (star_ip / team_ip) / denom,
+      category == "WHIP" ~ (repl_whip - stat) * (star_ip / team_ip) / denom,
+      TRUE ~ stat / denom
+    ),
+    category = factor(category, levels = rev(c(BATTING, PITCHING)))
+  )
+
+h_total <- star_data |> filter(side == "Batting") |> pull(sgp) |> sum()
+p_total <- star_data |> filter(side == "Pitching") |> pull(sgp) |> sum()
+
+ggplot(star_data, aes(x = sgp, y = category, color = side)) +
+  geom_segment(aes(x = 0, xend = sgp, yend = category), linewidth = 0.7) +
+  geom_point(size = 3.5) +
+  geom_text(
+    aes(label = sprintf("%.1f", sgp)),
+    hjust = -0.4,
+    size = 3.5,
+    color = pal$mid,
+    fontface = "bold"
+  ) +
+  annotate(
+    "text",
+    x = max(star_data$sgp) * 0.8,
+    y = 8.5,
+    label = sprintf("Hitter total: %.1f SGP", h_total),
+    color = pal$bat,
+    size = 3.8,
+    fontface = "bold"
+  ) +
+  annotate(
+    "text",
+    x = max(star_data$sgp) * 0.8,
+    y = 3.5,
+    label = sprintf("Pitcher total: %.1f SGP", p_total),
+    color = pal$pit,
+    size = 3.8,
+    fontface = "bold"
+  ) +
+  scale_color_manual(values = c(Batting = pal$bat, Pitching = pal$pit)) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.18))) +
+  labs(
+    title = "Star Player SGP by Category",
+    subtitle = "A star pitcher generates more SGP per category, but across fewer roster slots",
+    x = "SGP contribution",
+    y = NULL
+  ) +
+  h_grid
+```
+
+A star-level hitter contributes SGP across 5 categories at roughly 2-3 SGP each. A star pitcher's counting stats (W, SV, SO) generate 5-6 SGP per category — nearly double. However, a hitter's rate stat contribution (AVG) is modest, while a pitcher's rate stats (ERA, WHIP) involve team-level dilution that reduces their individual impact.
+
+::: {.callout-important}
+## The Pitching Paradox
+Individual star pitchers produce more raw SGP per category, but there are only 5 pitching categories vs. 5 batting categories, and hitters fill 15 roster slots vs. 11 for pitchers. The net effect: total league value is roughly 65% hitting / 35% pitching — yet your league has been *increasing* its pitching spend beyond this ratio.
+:::
+
+
+## Year-to-Year Stability
+
+```{r}
+#| label: fig-stability
+#| fig-cap: "Year-specific SGP denominators for each category. Dashed line = overall composite denominator."
+#| fig-width: 14
+#| fig-height: 7
+
+year_denoms <- year_denoms_df |>
+  mutate(
+    side = ifelse(category %in% BATTING, "Batting", "Pitching"),
+    category = factor(category, levels = c(BATTING, PITCHING))
+  )
+
+composites <- year_denoms |> distinct(category, composite, side)
+
+ggplot(year_denoms, aes(x = year, y = denom, color = side)) +
+  geom_ribbon(
+    aes(ymin = composite * 0.75, ymax = composite * 1.25, fill = side),
+    alpha = 0.06,
+    color = NA
+  ) +
+  geom_hline(
+    data = composites,
+    aes(yintercept = composite),
+    linetype = "dashed",
+    color = pal$light,
+    linewidth = 0.4
+  ) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 2) +
+  scale_color_manual(values = c(Batting = pal$bat, Pitching = pal$pit)) +
+  scale_fill_manual(values = c(Batting = pal$bat, Pitching = pal$pit)) +
+  facet_wrap(~category, scales = "free_y", ncol = 5) +
+  labs(
+    title = "Year-Level SGP Stability",
+    subtitle = "Shaded band = \u00b125% of composite denominator",
+    x = NULL,
+    y = "SGP Denominator"
+  ) +
+  theme(
+    axis.text.x = element_text(size = rel(0.65), angle = 45, hjust = 1),
+    panel.spacing = unit(0.8, "lines")
+  )
+```
+
+Most categories stay within the 25% band year-over-year, which is expected with only 10 teams generating 9 gaps per year. The notable outliers:
+
+- **W in 2024-2025**: Denominator spiking — the gap between win totals is widening as more teams punt wins
+- **SB in 2023-2024**: Denominator increased with the stolen base explosion, but has stabilized in 2025
+- **SO**: Volatile year-over-year, partly because of the punt dynamic
+
+
+## Appendix: Data Sources & Methodology
+
+**Data**: 6 primary calibration years (2019, 2021-2025) comprising 60 team-seasons across 10 categories. Supplemental data (2015-2018) used for 6 of 10 categories where it improves accuracy.
+
+**Validation**: Leave-one-year-out cross-validation with Spearman rank correlation as the primary metric. Each held-out year trains on 5 years and predicts the 6th.
+
+**Composite model**: 320 configurations tested across 4 SGP methods, 2 supplemental settings, 4 time-decay settings, and 2 punt-detection settings. Per-category winners assembled into a composite that outperforms any single global configuration (rank correlation 0.961 vs 0.955).
+
+**Team totals**: Actual team AB and IP scraped from OnRoto (mean AB=6,514, mean IP=1,226 across primary years — notably lower than initial estimates of 7,300/1,300).
