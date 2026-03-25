@@ -55,6 +55,18 @@ Fetches third-party projections and converts them to dollar values:
 - `valuate.py` — Wire projected stats through SGP model to dollar values
 - `run_pipeline.py` — End-to-end: fetch → transform → valuate → output (`python3 -m projections.run_pipeline`)
 
+### MSP Targeting (`targeting/`)
+
+Team-specific player targeting using Marginal Standings Points. Run as `python3 -m targeting`:
+
+- `model.py` — Core MSP: keeper baselines, fill model, standings ranking, marginal computation
+- `name_match.py` — Unicode normalization, Jr./Sr., manual aliases for roster↔projection joins
+- `backtest.py` — Historical validation (2019, 2021-2025): reconstruct pre-auction, 3 eval metrics
+- `sweep.py` — Autoresearch sweep over model variants, outputs CSV + METRIC lines
+- `__main__.py` — CLI runner for 2026 live targeting
+
+**Live config**: `proportional_fill` (fd=0.5, displacement=True). Backtests slightly favor `keeper_only`, but fill model produces realistic standings gaps needed for sensible 2026 targeting. Run sweep: `python3 -m targeting.sweep`
+
 ### OnRoto Scrapers (`scrapers/`)
 
 Fetch league data from OnRoto using credentials in `.env`. Run as `python3 -m scrapers.<name>`:
@@ -79,13 +91,17 @@ Fetch league data from OnRoto using credentials in `.env`. Run as `python3 -m sc
 - `data/player_stats.csv` — ~3,500 rows, player stats for validation years (2019, 2021-2024)
 
 ### Validation Outputs
-- `data/player_valuations_{year}.csv` — Per-player SGP + dollar values (2019, 2021-2024)
-- `data/sweep_results.csv` — 320-config autoresearch sweep results
+- `data/player_valuations_{year}.csv` — Per-player SGP + dollar values (2019, 2021-2025)
+- `data/sweep_results.csv` — 320-config SGP autoresearch sweep results
+- `data/targeting_sweep_results.csv` — 7-config MSP targeting sweep results
+- `data/targeting_*_detail.csv` — Per-team-year backtest detail (standings, draft, optimal)
 
 ### 2026 Draft Valuations
 - `data/valuations_atc_2026.csv` — Primary (ATC): 645 players
 - `data/valuations_thebatx_2026.csv` — Cross-reference (THE BAT X): 618 players
 - `data/valuations_combined_2026.csv` — Side-by-side comparison
+- `data/msp_gusteroids_atc_2026.csv` — MSP-augmented valuations for Gusteroids
+- `data/msp_projected_standings_2026.csv` — Projected standings (keeper-only)
 - `data/projections/` — Cached raw projections from FanGraphs API
 
 ### Other
@@ -97,11 +113,11 @@ Fetch league data from OnRoto using credentials in `.env`. Run as `python3 -m sc
 ## Key Data Quality Issues
 
 - **2020**: COVID-shortened season — exclude from SGP calibration
-- **2025**: Partial season — exclude
+- **2025**: Complete season — included in primary calibration
 - **2015-2018**: Only 8 categories (no R or SO) — usable as supplemental data only
 - **2016-2017**: 11 teams instead of 10
 - **900 IP penalty**: Some teams score 0 in ERA+WHIP despite having stats (they didn't pitch enough innings). Exclude these from ERA/WHIP SGP calculations.
-- **Primary calibration window**: 2019, 2021, 2022, 2023, 2024 (~50 team-seasons)
+- **Primary calibration window**: 2019, 2021, 2022, 2023, 2024, 2025 (~60 team-seasons)
 
 ## Implementation Plans
 
@@ -111,6 +127,7 @@ Detailed plans with methodology, code architecture, and open questions:
 2. `plans/02-sgp-model.md` — SGP calibration, replacement level, dollar values, autoresearch benchmarking ✅
 3. `plans/03-validation-pipeline.md` — Historical player-level validation ✅
 4. `plans/04-projection-ingestion.md` — FanGraphs projection ingestion + 2026 valuations ✅
+5. MSP targeting metric — team-specific MSP framework, backtest, sweep, report ✅
 
 ## What's Left
 

@@ -1,0 +1,749 @@
+---
+title: "Draft Strategy Guide"
+subtitle: "What the SGP model says about how to win in the Moonlight Graham League"
+date: "2026-03-24"
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    code-fold: true
+    code-summary: "Show code"
+    fig-width: 10
+    fig-height: 6
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+library(patchwork)
+library(gt)
+library(scales)
+
+# ── Palette ──────────────────────────────────────────────────────────────────
+pal <- list(
+  primary   = "#3A6EA5",
+  secondary = "#C1666B",
+  accent    = "#2A9D8F",
+  bg        = "#faf9f5",
+  grid      = "#ededeb",
+  text      = "#2d2d2d",
+  mid       = "#666666",
+  light     = "#999999"
+)
+
+year_pal <- c(
+  "2019" = "#c6dbef",
+  "2021" = "#9ecae1",
+  "2022" = "#6baed6",
+  "2023" = "#4292c6",
+  "2024" = "#2171b5"
+)
+
+# ── Theme ────────────────────────────────────────────────────────────────────
+theme_sgp <- function(base_size = 13) {
+  theme_minimal(base_size = base_size) +
+    theme(
+      plot.background    = element_rect(fill = pal$bg, color = NA),
+      panel.background   = element_rect(fill = pal$bg, color = NA),
+      panel.grid.minor   = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.grid.major.y = element_line(color = pal$grid, linewidth = 0.3),
+      axis.title         = element_text(color = pal$mid, size = rel(0.85)),
+      axis.text          = element_text(color = pal$light, size = rel(0.8)),
+      axis.ticks         = element_blank(),
+      plot.title = element_text(
+        color = pal$text, size = rel(1.15), face = "bold",
+        margin = margin(b = 2), hjust = 0
+      ),
+      plot.subtitle = element_text(
+        color = pal$mid, size = rel(0.85),
+        margin = margin(b = 12), hjust = 0
+      ),
+      plot.caption = element_text(
+        color = pal$light, size = rel(0.7),
+        hjust = 0, margin = margin(t = 10)
+      ),
+      plot.margin    = margin(15, 20, 10, 15),
+      legend.position = "none",
+      strip.text = element_text(
+        color = pal$text, face = "bold", size = rel(0.9)
+      )
+    )
+}
+
+theme_set(theme_sgp())
+
+h_grid <- theme(
+  panel.grid.major.y = element_blank(),
+  panel.grid.major.x = element_line(color = pal$grid, linewidth = 0.3)
+)
+
+panel_title <- theme(
+  plot.title = element_text(size = rel(0.95), face = "plain", color = pal$mid)
+)
+
+# ── Data ─────────────────────────────────────────────────────────────────────
+years <- c(2019, 2021, 2022, 2023, 2024)
+
+all_val <- map_dfr(years, function(y) {
+  read_csv(
+    paste0("../data/player_valuations_", y, ".csv"),
+    show_col_types = FALSE
+  ) |>
+    mutate(year = y)
+})
+
+all_val <- all_val |>
+  mutate(
+    fantasy_team = str_trim(fantasy_team),
+    fantasy_team = if_else(fantasy_team == "mean machine", "Mean Machine", fantasy_team),
+    pos_type = if_else(is_pitcher, "Pitcher", "Hitter")
+  )
+
+standings <- read_csv("../data/historical_standings.csv", show_col_types = FALSE) |>
+  filter(year %in% years)
+
+sgp_bat <- c("sgp_R", "sgp_HR", "sgp_RBI", "sgp_SB", "sgp_AVG")
+sgp_pit <- c("sgp_W", "sgp_SV", "sgp_SO", "sgp_ERA", "sgp_WHIP")
+```
+
+# The Fundamental Economics
+
+Before talking about specific strategies, it's worth understanding the basic economics that govern this league. Every strategic principle below flows from these numbers.
+
+## What Is a Standings Point Worth?
+
+In rotisserie, you earn points by finishing higher in each of the 10 categories. The team that finishes first in a category gets 10 points; last place gets 1. Over five seasons, the average champion scored **88.5 total points** and the average last-place team scored **24.5** — a spread of 64 points. That means roughly **6-7 standings points** separate each position in the final standings.
+
+Because each category is worth the same number of standings points, the model values every category equally. One standings point gained in stolen bases is worth exactly the same as one standings point gained in strikeouts. But the *cost* of gaining a standings point differs wildly across categories — and that's where the strategy lives.
+
+## The Price of a Standings Point
+
+The SGP denominator for each category tells you how many raw stat units it takes to gain one standings point. A smaller denominator means the stat is "easier to move" — each raw unit has more impact on the standings.
+
+```{r}
+#| fig-height: 5
+
+denoms <- tibble(
+  category = c("R", "HR", "RBI", "SB", "AVG", "W", "SV", "SO", "ERA", "WHIP"),
+  denom = c(31.82, 12.17, 30.85, 10.36, 0.00306, 3.00, 6.40, 35.68, 0.101, 0.0186),
+  side = c(rep("Batting", 5), rep("Pitching", 5)),
+  # Dollar value of one raw unit (using avg ~$5.30/PAR)
+  dollar_per_unit = c(
+    5.3 / 31.82,  # R
+    5.3 / 12.17,  # HR
+    5.3 / 30.85,  # RBI
+    5.3 / 10.36,  # SB
+    NA,            # AVG (rate stat)
+    5.3 / 3.00,   # W
+    5.3 / 6.40,   # SV
+    5.3 / 35.68,  # SO
+    NA,            # ERA (rate stat)
+    NA             # WHIP (rate stat)
+  )
+)
+
+denoms |>
+  filter(!is.na(dollar_per_unit)) |>
+  ggplot(aes(x = dollar_per_unit, y = fct_reorder(category, dollar_per_unit),
+             color = side)) +
+  geom_segment(aes(x = 0, xend = dollar_per_unit,
+                   yend = fct_reorder(category, dollar_per_unit)),
+               linewidth = 0.8) +
+  geom_point(size = 4) +
+  geom_text(aes(label = paste0("$", sprintf("%.2f", dollar_per_unit))),
+            hjust = -0.3, size = 3.2, color = pal$mid) +
+  scale_color_manual(values = c("Batting" = pal$primary, "Pitching" = pal$secondary)) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.2))) +
+  labs(
+    title = "Dollar value of one raw stat unit",
+    subtitle = "Blue = batting · Red = pitching · Higher = more valuable per unit",
+    x = "Auction dollars per unit", y = NULL,
+    caption = "Rate stats (AVG, ERA, WHIP) excluded — their value depends on plate appearances / innings pitched"
+  ) +
+  h_grid
+```
+
+**Wins are the most valuable single counting stat in the league at $1.77 each.** The denominator is only 3.0 — meaning just 3 additional wins can move you up one standings position. This is why ace starters who consistently win 15+ games are so valuable: they're generating 5+ standings points from wins alone.
+
+**Saves ($0.83 each) and stolen bases ($0.51)** are the next most valuable per unit. Both have small denominators (6.4 and 10.4 respectively), meaning each unit carries outsized standings impact. A closer who saves 30 games generates ~4.7 SGP from that single category.
+
+**Home runs ($0.44)** are worth more than twice as much per unit as runs ($0.17), RBIs ($0.17), or strikeouts ($0.15). This is because the denominator for HR is 12.2 vs. 31.8 for R and 30.8 for RBI. A player who hits 10 extra home runs gains nearly a full standings point; a player who scores 10 extra runs gains about a third of one.
+
+
+## Each Category Is an Equal Slice of the Pie
+
+```{r}
+#| fig-height: 5
+
+# Standings point variance per category — they're all equal
+pts_cols <- c("R_pts", "HR_pts", "RBI_pts", "SB_pts", "AVG_pts",
+              "W_pts", "SV_pts", "ERA_pts", "WHIP_pts", "SO_pts")
+
+avg_pts <- standings |>
+  summarise(across(all_of(pts_cols), mean)) |>
+  pivot_longer(everything(), names_to = "category", values_to = "avg_pts") |>
+  mutate(
+    category = str_remove(category, "_pts"),
+    side = if_else(category %in% c("R", "HR", "RBI", "SB", "AVG"), "Batting", "Pitching")
+  )
+
+avg_pts |>
+  ggplot(aes(x = avg_pts, y = fct_reorder(category, avg_pts), fill = side)) +
+  geom_col(width = 0.6) +
+  geom_vline(xintercept = 5.5, linetype = "dashed", color = pal$light, linewidth = 0.4) +
+  annotate("text", x = 5.7, y = 1, label = "Expected (5.5)", color = pal$light,
+           size = 3, hjust = 0) +
+  scale_fill_manual(values = c("Batting" = pal$primary, "Pitching" = pal$secondary)) +
+  scale_x_continuous(limits = c(0, 8)) +
+  labs(
+    title = "Average standings points earned per category",
+    subtitle = "Blue = batting · Red = pitching · All categories converge to 5.5 (midpoint of 1-10 scale)",
+    x = "Average points", y = NULL
+  ) +
+  h_grid
+```
+
+In a 10-team league with linear scoring (1-10), every category averages 5.5 points. This means **no category is inherently more important than another** — a point gained in saves is worth exactly as much as a point gained in batting average. The strategic question isn't *which* categories to target, but *where you can buy standings points most cheaply*.
+
+
+# Principle 1: Balanced Rosters Beat Top-Heavy Ones
+
+```{r}
+#| fig-height: 5
+
+# Team roster concentration vs surplus
+team_conc <- all_val |>
+  filter(auction_value > 0) |>
+  group_by(fantasy_team, year) |>
+  summarise(
+    total_val = sum(auction_value),
+    top5_val = sum(sort(auction_value, decreasing = TRUE)[1:min(5, n())]),
+    .groups = "drop"
+  ) |>
+  mutate(top5_pct = top5_val / total_val * 100)
+
+team_surplus <- all_val |>
+  filter(!is.na(surplus)) |>
+  group_by(fantasy_team, year) |>
+  summarise(total_surplus = sum(surplus), .groups = "drop")
+
+roster_shape <- team_conc |>
+  inner_join(team_surplus, by = c("fantasy_team", "year"))
+
+roster_shape |>
+  ggplot(aes(x = top5_pct, y = total_surplus)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = pal$light, linewidth = 0.4) +
+  geom_smooth(method = "lm", se = TRUE, color = pal$primary, fill = pal$primary,
+              alpha = 0.1, linewidth = 0.8) +
+  geom_point(color = pal$primary, alpha = 0.6, size = 2.5) +
+  scale_x_continuous(labels = label_percent(scale = 1)) +
+  scale_y_continuous(labels = dollar_format(prefix = "$")) +
+  labs(
+    title = "Top-heavy rosters generate less surplus",
+    subtitle = "Each dot is one team-season · X-axis = % of team's value in their top 5 players",
+    x = "% of value in top 5 players", y = "Total team surplus"
+  )
+```
+
+```{r}
+#| echo: false
+
+r_val <- cor(roster_shape$top5_pct, roster_shape$total_surplus)
+```
+
+There's a clear negative relationship (r = `r round(r_val, 2)`): **teams that concentrate their value in a handful of stars tend to have worse overall surplus**. The most balanced rosters (top-5 players accounting for ~47% of value) average about -$50 in surplus, while the most top-heavy (top-5 at ~67% of value) average -$125.
+
+Why? In rotisserie, there's no playoff — you're scored across all 10 categories simultaneously. A team with one $80 hitter and nine $1 hitters will dominate HR but get crushed in every other category. Spreading your budget across more productive players covers more categories. The star who costs $50 but produces $60 of value generates $10 of surplus; the $5 player who produces $15 generates $10 too — but doesn't blow up your ability to fill other positions.
+
+**The draft implication:** resist the temptation to bid $60+ on a single superstar unless you're confident you can fill the rest of your roster cheaply. The data says you're better off with three $30 players than one $70 player and two $15 players.
+
+
+# Principle 2: SS and 3B Are Systematically Undervalued
+
+```{r}
+#| fig-height: 5
+
+pos_data <- all_val |>
+  filter(!is.na(surplus), auction_value > 0, !is_pitcher, !is.na(position)) |>
+  group_by(position) |>
+  summarise(
+    n = n(),
+    avg_auction = mean(auction_value),
+    avg_salary  = mean(salary),
+    avg_surplus = mean(surplus),
+    .groups = "drop"
+  ) |>
+  filter(n >= 10)
+
+pos_data |>
+  ggplot(aes(x = avg_surplus, y = fct_reorder(position, avg_surplus))) +
+  geom_segment(aes(x = 0, xend = avg_surplus,
+                   yend = fct_reorder(position, avg_surplus),
+                   color = avg_surplus > 0),
+               linewidth = 0.8) +
+  geom_point(aes(color = avg_surplus > 0), size = 4) +
+  geom_text(aes(label = paste0(if_else(avg_surplus > 0, "+", ""),
+                               "$", round(avg_surplus))),
+            hjust = if_else(pos_data$avg_surplus > 0, -0.3, 1.3),
+            size = 3.2, color = pal$mid) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = pal$light, linewidth = 0.4) +
+  scale_color_manual(values = c("TRUE" = pal$accent, "FALSE" = pal$secondary)) +
+  scale_x_continuous(labels = dollar_format(prefix = "$"),
+                     expand = expansion(mult = c(0.15, 0.15))) +
+  labs(
+    title = "Average surplus by position",
+    subtitle = "Positive = league underpays for this position · Negative = league overpays",
+    x = "Average surplus (auction value - salary)", y = NULL,
+    caption = "Positions with 10+ player-seasons across 2019-2024"
+  ) +
+  h_grid
+```
+
+**Shortstops and third basemen** are the two most undervalued positions in the Moonlight Graham league, each averaging +$14 in surplus across five seasons. To put that in perspective: a +$14 average surplus means that *every time* the league drafted a productive SS or 3B, it left $14 of value on the table on average.
+
+Why is this happening? Two likely reasons:
+
+1. **Keeper-league dynamics.** The AL has been rich in elite SS/3B talent (Witt, Henderson, Ramirez, Bichette, Devers, Correa), and many of these players were kept at below-market salaries from when they were rookies. Their production outgrew their salary faster than the market corrected.
+
+2. **Perception lag.** The league may still think of SS and 3B as "glove-first" positions with thin offensive pools, when the reality of modern baseball is that these are now premier offensive positions.
+
+**The draft implication:** if a SS or 3B with strong production is available at a price that seems fair, bid aggressively — history says fair price is actually a bargain. Conversely, UT-eligible players with no positional scarcity premium tend to be slightly overvalued.
+
+```{r}
+#| fig-height: 6
+
+# Show the surplus distribution per position (not just the mean)
+all_val |>
+  filter(!is.na(surplus), auction_value > 0, !is_pitcher, !is.na(position),
+         position %in% pos_data$position) |>
+  ggplot(aes(x = surplus, y = fct_reorder(position, surplus, .fun = median),
+             fill = position %in% c("SS", "3B"))) +
+  geom_boxplot(outlier.size = 1, outlier.alpha = 0.3, width = 0.6) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = pal$light, linewidth = 0.4) +
+  scale_fill_manual(values = c("TRUE" = pal$accent, "FALSE" = pal$primary), guide = "none") +
+  scale_x_continuous(labels = dollar_format(prefix = "$")) +
+  labs(
+    title = "Surplus distributions by position",
+    subtitle = "Green = SS and 3B (the undervalued positions) · Blue = all others",
+    x = "Surplus (auction value - salary)", y = NULL
+  )
+```
+
+The boxplots show it's not just the average — the entire SS and 3B distributions are shifted right. The median surplus is positive for both positions, while most other positions have a near-zero or negative median. The right tails are also longer, meaning these positions produce more extreme bargains.
+
+
+# Principle 3: Ace Starters Are Underpriced Relative to Their Production
+
+```{r}
+#| fig-height: 5
+
+aces <- all_val |>
+  filter(is_pitcher, IP >= 180)
+
+ace_profile <- aces |>
+  summarise(
+    across(c(sgp_W, sgp_SO, sgp_ERA, sgp_WHIP), mean),
+    avg_auction = mean(auction_value),
+    avg_production = mean(production_value),
+    avg_salary = mean(salary),
+    n = n()
+  )
+
+# Show ace SGP profile
+ace_sgp <- aces |>
+  select(player_name, year, sgp_W, sgp_SO, sgp_ERA, sgp_WHIP) |>
+  pivot_longer(cols = starts_with("sgp_"), names_to = "category", values_to = "sgp") |>
+  mutate(category = str_remove(category, "sgp_"))
+
+ace_sgp |>
+  ggplot(aes(x = sgp, y = fct_reorder(category, sgp))) +
+  geom_boxplot(fill = pal$secondary, alpha = 0.3, outlier.size = 1, width = 0.5) +
+  geom_point(stat = "summary", fun = mean, color = pal$secondary, size = 3) +
+  labs(
+    title = "SGP profile of ace starters (180+ IP)",
+    subtitle = "Box = distribution across 58 ace-seasons · Dot = mean",
+    x = "SGP contribution", y = NULL,
+    caption = "Saves excluded (aces don't close)"
+  ) +
+  h_grid
+```
+
+An ace starter who pitches 180+ innings generates an average of **13.2 total SGP** — comparable to elite hitters. The breakdown: **5.4 SGP from strikeouts, 4.4 from wins, 1.9 from WHIP, and 1.4 from ERA**. They accumulate value across four categories simultaneously, making them one of the most efficient value sources in the league.
+
+But here's the key insight: aces average **$45 in production value** but only **$32 in auction value**. The $13 gap is the split-pool effect deflating pitcher prices. And their average salary? About **$25**. So even at auction value, aces generate roughly +$7 of surplus on average.
+
+```{r}
+#| fig-height: 5
+
+# Show ace value vs the field
+all_val |>
+  filter(is_pitcher, auction_value > 0) |>
+  mutate(is_ace = IP >= 180) |>
+  ggplot(aes(x = production_value, y = auction_value,
+             color = is_ace, alpha = is_ace, size = is_ace)) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed",
+              color = pal$light, linewidth = 0.4) +
+  geom_point() +
+  scale_color_manual(values = c("FALSE" = pal$light, "TRUE" = pal$secondary)) +
+  scale_alpha_manual(values = c("FALSE" = 0.2, "TRUE" = 0.8)) +
+  scale_size_manual(values = c("FALSE" = 1, "TRUE" = 3)) +
+  scale_x_continuous(labels = dollar_format(prefix = "$")) +
+  scale_y_continuous(labels = dollar_format(prefix = "$")) +
+  labs(
+    title = "Ace starters vs. the pitcher field",
+    subtitle = "Red = aces (180+ IP) · Grey = all other pitchers · Aces sit far below the 1:1 line",
+    x = "Production value (what they actually produce)", y = "Auction value (what the market pays)",
+    caption = "The gap between the 1:1 line and the red dots = the market discount on ace production"
+  )
+```
+
+**The draft implication:** don't be afraid to pay up for workhorse starters. The market systematically underprices them relative to their production because the split-pool method compresses pitcher values. An ace who costs $30 at auction is generating $45+ of production — that's a better return than most hitters at the same price.
+
+
+# Principle 4: Stolen Bases Are a Concentrated Weapon
+
+```{r}
+#| fig-height: 6
+
+sb_data <- all_val |>
+  filter(!is_pitcher, auction_value > 0, year == 2024) |>
+  mutate(sb_sgp_pct = sgp_SB / pmax(total_sgp, 0.1) * 100)
+
+# Top SB contributors vs. their total value
+sb_top <- sb_data |>
+  filter(SB >= 20) |>
+  arrange(desc(sgp_SB))
+
+sb_top |>
+  select(player_name, SB, sgp_SB, total_sgp, auction_value) |>
+  mutate(sb_pct_of_value = sgp_SB / total_sgp * 100) |>
+  head(12) |>
+  ggplot(aes(x = sgp_SB, y = fct_reorder(player_name, sgp_SB))) +
+  geom_segment(aes(x = 0, xend = sgp_SB,
+                   yend = fct_reorder(player_name, sgp_SB)),
+               color = pal$accent, linewidth = 0.7) +
+  geom_point(color = pal$accent, size = 3.5) +
+  geom_text(aes(label = paste0(round(SB), " SB · $", round(auction_value), " total")),
+            hjust = -0.15, size = 2.8, color = pal$mid) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.3))) +
+  labs(
+    title = "Stolen base SGP leaders (2024)",
+    subtitle = "How much standings impact does speed generate?",
+    x = "SGP from stolen bases alone", y = NULL
+  ) +
+  h_grid
+```
+
+Stolen bases have the second-smallest denominator among counting stats (10.4 SB per standings point), which means **each stolen base is worth $0.51** — three times more valuable per unit than a run or an RBI. But speed is concentrated in a handful of players. In 2024, only about a dozen hitters stole 30+ bases.
+
+This creates a strategic opportunity. Jose Ramirez's 41 stolen bases generated 4.0 SGP from speed alone — almost a full standings point's worth more than a player who steals zero. Players like Jose Caballero (44 SB, 4.2 SGP) or David Hamilton (33 SB, 3.2 SGP) can contribute significant standings value from a single category, often at a modest salary.
+
+```{r}
+#| fig-height: 4.5
+
+# Show the SB distribution — how many players have meaningful SB?
+all_val |>
+  filter(!is_pitcher, auction_value > 0, year == 2024) |>
+  ggplot(aes(x = SB)) +
+  geom_histogram(binwidth = 3, boundary = 0, fill = pal$accent, color = "white", linewidth = 0.2) +
+  geom_vline(xintercept = 20, linetype = "dashed", color = pal$text, linewidth = 0.4) +
+  annotate("text", x = 22, y = Inf, label = "20 SB threshold", vjust = 2,
+           color = pal$mid, size = 3, hjust = 0) +
+  labs(
+    title = "Stolen base distribution among rostered hitters (2024)",
+    subtitle = "Most hitters barely steal · The few who run are disproportionately valuable",
+    x = "Stolen bases", y = "Players"
+  )
+```
+
+**The draft implication:** don't treat stolen bases as a "nice to have." Speed is one of the most scarce and valuable stat categories per unit. If you can lock up 2-3 players who steal 25+, you've likely secured a top-3 finish in the category, worth 8-10 standings points. The cost of missing on steals is steep because so few players contribute meaningfully.
+
+
+# Principle 5: Wins Are the Most Volatile Valuable Stat
+
+```{r}
+#| fig-height: 5
+
+# W distribution for qualified pitchers
+qualified_p <- all_val |>
+  filter(is_pitcher, IP >= 100, auction_value > 0)
+
+qualified_p |>
+  ggplot(aes(x = W)) +
+  geom_histogram(binwidth = 1, fill = pal$secondary, color = "white", linewidth = 0.2) +
+  labs(
+    title = "Win distribution for pitchers with 100+ IP",
+    subtitle = "Wins are scarce and unevenly distributed — each one is worth $1.77",
+    x = "Wins", y = "Pitchers"
+  )
+```
+
+Wins have the smallest denominator of any counting stat: just **3 wins per standings point**, making each win worth **$1.77** — by far the most expensive single stat unit in the league. But wins are also famously volatile and hard to predict. A pitcher with identical stuff can win 18 games on a good team or 8 on a bad one.
+
+```{r}
+#| fig-height: 4.5
+
+# Compare win accumulation: top vs bottom
+win_tiers <- qualified_p |>
+  mutate(win_tier = case_when(
+    W >= 14 ~ "14+ W (ace)",
+    W >= 10 ~ "10-13 W (solid)",
+    W >= 6  ~ "6-9 W (average)",
+    TRUE    ~ "0-5 W (bust)"
+  )) |>
+  mutate(win_tier = fct_relevel(win_tier, "14+ W (ace)", "10-13 W (solid)",
+                                 "6-9 W (average)", "0-5 W (bust)"))
+
+win_tiers |>
+  group_by(win_tier) |>
+  summarise(
+    n = n(),
+    avg_W_sgp = mean(sgp_W),
+    avg_total_auction = mean(auction_value),
+    .groups = "drop"
+  ) |>
+  ggplot(aes(x = avg_W_sgp, y = win_tier)) +
+  geom_segment(aes(x = 0, xend = avg_W_sgp, yend = win_tier),
+               color = pal$secondary, linewidth = 0.8) +
+  geom_point(color = pal$secondary, size = 4) +
+  geom_text(aes(label = paste0(round(avg_W_sgp, 1), " SGP  (n=", n, ")")),
+            hjust = -0.2, size = 3.2, color = pal$mid) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.25))) +
+  labs(
+    title = "Win SGP by tier",
+    subtitle = "An ace (14+ W) generates 5x the win SGP of a bust — and each point is worth $1.77",
+    x = "SGP from wins", y = NULL
+  ) +
+  h_grid
+```
+
+**The draft implication:** since wins are both the most valuable per-unit stat *and* the hardest to predict, diversify your exposure. Don't rely on one ace to carry your wins category. Instead, roster 3-4 pitchers on good teams who can each contribute 10-14 wins. This hedges against the randomness of W/L record while still accumulating the most expensive stat in the league.
+
+
+# Principle 6: Closers — Pay for the Elite, Ignore the Rest
+
+```{r}
+#| fig-height: 5
+
+closer_data <- all_val |>
+  filter(is_pitcher, SV > 0, auction_value > 0)
+
+closer_data |>
+  ggplot(aes(x = SV, y = auction_value)) +
+  geom_point(color = pal$secondary, alpha = 0.5, size = 2) +
+  geom_smooth(method = "lm", se = FALSE, color = pal$secondary, linewidth = 0.8) +
+  scale_y_continuous(labels = dollar_format(prefix = "$")) +
+  labs(
+    title = "Closer value: saves vs. auction value",
+    subtitle = "Each save is worth $0.83 in standings impact — but only true closers accumulate them",
+    x = "Saves", y = "Auction value"
+  )
+```
+
+Saves have a denominator of 6.4, making each save worth **$0.83** — significant per-unit value. But saves are the most binary stat in baseball: you're either the closer or you're not. In 2024, Emmanuel Clase led with 47 saves (7.3 SV SGP), while the 10th-best closer had only 23 saves (3.6 SGP). The drop-off is steep.
+
+The relationship between saves and total auction value is positive but noisy because closers also generate value from ERA, WHIP, and SO. The elite closers (Clase, Hader, Yates) who combine saves with strong ratios can be worth $25-35, rivaling mid-tier starters.
+
+**The draft implication:** there are only about 10-12 true closers in AL-only. If you want to compete in saves, you need at least one elite closer (30+ SV). Paying $20-25 for a Clase-tier closer is reasonable because the 7+ SGP from saves alone is worth ~$37 in standings impact. Middle-tier closers (15-20 SV) offer less value per dollar because they don't accumulate enough saves to dominate the category, and their other stat contributions are modest. Either go big or punt saves entirely and reinvest elsewhere.
+
+
+# Principle 7: Multi-Category Hitters Are the Best Value
+
+```{r}
+#| fig-height: 5
+
+multi_cat <- all_val |>
+  filter(!is_pitcher, auction_value > 10) |>
+  mutate(
+    cats_above_1 = (sgp_R > 1) + (sgp_HR > 1) + (sgp_RBI > 1) +
+                   (sgp_SB > 1) + (sgp_AVG > 1),
+    cats_above_1 = factor(cats_above_1)
+  )
+
+cat_value <- multi_cat |>
+  group_by(cats_above_1) |>
+  summarise(
+    n = n(),
+    avg_auction = mean(auction_value),
+    avg_surplus = mean(surplus, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+cat_value |>
+  ggplot(aes(x = cats_above_1, y = avg_auction)) +
+  geom_col(fill = pal$primary, width = 0.6) +
+  geom_text(aes(label = paste0("$", round(avg_auction), "\n(n=", n, ")")),
+            vjust = -0.3, size = 3.2, color = pal$mid) +
+  scale_y_continuous(labels = dollar_format(prefix = "$"),
+                     expand = expansion(mult = c(0, 0.15))) +
+  labs(
+    title = "Average auction value by number of categories with >1 SGP",
+    subtitle = "Multi-category contributors are exponentially more valuable than one-trick ponies",
+    x = "Number of categories with >1 SGP", y = "Average auction value"
+  )
+```
+
+A hitter who contributes >1 SGP in all five batting categories averages **$53 in auction value** — nearly four times the value of a player who only excels in two categories ($15). This is the mathematical consequence of rotisserie scoring: since every category is worth the same, a player who helps in five categories is literally five times more useful than one who helps in one.
+
+The 5-category players ($53 avg) are the Jose Ramirezes and Bobby Witts of the world — they hit for power, speed, average, and produce counting stats. The 3-category players ($21 avg) are more common: a solid power hitter who drives in runs and scores but doesn't steal or hit for high average.
+
+```{r}
+#| fig-height: 6
+
+# Show what the 5-category players look like
+five_cat <- multi_cat |>
+  filter(cats_above_1 == 5) |>
+  arrange(desc(auction_value)) |>
+  head(15)
+
+five_cat_long <- five_cat |>
+  select(player_name, year, sgp_R, sgp_HR, sgp_RBI, sgp_SB, sgp_AVG) |>
+  pivot_longer(cols = starts_with("sgp_"), names_to = "category", values_to = "sgp") |>
+  mutate(category = str_remove(category, "sgp_"))
+
+five_cat_long |>
+  ggplot(aes(x = sgp, y = fct_reorder(paste0(player_name, " (", year, ")"), sgp, .fun = sum),
+             fill = category)) +
+  geom_col(position = "stack", width = 0.7) +
+  scale_fill_manual(values = c(
+    "R" = "#3A6EA5", "HR" = "#C1666B", "RBI" = "#2A9D8F",
+    "SB" = "#D4A373", "AVG" = "#7B6D8D"
+  )) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.05))) +
+  labs(
+    title = "SGP breakdown of top 5-category hitters",
+    subtitle = "These players contribute meaningfully across all five batting categories",
+    x = "Total SGP", y = NULL
+  ) +
+  h_grid +
+  theme(
+    legend.position = c(0.85, 0.2),
+    legend.direction = "vertical",
+    legend.text = element_text(size = 8),
+    legend.key.size = unit(0.35, "cm"),
+    legend.background = element_rect(fill = alpha(pal$bg, 0.9), color = NA)
+  )
+```
+
+**The draft implication:** when choosing between two players at a similar price, prefer the one who contributes across more categories. A .280 hitter with 25 HR, 15 SB, 90 R, and 85 RBI is more valuable than a .240 hitter with 40 HR, 0 SB, 80 R, and 100 RBI — even though the second player might look more impressive on the back of his baseball card. The five-tool player helps you in five standings races; the one-dimensional slugger helps in two.
+
+
+# Principle 8: Keepers Create the Biggest Edges
+
+```{r}
+#| fig-height: 5
+
+keeper_data <- all_val |>
+  filter(!is.na(surplus), !is.na(contract_year)) |>
+  mutate(
+    keeper_status = case_when(
+      contract_year %in% c("b", "c", "bX", "cX", "bY", "cY") ~ "Keeper (yr 2-3)",
+      contract_year %in% c("a", "aX", "aY") ~ "First year (yr 1)",
+      TRUE ~ "Other"
+    )
+  ) |>
+  filter(keeper_status != "Other")
+
+keeper_data |>
+  ggplot(aes(x = surplus, fill = keeper_status)) +
+  geom_histogram(binwidth = 5, boundary = 0, color = "white", linewidth = 0.2,
+                 position = "identity", alpha = 0.6) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = pal$text, linewidth = 0.4) +
+  scale_fill_manual(values = c("First year (yr 1)" = pal$primary,
+                                "Keeper (yr 2-3)" = pal$accent)) +
+  labs(
+    title = "Surplus distribution: first-year players vs. keepers",
+    subtitle = "Blue = newly drafted (yr 1) · Green = kept from prior year (yr 2-3) · Keepers skew more positive",
+    x = "Surplus (auction value - salary)", y = "Players"
+  )
+```
+
+First-year players (newly drafted) average **-$5 in surplus** — the league collectively overpays at auction. But players kept from prior years (contract year b or c) average **+$1 in surplus**. The gap seems small until you consider scale: across a full roster of keepers, that +$6/player swing adds up fast.
+
+The mechanism is straightforward: when a player breaks out or takes a leap, their salary stays fixed at the original auction price while their value increases. The keeper retains the surplus. This is the single biggest edge-generating mechanism in a keeper league — and it's why scouting breakout candidates in years before they peak is so important.
+
+```{r}
+#| fig-height: 4.5
+
+# Keeper hitters vs pitchers
+keeper_data |>
+  filter(keeper_status == "Keeper (yr 2-3)") |>
+  ggplot(aes(x = surplus, fill = pos_type)) +
+  geom_histogram(binwidth = 5, boundary = 0, color = "white", linewidth = 0.2,
+                 position = "identity", alpha = 0.6) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = pal$text, linewidth = 0.4) +
+  scale_fill_manual(values = c("Hitter" = pal$primary, "Pitcher" = pal$secondary)) +
+  labs(
+    title = "Keeper surplus: hitters vs. pitchers",
+    subtitle = "Blue = hitters · Red = pitchers · Keeper pitchers have a slightly higher average surplus (+$2 vs $0)",
+    x = "Surplus", y = "Players"
+  )
+```
+
+Interestingly, **kept pitchers (+$2 avg surplus) slightly outperform kept hitters (+$0)**. This runs counter to the common wisdom that pitcher keepers are riskier. The data suggests that when pitchers *do* maintain their performance through a second or third year, the surplus is real. The risk is that pitchers are more likely to get injured or decline — but the ones who survive the filter are worth keeping.
+
+**The draft implication:** your draft strategy should start with your keeper list. Every keeper retained at below-market price frees up budget for the auction. The ideal draft starts with 3-5 keepers who collectively generate +$30-50 of surplus, then deploys the freed-up budget to fill gaps. The worst outcome is keeping players whose salary has caught up to or exceeded their value — that's dead money locked in for the season.
+
+
+# Summary: The Draft Cheat Sheet
+
+```{r}
+#| echo: false
+
+cheat <- tibble(
+  Principle = c(
+    "Balance > Stars",
+    "Target SS and 3B",
+    "Pay for aces",
+    "Lock up speed",
+    "Diversify wins",
+    "Closers: elite or none",
+    "5-tool hitters > sluggers",
+    "Keepers are your edge"
+  ),
+  `What the Data Says` = c(
+    "Top-heavy rosters correlate with -$75 worse surplus than balanced ones (r = -0.36)",
+    "SS and 3B average +$14 surplus — the league's biggest positional market inefficiency",
+    "Ace starters (180+ IP) produce $45 of value but cost only $25 on average",
+    "Each SB is worth $0.51 and only ~12 players steal 30+ — cornering speed pays off",
+    "Each W is worth $1.77 but wins are noisy — spread your bets across 3-4 starters",
+    "Only ~10 true closers exist in AL-only — a 40-SV closer generates 6+ SGP from saves alone",
+    "5-category hitters ($53 avg) are worth 3.5x more than 2-category hitters ($15 avg)",
+    "Keepers average +$6 more surplus than first-year draft picks — breakout scouting is the highest-ROI activity"
+  )
+)
+
+cheat |>
+  gt() |>
+  cols_label(Principle = "Principle", `What the Data Says` = "What the Data Says") |>
+  tab_header(title = md("**Draft Strategy Summary**"),
+             subtitle = "Eight principles derived from five seasons of SGP analysis") |>
+  tab_options(
+    table.background.color      = pal$bg,
+    heading.title.font.size     = px(18),
+    heading.subtitle.font.size  = px(13),
+    column_labels.font.weight   = "bold",
+    column_labels.background.color = pal$text,
+    table.border.top.style      = "none",
+    table.border.bottom.style   = "none",
+    data_row.padding            = px(10),
+    table.font.size             = px(13)
+  ) |>
+  tab_style(
+    style = cell_text(color = "white"),
+    locations = cells_column_labels()
+  ) |>
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(columns = "Principle")
+  )
+```

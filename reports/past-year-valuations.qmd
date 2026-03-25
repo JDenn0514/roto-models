@@ -1,0 +1,884 @@
+---
+title: "Historical Player Valuations"
+subtitle: "Five seasons of SGP-based player values in the Moonlight Graham League"
+date: "2026-03-24"
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    code-fold: true
+    code-summary: "Show code"
+    fig-width: 10
+    fig-height: 6
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+library(patchwork)
+library(gt)
+library(scales)
+
+# ── Palette ──────────────────────────────────────────────────────────────────
+pal <- list(
+  primary   = "#3A6EA5",
+  secondary = "#C1666B",
+  accent    = "#2A9D8F",
+  bg        = "#faf9f5",
+  grid      = "#ededeb",
+  text      = "#2d2d2d",
+  mid       = "#666666",
+  light     = "#999999"
+)
+
+year_pal <- c(
+  "2019" = "#c6dbef",
+  "2021" = "#9ecae1",
+  "2022" = "#6baed6",
+  "2023" = "#4292c6",
+  "2024" = "#2171b5"
+)
+
+# ── Theme ────────────────────────────────────────────────────────────────────
+theme_sgp <- function(base_size = 13) {
+  theme_minimal(base_size = base_size) +
+    theme(
+      plot.background    = element_rect(fill = pal$bg, color = NA),
+      panel.background   = element_rect(fill = pal$bg, color = NA),
+      panel.grid.minor   = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.grid.major.y = element_line(color = pal$grid, linewidth = 0.3),
+      axis.title         = element_text(color = pal$mid, size = rel(0.85)),
+      axis.text          = element_text(color = pal$light, size = rel(0.8)),
+      axis.ticks         = element_blank(),
+      plot.title = element_text(
+        color = pal$text, size = rel(1.15), face = "bold",
+        margin = margin(b = 2), hjust = 0
+      ),
+      plot.subtitle = element_text(
+        color = pal$mid, size = rel(0.85),
+        margin = margin(b = 12), hjust = 0
+      ),
+      plot.caption = element_text(
+        color = pal$light, size = rel(0.7),
+        hjust = 0, margin = margin(t = 10)
+      ),
+      plot.margin    = margin(15, 20, 10, 15),
+      legend.position = "none",
+      strip.text = element_text(
+        color = pal$text, face = "bold", size = rel(0.9)
+      )
+    )
+}
+
+theme_set(theme_sgp())
+
+h_grid <- theme(
+  panel.grid.major.y = element_blank(),
+  panel.grid.major.x = element_line(color = pal$grid, linewidth = 0.3)
+)
+
+panel_title <- theme(
+  plot.title = element_text(size = rel(0.95), face = "plain", color = pal$mid)
+)
+
+# ── Data ─────────────────────────────────────────────────────────────────────
+years <- c(2019, 2021, 2022, 2023, 2024)
+
+all_val <- map_dfr(years, function(y) {
+  read_csv(
+    paste0("../data/player_valuations_", y, ".csv"),
+    show_col_types = FALSE
+  ) |>
+    mutate(year = y)
+})
+
+all_val <- all_val |>
+  mutate(
+    fantasy_team = str_trim(fantasy_team),
+    fantasy_team = if_else(fantasy_team == "mean machine", "Mean Machine", fantasy_team),
+    pos_type = if_else(is_pitcher, "Pitcher", "Hitter")
+  )
+
+sgp_bat <- c("sgp_R", "sgp_HR", "sgp_RBI", "sgp_SB", "sgp_AVG")
+sgp_pit <- c("sgp_W", "sgp_SV", "sgp_SO", "sgp_ERA", "sgp_WHIP")
+sgp_all <- c(sgp_bat, sgp_pit)
+```
+
+# Overview
+
+This report examines five seasons of player valuations produced by the SGP (Standings Gain Points) model calibrated to the Moonlight Graham league. Each player's actual in-season stats are run through the model to produce two different dollar values:
+
+- **Production value** (single-pool method): every player with positive PAR draws from one shared $3,600 pool. This reflects where value *actually comes from* — it answers the question "how much of the league's total production did this player account for?" Because pitchers consistently generate more raw SGP than hitters (aces accumulate value across W, SO, ERA, WHIP, and sometimes SV), production value tends to skew heavily toward pitching.
+
+- **Auction value** (split-pool method): the $3,600 pool is divided into a hitter sub-pool and a pitcher sub-pool based on historical spending patterns (~62% hitters, ~38% pitchers). Hitters and pitchers are then valued independently within their own pool. This reflects what a player *should cost at auction*, because it accounts for the fact that league owners historically spend more on hitting than pitching. The split-pool method inflates hitter values and deflates pitcher values relative to their raw production.
+
+The five validation seasons are **2019, 2021, 2022, 2023, and 2024** (2020 excluded for COVID, 2025 excluded as partial).
+
+```{r}
+#| echo: false
+
+summary_tbl <- all_val |>
+  group_by(year) |>
+  summarise(
+    hitters    = sum(!is_pitcher),
+    pitchers   = sum(is_pitcher),
+    prod_pool  = sum(production_value),
+    auct_pool  = sum(auction_value),
+    hit_prod_pct = sum(production_value[!is_pitcher]) / sum(production_value) * 100,
+    top_hitter = player_name[!is_pitcher][which.max(auction_value[!is_pitcher])],
+    top_hit_val = max(auction_value[!is_pitcher]),
+    top_pitcher = player_name[is_pitcher][which.max(auction_value[is_pitcher])],
+    top_pit_val = max(auction_value[is_pitcher]),
+    .groups = "drop"
+  )
+
+summary_tbl |>
+  gt() |>
+  cols_label(
+    year = "Year", hitters = "Hitters", pitchers = "Pitchers",
+    prod_pool = "Prod Pool", auct_pool = "Auction Pool",
+    hit_prod_pct = "Hitter Prod %",
+    top_hitter = "Top Hitter", top_hit_val = "Value",
+    top_pitcher = "Top Pitcher", top_pit_val = "Value"
+  ) |>
+  fmt_currency(columns = c(prod_pool, auct_pool, top_hit_val, top_pit_val), decimals = 0) |>
+  fmt_number(columns = hit_prod_pct, decimals = 1, pattern = "{x}%") |>
+  tab_spanner(label = "Dollar Pools", columns = c(prod_pool, auct_pool)) |>
+  tab_spanner(label = "Most Valuable Hitter", columns = c(top_hitter, top_hit_val)) |>
+  tab_spanner(label = "Most Valuable Pitcher", columns = c(top_pitcher, top_pit_val)) |>
+  tab_header(title = md("**Season-by-Season Summary**")) |>
+  tab_options(
+    table.background.color      = pal$bg,
+    heading.title.font.size     = px(18),
+    heading.subtitle.font.size  = px(13),
+    column_labels.font.weight   = "bold",
+    column_labels.background.color = pal$text,
+    table.border.top.style      = "none",
+    table.border.bottom.style   = "none",
+    row_group.font.weight       = "bold",
+    row_group.background.color  = "#f0efec",
+    data_row.padding            = px(8),
+    table.font.size             = px(13)
+  ) |>
+  tab_style(
+    style = cell_text(color = "white"),
+    locations = cells_column_labels()
+  )
+```
+
+A few things jump out from the summary. Both pools always sum to exactly $3,600 (10 teams x $360), confirming the model is correctly calibrated. But the **Hitter Prod %** column is striking: hitters account for only 39-54% of total production value, meaning pitching generates more raw SGP in most years. This is why the split-pool auction value matters — without it, top pitchers would be priced far above what the market actually pays, and hitters would be undervalued relative to what you'd need to bid for them.
+
+The most extreme example is **2022**, when Aaron Judge hit 62 home runs but hitters still only accounted for 39% of production. That year, Verlander's production value was $82 but his auction value was only $51 — the split-pool method correctly anticipates that the league won't actually spend $82 on any pitcher.
+
+
+# Dollar Value Distributions
+
+```{r}
+#| fig-height: 8
+
+all_val |>
+  filter(auction_value > 0) |>
+  mutate(year = factor(year)) |>
+  ggplot(aes(x = auction_value, fill = pos_type)) +
+  geom_histogram(binwidth = 5, boundary = 0, color = "white", linewidth = 0.2) +
+  facet_wrap(~year, ncol = 1, scales = "free_y") +
+  scale_fill_manual(values = c("Hitter" = pal$primary, "Pitcher" = pal$secondary)) +
+  scale_x_continuous(labels = dollar_format(prefix = "$"), breaks = seq(0, 120, 20)) +
+  labs(
+    title = "Dollar value distributions by year",
+    subtitle = "Blue = hitters · Red = pitchers · Only players with positive auction value shown",
+    x = "Auction value", y = "Players"
+  )
+```
+
+Every year follows the same pattern: a large cluster of players in the $1-10 range (the replacement-level fringe), a long right tail of star players, and the bulk of the league's value concentrated in relatively few hands. The distributions are heavily right-skewed, which is a fundamental property of rotisserie valuation — the gap between the best and the 50th-best player is enormous, while the gap between the 100th and 150th is almost nothing.
+
+2022 stands out as particularly top-heavy, with Judge's $118 auction value creating a longer right tail than any other year. This reflects a genuine outlier season (62 HR, 131 R, 130 RBI).
+
+```{r}
+#| fig-height: 5
+
+concentration <- all_val |>
+  filter(auction_value > 0) |>
+  group_by(year) |>
+  arrange(desc(auction_value)) |>
+  mutate(
+    rank = row_number(),
+    cumul_pct = cumsum(auction_value) / sum(auction_value) * 100
+  ) |>
+  ungroup()
+
+concentration |>
+  filter(rank <= 50) |>
+  mutate(year = factor(year)) |>
+  ggplot(aes(x = rank, y = cumul_pct, color = year)) +
+  geom_line(linewidth = 0.9) +
+  geom_hline(yintercept = 50, linetype = "dashed", color = pal$light, linewidth = 0.4) +
+  annotate("text", x = 48, y = 52, label = "50% of pool", color = pal$light, size = 3, hjust = 1) +
+  scale_color_manual(values = year_pal) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  labs(
+    title = "Value concentration curves",
+    subtitle = "How many top players capture half the auction pool",
+    x = "Player rank (by auction value)", y = "Cumulative % of auction pool"
+  ) +
+  theme(
+    legend.position = c(0.85, 0.35),
+    legend.direction = "vertical",
+    legend.text = element_text(size = 8),
+    legend.key.size = unit(0.35, "cm"),
+    legend.background = element_rect(fill = alpha(pal$bg, 0.9), color = NA)
+  )
+```
+
+The concentration curves confirm this: in a typical year, the top **38-48 players** capture half of the entire $3,600 auction pool. That's fewer than a third of all rostered players with positive value. 2022 was the most concentrated year (only 38 players to reach 50%), driven by Judge's historic season pulling the curve steeper. The practical implication: in a 10-team league with 26 active roster spots (260 total), the difference between getting one of these top-50 players and missing out is enormous. Most of the auction budget should go toward securing elite production, not spreading it thin across marginal players.
+
+
+# Top Players: Two Views of Value
+
+The model produces two dollar values for each player, and comparing them reveals something important about how our league's economy works.
+
+```{r}
+#| fig-height: 12
+
+top_h <- all_val |>
+  filter(!is_pitcher, auction_value > 0) |>
+  group_by(year) |>
+  slice_max(auction_value, n = 10) |>
+  ungroup() |>
+  mutate(year_f = factor(year))
+
+top_h_long <- top_h |>
+  select(year, player_name, auction_value, production_value) |>
+  pivot_longer(cols = c(auction_value, production_value),
+               names_to = "method", values_to = "value") |>
+  mutate(method = if_else(method == "auction_value", "Auction value", "Production value"))
+
+top_h_long |>
+  ggplot(aes(x = value, y = fct_reorder2(player_name, year, value),
+             color = method)) +
+  geom_line(aes(group = paste(year, player_name)),
+            color = pal$grid, linewidth = 1.5) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("Auction value" = pal$primary, "Production value" = pal$secondary)) +
+  facet_wrap(~year, scales = "free_y", ncol = 1) +
+  scale_x_continuous(labels = dollar_format(prefix = "$"),
+                     expand = expansion(mult = c(0.02, 0.1))) +
+  labs(
+    title = "Top 10 hitters: auction value vs. production value",
+    subtitle = "Blue = auction value (split-pool) · Red = production value (single-pool) · Gap = split-pool inflation",
+    x = NULL, y = NULL
+  ) +
+  h_grid +
+  theme(
+    legend.position = c(0.85, 0.07),
+    legend.direction = "vertical",
+    legend.text = element_text(size = 8),
+    legend.key.size = unit(0.35, "cm"),
+    legend.background = element_rect(fill = alpha(pal$bg, 0.9), color = NA)
+  )
+```
+
+For every top hitter, the blue dot (auction value) sits to the right of the red dot (production value). This is the split-pool effect at work: because the league spends ~62% of its budget on hitters but hitters only produce ~40-54% of total SGP, the split-pool method inflates hitter values to match market reality. Aaron Judge in 2024 had a production value of $65 but an auction value of $99 — the $34 gap means that in a world where hitters get 62% of the budget, Judge's share of the *hitter pool* is much larger than his share of the *total pool*.
+
+This is not an error. It reflects the structural reality that hitters cost more in auction because everyone wants them. When you're deciding what to bid, use the auction value.
+
+```{r}
+#| fig-height: 12
+
+top_p <- all_val |>
+  filter(is_pitcher, auction_value > 0) |>
+  group_by(year) |>
+  slice_max(auction_value, n = 10) |>
+  ungroup()
+
+top_p_long <- top_p |>
+  select(year, player_name, auction_value, production_value) |>
+  pivot_longer(cols = c(auction_value, production_value),
+               names_to = "method", values_to = "value") |>
+  mutate(method = if_else(method == "auction_value", "Auction value", "Production value"))
+
+top_p_long |>
+  ggplot(aes(x = value, y = fct_reorder2(player_name, year, value),
+             color = method)) +
+  geom_line(aes(group = paste(year, player_name)),
+            color = pal$grid, linewidth = 1.5) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("Auction value" = pal$primary, "Production value" = pal$secondary)) +
+  facet_wrap(~year, scales = "free_y", ncol = 1) +
+  scale_x_continuous(labels = dollar_format(prefix = "$"),
+                     expand = expansion(mult = c(0.02, 0.1))) +
+  labs(
+    title = "Top 10 pitchers: auction value vs. production value",
+    subtitle = "Blue = auction value (split-pool) · Red = production value (single-pool) · Gap = split-pool deflation",
+    x = NULL, y = NULL
+  ) +
+  h_grid +
+  theme(
+    legend.position = c(0.85, 0.07),
+    legend.direction = "vertical",
+    legend.text = element_text(size = 8),
+    legend.key.size = unit(0.35, "cm"),
+    legend.background = element_rect(fill = alpha(pal$bg, 0.9), color = NA)
+  )
+```
+
+Pitchers show the mirror image: the red dot (production value) consistently sits to the right of blue (auction value). Tarik Skubal in 2024 produced $78 of value but his auction value was only $50 — the $28 gap reflects the fact that pitchers only get ~38% of the auction budget despite generating more than half of total SGP.
+
+This creates an important strategic tension. A pitcher like Skubal *produces* more SGP than almost any hitter, but the market won't *pay* as much for him because the league historically allocates less money to pitching. The gap between these two numbers is where you can find edges — if you can acquire elite pitching below its production value, you're getting more SGP per dollar than the market implies.
+
+
+# Category Contribution Breakdown
+
+Where does player value come from? Understanding which categories drive SGP helps identify which stats are most and least valuable per unit.
+
+```{r}
+#| fig-height: 7
+
+cat_contrib <- all_val |>
+  filter(par > 0) |>
+  group_by(year, pos_type) |>
+  summarise(
+    across(all_of(sgp_all), ~ mean(.x, na.rm = TRUE)),
+    .groups = "drop"
+  ) |>
+  pivot_longer(cols = all_of(sgp_all), names_to = "category", values_to = "mean_sgp") |>
+  mutate(
+    category = str_remove(category, "sgp_"),
+    side = if_else(category %in% c("R", "HR", "RBI", "SB", "AVG"), "Batting", "Pitching")
+  ) |>
+  filter(
+    (pos_type == "Hitter" & side == "Batting") |
+    (pos_type == "Pitcher" & side == "Pitching")
+  )
+
+p_bat_contrib <- cat_contrib |>
+  filter(pos_type == "Hitter") |>
+  mutate(year = factor(year)) |>
+  ggplot(aes(x = mean_sgp, y = fct_reorder(category, mean_sgp), fill = year)) +
+  geom_col(position = "dodge", width = 0.7) +
+  scale_fill_manual(values = year_pal) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.1))) +
+  labs(title = "Batting categories", x = "Mean SGP (positive-PAR hitters)", y = NULL) +
+  h_grid + panel_title +
+  theme(
+    legend.position = c(0.85, 0.2),
+    legend.direction = "vertical",
+    legend.text = element_text(size = 7),
+    legend.key.size = unit(0.3, "cm"),
+    legend.background = element_rect(fill = alpha(pal$bg, 0.9), color = NA)
+  )
+
+p_pit_contrib <- cat_contrib |>
+  filter(pos_type == "Pitcher") |>
+  mutate(year = factor(year)) |>
+  ggplot(aes(x = mean_sgp, y = fct_reorder(category, mean_sgp), fill = year)) +
+  geom_col(position = "dodge", width = 0.7) +
+  scale_fill_manual(values = year_pal) +
+  scale_x_continuous(expand = expansion(mult = c(0.02, 0.1))) +
+  labs(title = "Pitching categories", x = "Mean SGP (positive-PAR pitchers)", y = NULL) +
+  h_grid + panel_title +
+  theme(legend.position = "none")
+
+(p_bat_contrib / p_pit_contrib) +
+  plot_annotation(
+    title = "Average category SGP for rostered players",
+    subtitle = "Which categories drive value for hitters and pitchers",
+    theme = theme_sgp()
+  )
+```
+
+For hitters, **Runs and RBI** are the two biggest value drivers (mean ~2.1 SGP each), followed by HR (~1.6). This makes sense — runs and RBI are high-volume counting stats where even average regulars accumulate meaningful totals. AVG contributes the least (~0.6 SGP), which is a function of the rate-stat conversion: most hitters cluster around .250-.280 and only the truly elite (.300+) move the needle significantly in the standings.
+
+SB is a wild card (~0.9 SGP). The denominator for SB is small (~5.8 per standings point), so a player like Bobby Witt Jr. who steals 30+ bases can single-handedly generate 4+ SGP from speed alone — more than most hitters get from any single category.
+
+For pitchers, **Strikeouts** dominate (mean ~3.3 SGP), followed by **Wins** (~2.6). This is why workhouse starters are so valuable in this league's economy — they accumulate SO and W in bulk. ERA and WHIP contribute modestly (~0.7-1.0 SGP) because the denominators are tight and most rostered pitchers cluster in a narrow range. Saves are the lowest contributor (~0.8 SGP) because only closers accumulate them and not every team rosters a true closer.
+
+
+# Market Efficiency: Value vs. Salary
+
+How well does the league's auction market price players relative to their actual production?
+
+```{r}
+#| fig-height: 7
+
+all_val |>
+  filter(auction_value > 0, salary > 0) |>
+  mutate(year = factor(year)) |>
+  ggplot(aes(x = salary, y = auction_value, color = pos_type)) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed",
+              color = pal$light, linewidth = 0.4) +
+  geom_point(alpha = 0.4, size = 1.5) +
+  facet_wrap(~year, ncol = 3) +
+  scale_color_manual(values = c("Hitter" = pal$primary, "Pitcher" = pal$secondary)) +
+  scale_x_continuous(labels = dollar_format(prefix = "$")) +
+  scale_y_continuous(labels = dollar_format(prefix = "$")) +
+  labs(
+    title = "Auction value vs. actual salary paid",
+    subtitle = "Dashed line = fair value · Blue = hitters · Red = pitchers · Points above the line are bargains",
+    x = "Salary paid", y = "Auction value (model)"
+  ) +
+  coord_cartesian(xlim = c(0, 80), ylim = c(0, 120))
+```
+
+```{r}
+market_eff <- all_val |>
+  filter(auction_value > 0, salary > 0) |>
+  group_by(year) |>
+  summarise(
+    correlation = cor(salary, auction_value, use = "complete.obs"),
+    median_abs_error = median(abs(auction_value - salary)),
+    mean_surplus = mean(auction_value - salary),
+    .groups = "drop"
+  )
+
+market_eff |>
+  gt() |>
+  cols_label(
+    year = "Year", correlation = "Correlation (r)",
+    median_abs_error = "Median Abs Error",
+    mean_surplus = "Mean Surplus"
+  ) |>
+  fmt_number(columns = correlation, decimals = 3) |>
+  fmt_currency(columns = c(median_abs_error, mean_surplus), decimals = 1) |>
+  tab_header(title = md("**Market Efficiency by Year**"),
+             subtitle = "How well salaries predict actual value") |>
+  tab_options(
+    table.background.color      = pal$bg,
+    heading.title.font.size     = px(16),
+    heading.subtitle.font.size  = px(12),
+    column_labels.font.weight   = "bold",
+    column_labels.background.color = pal$text,
+    table.border.top.style      = "none",
+    table.border.bottom.style   = "none",
+    data_row.padding            = px(8),
+    table.font.size             = px(13)
+  ) |>
+  tab_style(
+    style = cell_text(color = "white"),
+    locations = cells_column_labels()
+  )
+```
+
+The league's market is **moderately efficient but far from perfect**. Salary-to-value correlations range from r=0.26 (2021, the post-COVID rebound year with the most uncertainty) to r=0.52 (2024). The median absolute error hovers around **$8 per player** across all years — meaning the typical rostered player is mispriced by about $8 in either direction.
+
+The mean surplus is consistently negative (around -$5 to -$7), which might seem strange — how can the average player be "overpaid"? This is because teams collectively spend money on replacement-level players (the $1 minimum bid guys who produce $0 of value). In 2024, teams spent $1,981 on players with zero or negative PAR. That's dead money that has to come from somewhere, and it means that *on average*, salaries exceed values. The edge comes from concentrating your spending on players with large positive surplus while minimizing dollars wasted on replacement-level talent.
+
+
+# Surplus Analysis
+
+Surplus (auction value minus salary) measures how much value a player delivered relative to their cost. Players who repeatedly generate surplus are the league's best-kept secrets — or at least, they were until the market caught up.
+
+```{r}
+#| fig-height: 7
+
+repeat_players <- all_val |>
+  filter(!is.na(surplus), auction_value > 0) |>
+  group_by(player_name) |>
+  summarise(
+    n_years      = n_distinct(year),
+    mean_surplus = mean(surplus),
+    total_surplus = sum(surplus),
+    seasons      = paste(sort(unique(year)), collapse = ", "),
+    primary_pos  = first(position),
+    is_pitcher   = first(is_pitcher),
+    .groups = "drop"
+  ) |>
+  filter(n_years >= 2)
+
+top_bargains <- repeat_players |>
+  filter(mean_surplus > 5) |>
+  slice_max(mean_surplus, n = 15)
+
+top_bargains |>
+  ggplot(aes(x = mean_surplus, y = fct_reorder(player_name, mean_surplus),
+             color = if_else(is_pitcher, "Pitcher", "Hitter"))) +
+  geom_segment(aes(x = 0, xend = mean_surplus,
+                   yend = fct_reorder(player_name, mean_surplus)),
+               linewidth = 0.7) +
+  geom_point(size = 3.5) +
+  geom_text(aes(label = paste0("+$", round(mean_surplus), "  (", seasons, ")")),
+            hjust = -0.1, size = 2.7, color = pal$mid) +
+  scale_color_manual(values = c("Hitter" = pal$primary, "Pitcher" = pal$secondary)) +
+  scale_x_continuous(labels = dollar_format(prefix = "$"),
+                     expand = expansion(mult = c(0.02, 0.3))) +
+  labs(
+    title = "Repeat bargains",
+    subtitle = "Blue = hitters · Red = pitchers · Mean surplus across 2+ seasons",
+    x = "Mean surplus (auction value - salary)", y = NULL
+  ) +
+  h_grid
+```
+
+**Bobby Witt Jr.** is the league's biggest repeat bargain, averaging +$63 across three seasons (2022-2024). This is the classic keeper-league dynamic: he was cheap as a rookie and his salary hasn't caught up to his production. Similarly, **Julio Rodriguez**, **Kyle Tucker**, and **Aaron Judge** all appear because they were either kept at below-market rates or simply outperformed their auction price.
+
+The common thread: most repeat bargains are hitters. This is partly because the split-pool method inflates hitter auction values (making their surplus larger) and partly because hitter performance is somewhat more predictable year-to-year than pitcher performance.
+
+```{r}
+#| fig-height: 6
+
+top_overpaid <- repeat_players |>
+  filter(mean_surplus < -5) |>
+  slice_min(mean_surplus, n = 15) |>
+  mutate(neg_surplus = -mean_surplus)
+
+top_overpaid |>
+  ggplot(aes(x = neg_surplus, y = fct_reorder(player_name, neg_surplus),
+             color = if_else(is_pitcher, "Pitcher", "Hitter"))) +
+  geom_segment(aes(x = 0, xend = neg_surplus,
+                   yend = fct_reorder(player_name, neg_surplus)),
+               linewidth = 0.7) +
+  geom_point(size = 3.5) +
+  geom_text(aes(label = paste0("-$", round(neg_surplus), "  (", seasons, ")")),
+            hjust = -0.1, size = 2.7, color = pal$mid) +
+  scale_color_manual(values = c("Hitter" = pal$primary, "Pitcher" = pal$secondary)) +
+  scale_x_continuous(labels = dollar_format(prefix = "$"),
+                     expand = expansion(mult = c(0.02, 0.3))) +
+  labs(
+    title = "Repeat overpays",
+    subtitle = "Blue = hitters · Red = pitchers · Mean overpay across 2+ seasons",
+    x = "Mean overpay (salary - auction value)", y = NULL
+  ) +
+  h_grid
+```
+
+The overpay list tells a different story. These are players who commanded high salaries but didn't deliver commensurate value — whether due to injury, decline, or simply being drafted at their ceiling. The presence of pitchers here is notable: pitcher value is more volatile, and a pitcher paid $30+ who misses time or has a rough stretch destroys surplus fast.
+
+
+# Stretch Diagnostics
+
+## Position Scarcity
+
+```{r}
+#| fig-height: 6
+
+pos_scarcity <- all_val |>
+  filter(!is.na(surplus), auction_value > 0, !is_pitcher, !is.na(position)) |>
+  group_by(position) |>
+  summarise(
+    n = n(),
+    avg_auction = mean(auction_value),
+    avg_salary  = mean(salary),
+    avg_surplus = mean(surplus),
+    .groups = "drop"
+  ) |>
+  filter(n >= 10) |>
+  arrange(desc(avg_surplus))
+
+pos_long <- pos_scarcity |>
+  pivot_longer(cols = c(avg_auction, avg_salary),
+               names_to = "metric", values_to = "dollars") |>
+  mutate(metric = if_else(metric == "avg_auction", "Model value", "Salary paid"))
+
+pos_long |>
+  ggplot(aes(x = dollars, y = fct_reorder(position, dollars, .fun = max),
+             color = metric)) +
+  geom_segment(
+    data = pos_scarcity,
+    aes(x = avg_salary, xend = avg_auction,
+        y = fct_reorder(position, avg_auction),
+        yend = fct_reorder(position, avg_auction)),
+    color = pal$grid, linewidth = 2, inherit.aes = FALSE
+  ) +
+  geom_point(size = 4) +
+  scale_color_manual(values = c("Model value" = pal$primary, "Salary paid" = pal$secondary)) +
+  scale_x_continuous(labels = dollar_format(prefix = "$")) +
+  labs(
+    title = "Position scarcity: model value vs. market price",
+    subtitle = "Blue = model value · Red = salary paid · Gap to the right = undervalued",
+    x = NULL, y = NULL,
+    caption = "Positions with 10+ player-seasons across 2019-2024"
+  ) +
+  h_grid
+```
+
+```{r}
+pos_scarcity |>
+  gt() |>
+  cols_label(
+    position = "Position", n = "Player-Seasons",
+    avg_auction = "Avg Model Value", avg_salary = "Avg Salary",
+    avg_surplus = "Avg Surplus"
+  ) |>
+  fmt_currency(columns = c(avg_auction, avg_salary, avg_surplus), decimals = 1) |>
+  tab_header(title = md("**Position Scarcity Summary**"),
+             subtitle = "Positive surplus = league undervalues this position") |>
+  tab_options(
+    table.background.color      = pal$bg,
+    heading.title.font.size     = px(16),
+    heading.subtitle.font.size  = px(12),
+    column_labels.font.weight   = "bold",
+    column_labels.background.color = pal$text,
+    table.border.top.style      = "none",
+    table.border.bottom.style   = "none",
+    data_row.padding            = px(8),
+    table.font.size             = px(13)
+  ) |>
+  tab_style(
+    style = cell_text(color = "white"),
+    locations = cells_column_labels()
+  ) |>
+  data_color(
+    columns = avg_surplus,
+    palette = c(pal$secondary, "white", pal$accent),
+    domain = NULL
+  )
+```
+
+The position scarcity data reveals clear, persistent market inefficiencies in our league:
+
+**Most undervalued: SS (+$14 surplus) and 3B (+$14 surplus).** Shortstops produce an average model value of $29 but are paid only $14. Third basemen produce $32 but are paid $18. These are the two most undervalued positions in the league, by a wide margin. The likely reason: the AL has been flush with elite SS and 3B talent (Witt, Henderson, Ramirez, Bichette, Devers) who were either kept cheaply or broke out after being drafted at low prices. Managers may also underestimate positional value for corner and middle infield in an AL-only context where the talent pool is thinner.
+
+**Also undervalued: 2B (+$8), 1B (+$8), OF (+$7).** These positions show moderate surplus. The outfield pool is the largest and most liquid, so it's harder for the market to misprice it dramatically, but there's still consistent value to be found.
+
+**Fairly valued: C (+$4), CI (+$5).** Catcher is a thin position in AL-only, and the market seems to price it reasonably. CI (corner infield eligibility) players are flexible but not scarce.
+
+**Overvalued: UT (-$2).** Utility-eligible players — those without a premium position — are the one slot where the league slightly overpays. This makes sense: UT is often used for players who are "good bats" without positional value, and managers may bid them up based on raw stats without accounting for the lack of positional scarcity.
+
+
+## Team Drafting Skill
+
+Total surplus per team measures drafting skill: if your roster's combined auction value exceeds what you paid, you drafted well. But there's an important caveat: because teams collectively spend money on replacement-level players (zero-value $1 guys, injured players, busts), aggregate surplus across the league is always negative. The question isn't whether a team has positive surplus — almost no one does — but *how negative* their surplus is relative to the league average.
+
+```{r}
+#| fig-height: 7
+
+team_year <- all_val |>
+  filter(!is.na(surplus)) |>
+  group_by(fantasy_team, year) |>
+  summarise(
+    total_surplus = sum(surplus),
+    n_players = n(),
+    avg_surplus = mean(surplus),
+    .groups = "drop"
+  )
+
+team_avg <- team_year |>
+  group_by(fantasy_team) |>
+  summarise(
+    seasons = n_distinct(year),
+    avg_total = mean(total_surplus),
+    .groups = "drop"
+  ) |>
+  filter(seasons >= 3) |>
+  arrange(desc(avg_total))
+
+team_year |>
+  filter(fantasy_team %in% team_avg$fantasy_team) |>
+  mutate(
+    fantasy_team = factor(fantasy_team, levels = team_avg$fantasy_team)
+  ) |>
+  ggplot(aes(x = total_surplus, y = fantasy_team)) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = pal$light, linewidth = 0.4) +
+  geom_point(aes(color = factor(year)), size = 3, alpha = 0.7) +
+  geom_point(
+    data = team_avg |> mutate(fantasy_team = factor(fantasy_team, levels = fantasy_team)),
+    aes(x = avg_total, y = fantasy_team),
+    shape = 18, size = 5, color = pal$text
+  ) +
+  scale_color_manual(values = year_pal) +
+  scale_x_continuous(labels = dollar_format(prefix = "$")) +
+  labs(
+    title = "Team drafting skill across seasons",
+    subtitle = "Colored dots = individual seasons · Black diamond = multi-year average",
+    x = "Total team surplus (auction value - salary)", y = NULL,
+    caption = "Teams with 3+ seasons shown"
+  ) +
+  h_grid +
+  theme(
+    legend.position = c(0.12, 0.85),
+    legend.direction = "vertical",
+    legend.text = element_text(size = 8),
+    legend.key.size = unit(0.35, "cm"),
+    legend.background = element_rect(fill = alpha(pal$bg, 0.9), color = NA)
+  )
+```
+
+**Dancing With Dingos** stands out as the league's most efficient drafter, with the highest average surplus (-$15 vs. the league median around -$120). They consistently find value relative to what they pay. At the other end, **Shrooms** and **Mashers** run the largest deficits, suggesting they systematically overpay for their rosters — whether through aggressive bidding on stars who disappoint, or poor allocation across their roster.
+
+The spread within each team is also instructive. Some teams (like R&R) are remarkably consistent year-to-year, while others (like Thunder & Lightning) show huge swings. High variance suggests a boom-or-bust drafting style — paying up for upside that sometimes hits and sometimes doesn't.
+
+```{r}
+team_year |>
+  filter(fantasy_team %in% team_avg$fantasy_team) |>
+  ggplot(aes(x = year, y = total_surplus, group = fantasy_team)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = pal$light, linewidth = 0.4) +
+  geom_line(color = pal$light, linewidth = 0.4, alpha = 0.5) +
+  geom_point(color = pal$primary, size = 2) +
+  facet_wrap(~fantasy_team, ncol = 3) +
+  scale_x_continuous(breaks = years) +
+  scale_y_continuous(labels = dollar_format(prefix = "$")) +
+  labs(
+    title = "Surplus trajectory by team",
+    subtitle = "Season-by-season total surplus for each franchise",
+    x = NULL, y = "Total surplus"
+  ) +
+  theme(axis.text.x = element_text(size = rel(0.65), angle = 45, hjust = 1))
+```
+
+
+## Production Value vs. Auction Value
+
+```{r}
+#| fig-height: 5
+
+all_val |>
+  filter(production_value > 0, auction_value > 0) |>
+  ggplot(aes(x = production_value, y = auction_value, color = pos_type)) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed",
+              color = pal$light, linewidth = 0.4) +
+  geom_point(alpha = 0.3, size = 1.2) +
+  scale_color_manual(values = c("Hitter" = pal$primary, "Pitcher" = pal$secondary)) +
+  scale_x_continuous(labels = dollar_format(prefix = "$")) +
+  scale_y_continuous(labels = dollar_format(prefix = "$")) +
+  labs(
+    title = "Production value vs. auction value",
+    subtitle = "Blue = hitters · Red = pitchers · Dashed = 1:1 line",
+    x = "Production value (single-pool)", y = "Auction value (split-pool)"
+  )
+```
+
+The scatter shows two distinct clouds separated by the 1:1 line. Hitters (blue) sit above the line — their auction value exceeds their production value by an average of **+35%**. Pitchers (red) sit below the line — their auction value is roughly **-30%** less than their production value. The effect is proportional: the bigger the player, the bigger the absolute gap.
+
+This structural split is the most important thing to understand about the model's two valuations. If you're asking "who *actually* produced the most value?", look at production value — pitchers like Verlander 2022 ($82) and Skubal 2024 ($78) are the true league leaders. But if you're asking "what should I bid at auction?", use auction value — because the market will pay hitter prices, not production prices.
+
+```{r}
+#| fig-height: 5
+
+split_effect <- all_val |>
+  filter(production_value > 1, auction_value > 1) |>
+  mutate(
+    split_pct = (auction_value / production_value - 1) * 100
+  )
+
+split_effect |>
+  ggplot(aes(x = split_pct, fill = pos_type)) +
+  geom_histogram(binwidth = 10, boundary = 0, color = "white", linewidth = 0.2) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = pal$text, linewidth = 0.4) +
+  scale_fill_manual(values = c("Hitter" = pal$primary, "Pitcher" = pal$secondary)) +
+  labs(
+    title = "Split-pool effect on dollar values",
+    subtitle = "Blue = hitters (inflated ~35%) · Red = pitchers (deflated ~30%) · Zero line = no change",
+    x = "% change from production to auction value", y = "Players"
+  )
+```
+
+
+## Year-Over-Year Stability
+
+How predictable are player values from one season to the next? This matters for keeper decisions — if a player's value is stable, you can more confidently project what they'll be worth next year.
+
+```{r}
+#| fig-height: 6
+
+yoy <- all_val |>
+  filter(auction_value > 5) |>
+  select(year, player_name, is_pitcher, auction_value, production_value) |>
+  inner_join(
+    all_val |>
+      filter(auction_value > 5) |>
+      select(year, player_name, is_pitcher, auction_value, production_value) |>
+      rename(prev_year = year, prev_auction = auction_value, prev_production = production_value),
+    by = c("player_name", "is_pitcher"),
+    relationship = "many-to-many"
+  ) |>
+  filter(year == prev_year + 1 | (year == 2021 & prev_year == 2019)) |>
+  mutate(pair = paste(prev_year, year, sep = "\u2192"))
+
+yoy_corr <- yoy |>
+  group_by(pair) |>
+  summarise(
+    n = n(),
+    r = cor(prev_auction, auction_value),
+    .groups = "drop"
+  )
+
+if (nrow(yoy) > 0) {
+  yoy |>
+    ggplot(aes(x = prev_auction, y = auction_value,
+               color = if_else(is_pitcher, "Pitcher", "Hitter"))) +
+    geom_abline(slope = 1, intercept = 0, linetype = "dashed",
+                color = pal$light, linewidth = 0.4) +
+    geom_point(alpha = 0.5, size = 1.8) +
+    geom_text(
+      data = yoy_corr,
+      aes(x = 10, y = Inf, label = paste0("r = ", round(r, 2), " (n=", n, ")")),
+      inherit.aes = FALSE, vjust = 2, hjust = 0, size = 3.2, color = pal$mid
+    ) +
+    facet_wrap(~pair, ncol = 2) +
+    scale_color_manual(values = c("Hitter" = pal$primary, "Pitcher" = pal$secondary)) +
+    scale_x_continuous(labels = dollar_format(prefix = "$")) +
+    scale_y_continuous(labels = dollar_format(prefix = "$")) +
+    labs(
+      title = "Year-over-year value stability",
+      subtitle = "Blue = hitters · Red = pitchers · Players valued > $5 in both seasons",
+      x = "Previous year auction value", y = "Current year auction value"
+    )
+}
+```
+
+Year-over-year correlations range from **r=0.12** (2019 to 2021, which spans the COVID gap) to **r=0.54** (2022 to 2023). The modest correlations tell us that **player value is only moderately sticky** from year to year. A $40 player last year is more likely to be valuable than a $10 player, but the specific dollar amount shifts a lot.
+
+The scatter plots show substantial spread around the 1:1 line, with many players falling far off — these are breakouts (above the line) and busts (below). The implication for keeper strategy is clear: don't overpay to retain a player just because they were great last year. The regression toward the mean is real and substantial, especially for pitchers.
+
+
+# Appendix: Value Tables by Year {.tabset}
+
+```{r}
+#| results: asis
+
+for (y in years) {
+  cat(sprintf("\n## %d\n\n", y))
+
+  yr_data <- all_val |>
+    filter(year == y, auction_value > 1) |>
+    arrange(desc(auction_value)) |>
+    head(30) |>
+    select(player_name, fantasy_team, position, pos_type,
+           auction_value, production_value, par, salary, surplus)
+
+  tbl <- yr_data |>
+    gt() |>
+    cols_label(
+      player_name = "Player", fantasy_team = "Team", position = "Pos",
+      pos_type = "Type",
+      auction_value = "Auction $", production_value = "Prod $",
+      par = "PAR", salary = "Salary", surplus = "Surplus"
+    ) |>
+    fmt_currency(columns = c(auction_value, production_value, salary), decimals = 0) |>
+    fmt_number(columns = par, decimals = 1) |>
+    fmt_number(columns = surplus, decimals = 0, pattern = "{x}") |>
+    tab_header(title = md(sprintf("**Top 30 Players — %d**", y))) |>
+    tab_options(
+      table.background.color      = pal$bg,
+      heading.title.font.size     = px(16),
+      column_labels.font.weight   = "bold",
+      column_labels.background.color = pal$text,
+      table.border.top.style      = "none",
+      table.border.bottom.style   = "none",
+      data_row.padding            = px(6),
+      table.font.size             = px(12)
+    ) |>
+    tab_style(
+      style = cell_text(color = "white"),
+      locations = cells_column_labels()
+    ) |>
+    data_color(
+      columns = surplus,
+      palette = c(pal$secondary, "white", pal$accent),
+      domain = NULL
+    )
+
+  print(tbl)
+  cat("\n\n")
+}
+```

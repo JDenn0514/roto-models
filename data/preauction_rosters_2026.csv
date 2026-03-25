@@ -1,0 +1,147 @@
+year,team,player_name,player_id,mlb_team,position,contract_year,salary,status,eligibility
+2026,Gusteroids,Miguel Vargas,6973,CWS,1B,b,4,act,"3B,CI,1B"
+2026,Gusteroids,Jackson Holliday,8228,Bal,2B,cr,10,act,"2B,SS,MI"
+2026,Gusteroids,Evan Carter,7676,Tex,OF,b,10,act,OF
+2026,Gusteroids,Roman Anthony,8576,Bos,OF,br,7,act,OF
+2026,Gusteroids,Edgar Quero,8510,CWS,C,br,7,act,C
+2026,Gusteroids,Ben Rice,8886,NYY,C,b,3,act,"1B,CI,C"
+2026,Gusteroids,Jac Caglianone,8543,KC,UT,br,7,act,"OF,CI,1B"
+2026,Gusteroids,Tyler Soderstrom,7377,Oak,CI,b,10,act,"OF,1B,CI"
+2026,Gusteroids,Luke Keaschall,9013,Min,MI,br,7,act,"2B,MI"
+2026,Gusteroids,Matt Brash,7524,Sea,P,b,1,act,P
+2026,Gusteroids,Garrett Whitlock,7546,Bos,P,b,2,act,P
+2026,Gusteroids,Sebastian Walcott,8649,Tex,SS,r,5,min,SS
+2026,Gusteroids,Emmanuel Rodriguez,8261,Min,OF,r,5,min,OF
+2026,Gusteroids,Thayron Liranzo,8960,Det,C,r,5,min,C
+2026,Gusteroids,Shunpeita Yamashita,9002,FA,P,r,5,min,P
+2026,Kosher Hogs,Coby Mayo,7723,Bal,1B,br,7,act,"1B,CI"
+2026,Kosher Hogs,Max Muncy,7823,Oak,2B,b,1,act,"3B,CI,MI,2B,SS"
+2026,Kosher Hogs,Ernie Clement,6888,Tor,SS,b,6,act,"3B,SS,1B,MI,2B,CI"
+2026,Kosher Hogs,Marcelo Mayer,7688,Bos,3B,br,7,act,"3B,2B,MI,CI"
+2026,Kosher Hogs,Colton Cowser,7749,Bal,OF,z,15,act,OF
+2026,Kosher Hogs,Lawrence Butler,8124,Oak,OF,y,8,act,OF
+2026,Kosher Hogs,Andrew Benintendi,5386,CWS,OF,b,9,act,OF
+2026,Kosher Hogs,Colson Montgomery,7791,CWS,MI,br,7,act,"SS,CI,3B,MI"
+2026,Kosher Hogs,Max Fried,4194,NYY,P,b,24,act,P
+2026,Kosher Hogs,Jacob DeGrom,4563,Tex,P,y,15,act,P
+2026,Kosher Hogs,Jeffrey Springs,6429,Oak,P,c,6,act,P
+2026,Kosher Hogs,Garrett Crochet,7365,Bos,P,y,11,act,P
+2026,Kosher Hogs,David Bednar,6796,NYY,P,b,15,act,P
+2026,Kosher Hogs,Casey Mize,6499,Det,P,b,8,act,P
+2026,Kosher Hogs,Stephen Kolek,8765,KC,P,b,2,act,P
+2026,Kosher Hogs,Juan Brito,8306,Cle,SS,r,5,min,SS
+2026,Kosher Hogs,Chase Hampton,8653,NYY,P,r,5,min,P
+2026,Kosher Hogs,Noah Schultz,8584,CWS,P,r,5,min,P
+2026,On a Bender,Kyle Manzardo,8116,Cle,1B,cr,10,act,"1B,CI"
+2026,On a Bender,Isaac Paredes,6242,Hou,3B,b,15,act,"3B,CI"
+2026,On a Bender,Chase DeLauter,7950,Cle,OF,ar,5,act,OF
+2026,On a Bender,Addison Barger,8260,Tor,OF,b,10,act,"3B,CI,OF"
+2026,On a Bender,Brent Rooker,6204,Oak,OF,z,15,act,OF
+2026,On a Bender,Alejandro Kirk,6935,Tor,C,b,10,act,C
+2026,On a Bender,Jose Soriano,7549,LAA,P,c,1,act,P
+2026,On a Bender,Trey Yesavage,9124,Tor,P,b,10,act,P
+2026,On a Bender,Seth Lugo,5417,KC,P,c,1,act,P
+2026,On a Bender,Gerrit Cole,2660,NYY,P,b,6,act,P
+2026,On a Bender,Yusei Kikuchi,6454,LAA,P,b,1,act,P
+2026,On a Bender,Roderick Arias,7474,NYY,SS,r,5,min,SS
+2026,On a Bender,Max Clark,8389,Det,OF,r,5,min,OF
+2026,On a Bender,Brendan Summerhill,9396,TB,OF,r,5,min,OF
+2026,On a Bender,Blake Mitchell,8686,KC,C,r,5,min,C
+2026,On a Bender,Hagen Smith,8982,CWS,P,r,5,min,P
+2026,R&R,Yandy Diaz,5735,TB,1B,b,15,act,"1B,CI"
+2026,R&R,Trevor Story,4020,Bos,SS,z,8,act,"SS,MI"
+2026,R&R,Kyle Teel,8676,CWS,OF,br,7,act,C
+2026,R&R,Jazz Chisholm,6130,NYY,OF,c,35,act,"2B,MI,CI,3B"
+2026,R&R,Trent Grisham,5285,NYY,OF,b,10,act,OF
+2026,R&R,Cody Bellinger,4954,NYY,CI,b,24,act,"OF,CI,1B"
+2026,R&R,Chris Bassitt,4773,Bal,P,b,9,act,P
+2026,R&R,Lucas Giolito,4040,FA,P,c,4,act,P
+2026,R&R,Jeff Hoffman,4795,Tor,P,b,20,act,P
+2026,R&R,Luis Severino,4997,Oak,P,b,6,act,P
+2026,R&R,Michael Wacha,4080,KC,P,z,8,act,P
+2026,R&R,Drew Rasmussen,7251,TB,P,y,11,act,P
+2026,R&R,Jacob Melton,8240,TB,OF,r,5,min,OF
+2026,R&R,Jaison Chourio,8531,Cle,OF,r,5,min,OF
+2026,Shrooms,Vinnie Pasquantino,7939,KC,1B,b,19,act,"1B,CI"
+2026,Shrooms,Zach Neto,8259,LAA,SS,z,15,act,"SS,MI"
+2026,Shrooms,Lenyn Sosa,8227,CWS,3B,b,1,act,"2B,1B,CI,MI"
+2026,Shrooms,Jesus Sanchez,6068,Tor,OF,b,9,act,OF
+2026,Shrooms,Brooks Baldwin,9111,CWS,OF,b,10,act,"OF,3B,CI,2B,MI,SS"
+2026,Shrooms,Daulton Varsho,6326,Tor,OF,b,9,act,OF
+2026,Shrooms,Ceddanne Rafaela,8194,Bos,MI,y,15,act,"OF,2B,MI"
+2026,Shrooms,Aroldis Chapman,2894,Bos,P,b,12,act,P
+2026,Shrooms,Griffin Jax,4039,TB,P,c,6,act,P
+2026,Shrooms,Hunter Brown,7592,Hou,P,z,15,act,P
+2026,Shrooms,Shane Smith,9205,CWS,P,b,10,act,P
+2026,Shrooms,Edwin Uceta,7228,TB,P,b,4,act,P
+2026,Shrooms,Spencer Jones,7757,NYY,OF,r,5,min,OF
+2026,Shrooms,Josue Briceno,9030,Det,C,r,5,min,C
+2026,Shrooms,Daniel Espino,6944,Cle,P,r,5,min,P
+2026,Shrooms,Ricky Tiedemann,8161,Tor,P,r,5,min,P
+2026,Kerry & Mitch,Vladimir Guerrero Jr.,5275,Tor,1B,b,39,act,"1B,CI"
+2026,Kerry & Mitch,Kevin McGonigle,8959,Det,SS,ar,5,act,SS
+2026,Kerry & Mitch,Shane McClanahan,6500,TB,P,x,19,act,P
+2026,Kerry & Mitch,Will Warren,8184,NYY,P,b,1,act,P
+2026,Kerry & Mitch,Kris Bubic,6847,KC,P,b,7,act,P
+2026,Kerry & Mitch,Xavier Isaac,8522,TB,1B,r,5,min,1B
+2026,Kerry & Mitch,Travis Bazzana,8864,Cle,2B,r,5,min,2B
+2026,Kerry & Mitch,Bryce Rainer,9126,Det,SS,r,5,min,SS
+2026,Kerry & Mitch,Felnin Celesten,8485,Sea,SS,r,5,min,SS
+2026,Kerry & Mitch,Gavin Cross,8180,KC,OF,r,5,min,OF
+2026,Thunder & Lightning,Nick Kurtz,8832,Oak,1B,br,7,act,"1B,CI"
+2026,Thunder & Lightning,Jacob Wilson,8700,Oak,SS,br,7,act,"SS,MI"
+2026,Thunder & Lightning,Carlos Correa,4010,Hou,3B,c,16,act,"SS,MI,CI,3B"
+2026,Thunder & Lightning,Byron Buxton,4014,Min,OF,c,16,act,OF
+2026,Thunder & Lightning,Jo Adell,6143,LAA,OF,c,10,act,OF
+2026,Thunder & Lightning,Julio Rodriguez,6579,Sea,OF,z,20,act,OF
+2026,Thunder & Lightning,Randy Arozarena,6129,Sea,OF,b,16,act,OF
+2026,Thunder & Lightning,Colt Keith,8114,Det,CI,b,11,act,"3B,CI,1B,MI,2B"
+2026,Thunder & Lightning,Seranthony Dominguez,6307,CWS,P,B,1,act,P
+2026,Thunder & Lightning,Cam Schlittler,9301,NYY,P,b,10,act,P
+2026,Thunder & Lightning,Cole Ragans,5800,KC,P,y,11,act,P
+2026,Thunder & Lightning,Tarik Skubal,7077,Det,P,y,13,act,P
+2026,Thunder & Lightning,Chris Martin,4806,Tex,P,c,3,act,P
+2026,Thunder & Lightning,Shane Bieber,6086,Tor,P,b,7,act,P
+2026,Thunder & Lightning,Jack Leiter,6947,Tex,P,b,2,act,P
+2026,HAMMERHEADS,Jeremy Pena,7200,Hou,SS,b,17,act,"SS,MI"
+2026,HAMMERHEADS,Josh Lowe,6072,LAA,OF,y,13,act,OF
+2026,HAMMERHEADS,Samuel Basallo,8583,Bal,C,ar,5,act,C
+2026,HAMMERHEADS,Cade Povich,8454,Bal,P,b,1,act,P
+2026,HAMMERHEADS,Cole Sands,7888,Min,P,b,2,act,P
+2026,HAMMERHEADS,Trevor Rogers,6201,Bal,P,b,10,act,P
+2026,HAMMERHEADS,Kyle Bradish,7482,Bal,P,b,2,act,P
+2026,HAMMERHEADS,Yoeilin Cespedes,8617,Bos,SS,r,5,min,SS
+2026,HAMMERHEADS,Angel Genao,9095,Cle,SS,r,5,min,SS
+2026,HAMMERHEADS,Miguel Bleis,8178,Bos,OF,r,5,min,OF
+2026,HAMMERHEADS,Enrique Bradfield,7743,Bal,OF,r,5,min,OF
+2026,HAMMERHEADS,Lazaro Montes,8085,Sea,OF,r,5,min,OF
+2026,HAMMERHEADS,Justin Foscue,7367,Tex,UT,r,5,res,"1B,CI"
+2026,Mean Machine,Spencer Torkelson,7073,Det,1B,b,6,act,"1B,CI"
+2026,Mean Machine,Carson Williams,7792,TB,SS,br,7,act,"SS,MI"
+2026,Mean Machine,Junior Caminero,8518,TB,3B,x,20,act,"3B,CI"
+2026,Mean Machine,Chandler Simpson,8898,TB,OF,br,7,act,OF
+2026,Mean Machine,Jose Caballero,6982,NYY,OF,c,6,act,"OF,CI,3B,2B,MI,SS"
+2026,Mean Machine,Aaron Judge,4601,NYY,OF,b,47,act,OF
+2026,Mean Machine,Jarren Duran,6946,Bos,OF,z,15,act,OF
+2026,Mean Machine,Carter Jensen,8593,KC,C,b,10,act,C
+2026,Mean Machine,Dillon Dingler,7393,Det,C,b,10,act,C
+2026,Mean Machine,Jake Meyers,7399,Hou,UT,c,2,act,OF
+2026,Mean Machine,Wilyer Abreu,8303,Bos,UT,y,15,act,OF
+2026,Mean Machine,Yoan Moncada,5023,LAA,CI,b,3,act,"3B,CI"
+2026,Mean Machine,Brayan Bello,7865,Bos,P,c,1,act,P
+2026,Mean Machine,Luis Gil,7074,NYY,P,b,2,act,P
+2026,Mean Machine,Joe Ryan,7276,Min,P,b,21,act,P
+2026,Mean Machine,Jace LaViolette,9121,Cle,OF,r,5,min,OF
+2026,Dancing With Dingos,Jonathan Aranda,7905,TB,1B,b,4,act,"1B,CI"
+2026,Dancing With Dingos,Bobby Witt,6904,KC,SS,z,20,act,"SS,MI"
+2026,Dancing With Dingos,Munetaka Murakami,8121,CWS,3B,ar,5,act,3B
+2026,Dancing With Dingos,George Springer,3575,Tor,OF,b,16,act,OF
+2026,Dancing With Dingos,Austin Wells,7379,NYY,C,c,5,act,C
+2026,Dancing With Dingos,Kevin Gausman,4053,Tor,P,b,18,act,P
+2026,Dancing With Dingos,Bryan Woo,8437,Sea,P,z,15,act,P
+2026,Dancing With Dingos,Shane Baz,6189,Bal,P,b,10,act,P
+2026,Dancing With Dingos,Cade Smith,8469,Cle,P,b,9,act,P
+2026,Dancing With Dingos,Ryan Pepiot,7438,TB,P,c,15,act,P
+2026,Dancing With Dingos,Michael Arroyo,8624,Sea,SS,r,5,min,2B
+2026,Dancing With Dingos,Colt Emerson,8685,Sea,3B,r,5,min,3B
+2026,Dancing With Dingos,Walker Jenkins,8564,Min,OF,r,5,min,OF

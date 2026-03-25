@@ -1,0 +1,442 @@
+year,team,baseline_pts,msp_sum_draftees,predicted_pts,actual_total_pts,n_draftees_matched,n_draftees_total,config
+2019,Boppers,60.0,54.0,114.0,47.0,29,29,proportional_fill_fd0.5_dispTrue
+2019,Dancing With Dingos,74.0,6.0,80.0,65.5,22,22,proportional_fill_fd0.5_dispTrue
+2019,Gusteroids,74.0,50.0,124.0,89.5,26,26,proportional_fill_fd0.5_dispTrue
+2019,HAMMERHEADS,58.0,91.0,149.0,69.5,23,23,proportional_fill_fd0.5_dispTrue
+2019,Kerry & Mitch,69.0,68.0,137.0,31.5,32,32,proportional_fill_fd0.5_dispTrue
+2019,Livn Lex,26.0,160.0,186.0,49.0,33,33,proportional_fill_fd0.5_dispTrue
+2019,Mashers,68.0,20.0,88.0,45.0,26,26,proportional_fill_fd0.5_dispTrue
+2019,R&R,52.0,90.0,142.0,50.5,34,34,proportional_fill_fd0.5_dispTrue
+2019,Shrooms,59.0,22.0,81.0,63.0,25,25,proportional_fill_fd0.5_dispTrue
+2019,Thunder & Lightning,64.0,38.0,102.0,69.5,21,21,proportional_fill_fd0.5_dispTrue
+2019,mean machine,56.0,12.0,68.0,58.0,30,30,proportional_fill_fd0.5_dispTrue
+2021,Dancing With Dingos,59.0,1.0,60.0,27.0,43,43,proportional_fill_fd0.5_dispTrue
+2021,Gusteroids,96.0,15.0,111.0,101.0,25,25,proportional_fill_fd0.5_dispTrue
+2021,HAMMERHEADS,70.0,22.0,92.0,65.0,25,25,proportional_fill_fd0.5_dispTrue
+2021,Kerry & Mitch,50.0,41.0,91.0,54.0,40,40,proportional_fill_fd0.5_dispTrue
+2021,Livn Lex,38.0,122.0,160.0,54.0,31,31,proportional_fill_fd0.5_dispTrue
+2021,Mashers,69.0,36.0,105.0,65.0,35,35,proportional_fill_fd0.5_dispTrue
+2021,Mean Machine,45.0,49.0,94.0,68.0,39,39,proportional_fill_fd0.5_dispTrue
+2021,R&R,77.0,39.0,116.0,89.0,26,26,proportional_fill_fd0.5_dispTrue
+2021,Shoeless Joe's,68.0,27.0,95.0,47.0,22,22,proportional_fill_fd0.5_dispTrue
+2021,Shrooms,31.0,-53.0,-22.0,21.0,47,47,proportional_fill_fd0.5_dispTrue
+2021,Thunder & Lightning,57.0,57.0,114.0,69.0,34,34,proportional_fill_fd0.5_dispTrue
+2022,Dancing With Dingos,86.0,3.0,89.0,91.0,5,5,proportional_fill_fd0.5_dispTrue
+2022,Gusteroids,72.5,1.0,73.5,81.0,11,11,proportional_fill_fd0.5_dispTrue
+2022,HAMMERHEADS,75.5,10.5,86.0,74.0,7,7,proportional_fill_fd0.5_dispTrue
+2022,Kerry & Mitch,53.0,1.0,54.0,56.0,6,6,proportional_fill_fd0.5_dispTrue
+2022,Livn Lex,48.5,0.0,48.5,42.5,1,1,proportional_fill_fd0.5_dispTrue
+2022,Mashers,40.0,11.0,51.0,51.0,7,7,proportional_fill_fd0.5_dispTrue
+2022,Mean Machine,77.0,4.0,81.0,75.5,3,3,proportional_fill_fd0.5_dispTrue
+2022,R&R,81.5,-22.5,59.0,79.0,9,9,proportional_fill_fd0.5_dispTrue
+2022,Shoeless Joe's,28.0,6.0,34.0,26.0,3,3,proportional_fill_fd0.5_dispTrue
+2022,Shrooms,67.0,26.5,93.5,59.0,10,10,proportional_fill_fd0.5_dispTrue
+2022,Thunder & Lightning,31.0,16.0,47.0,25.0,11,11,proportional_fill_fd0.5_dispTrue
+2023,Dancing With Dingos,72.0,13.0,85.0,79.5,23,23,proportional_fill_fd0.5_dispTrue
+2023,Gusteroids,64.0,45.0,109.0,71.0,40,40,proportional_fill_fd0.5_dispTrue
+2023,HAMMERHEADS,54.0,49.0,103.0,58.0,25,25,proportional_fill_fd0.5_dispTrue
+2023,Kerry & Mitch,31.0,65.0,96.0,72.0,34,34,proportional_fill_fd0.5_dispTrue
+2023,Livn Lex,34.0,80.0,114.0,33.0,26,26,proportional_fill_fd0.5_dispTrue
+2023,Mean Machine,71.0,14.0,85.0,66.5,35,35,proportional_fill_fd0.5_dispTrue
+2023,On a Bender,72.0,17.0,89.0,59.0,37,37,proportional_fill_fd0.5_dispTrue
+2023,R&R,55.0,52.0,107.0,48.0,43,43,proportional_fill_fd0.5_dispTrue
+2023,Shrooms,52.0,-4.0,48.0,29.0,39,39,proportional_fill_fd0.5_dispTrue
+2023,Thunder & Lightning,45.0,84.0,129.0,34.0,37,37,proportional_fill_fd0.5_dispTrue
+2024,Ayal Feinberg,44.0,53.0,97.0,16.0,26,26,proportional_fill_fd0.5_dispTrue
+2024,Dancing With Dingos,72.0,-8.0,64.0,77.0,19,19,proportional_fill_fd0.5_dispTrue
+2024,Gusteroids,77.0,23.0,100.0,73.5,33,33,proportional_fill_fd0.5_dispTrue
+2024,HAMMERHEADS,49.0,122.0,171.0,41.0,30,30,proportional_fill_fd0.5_dispTrue
+2024,Kerry & Mitch,76.0,-21.0,55.0,81.5,28,28,proportional_fill_fd0.5_dispTrue
+2024,Mean Machine,53.0,55.0,108.0,55.5,27,27,proportional_fill_fd0.5_dispTrue
+2024,On a Bender,35.0,94.0,129.0,57.5,29,29,proportional_fill_fd0.5_dispTrue
+2024,R&R,26.0,45.0,71.0,34.0,35,35,proportional_fill_fd0.5_dispTrue
+2024,Shrooms,65.0,43.0,108.0,36.0,33,33,proportional_fill_fd0.5_dispTrue
+2024,Thunder & Lightning,53.0,72.0,125.0,78.0,35,35,proportional_fill_fd0.5_dispTrue
+2025,Dancing With Dingos,62.0,2.0,64.0,66.0,21,21,proportional_fill_fd0.5_dispTrue
+2025,Gusteroids,33.0,100.0,133.0,22.0,43,43,proportional_fill_fd0.5_dispTrue
+2025,HAMMERHEADS,33.0,84.0,117.0,69.5,26,26,proportional_fill_fd0.5_dispTrue
+2025,Kerry & Mitch,47.0,44.0,91.0,56.5,37,37,proportional_fill_fd0.5_dispTrue
+2025,Kosher Hogs,52.0,69.0,121.0,51.0,24,24,proportional_fill_fd0.5_dispTrue
+2025,Mean Machine,59.0,32.0,91.0,65.5,34,34,proportional_fill_fd0.5_dispTrue
+2025,On a Bender,49.0,100.0,149.0,25.0,41,41,proportional_fill_fd0.5_dispTrue
+2025,R&R,77.0,12.0,89.0,76.0,28,28,proportional_fill_fd0.5_dispTrue
+2025,Shrooms,50.0,17.0,67.0,42.5,44,44,proportional_fill_fd0.5_dispTrue
+2025,Thunder & Lightning,88.0,47.0,135.0,76.0,39,39,proportional_fill_fd0.5_dispTrue
+2019,Boppers,60.0,64.0,124.0,47.0,29,29,proportional_fill_fd0.5_dispFalse
+2019,Dancing With Dingos,74.0,14.0,88.0,65.5,22,22,proportional_fill_fd0.5_dispFalse
+2019,Gusteroids,74.0,66.0,140.0,89.5,26,26,proportional_fill_fd0.5_dispFalse
+2019,HAMMERHEADS,58.0,110.0,168.0,69.5,23,23,proportional_fill_fd0.5_dispFalse
+2019,Kerry & Mitch,69.0,81.0,150.0,31.5,32,32,proportional_fill_fd0.5_dispFalse
+2019,Livn Lex,26.0,175.0,201.0,49.0,33,33,proportional_fill_fd0.5_dispFalse
+2019,Mashers,68.0,22.0,90.0,45.0,26,26,proportional_fill_fd0.5_dispFalse
+2019,R&R,52.0,109.0,161.0,50.5,34,34,proportional_fill_fd0.5_dispFalse
+2019,Shrooms,59.0,45.0,104.0,63.0,25,25,proportional_fill_fd0.5_dispFalse
+2019,Thunder & Lightning,64.0,61.0,125.0,69.5,21,21,proportional_fill_fd0.5_dispFalse
+2019,mean machine,56.0,39.0,95.0,58.0,30,30,proportional_fill_fd0.5_dispFalse
+2021,Dancing With Dingos,59.0,11.0,70.0,27.0,43,43,proportional_fill_fd0.5_dispFalse
+2021,Gusteroids,96.0,16.0,112.0,101.0,25,25,proportional_fill_fd0.5_dispFalse
+2021,HAMMERHEADS,70.0,36.0,106.0,65.0,25,25,proportional_fill_fd0.5_dispFalse
+2021,Kerry & Mitch,50.0,71.0,121.0,54.0,40,40,proportional_fill_fd0.5_dispFalse
+2021,Livn Lex,38.0,138.0,176.0,54.0,31,31,proportional_fill_fd0.5_dispFalse
+2021,Mashers,69.0,51.0,120.0,65.0,35,35,proportional_fill_fd0.5_dispFalse
+2021,Mean Machine,45.0,75.0,120.0,68.0,39,39,proportional_fill_fd0.5_dispFalse
+2021,R&R,77.0,55.0,132.0,89.0,26,26,proportional_fill_fd0.5_dispFalse
+2021,Shoeless Joe's,68.0,44.0,112.0,47.0,22,22,proportional_fill_fd0.5_dispFalse
+2021,Shrooms,31.0,-41.0,-10.0,21.0,47,47,proportional_fill_fd0.5_dispFalse
+2021,Thunder & Lightning,57.0,75.0,132.0,69.0,34,34,proportional_fill_fd0.5_dispFalse
+2022,Dancing With Dingos,86.0,3.0,89.0,91.0,5,5,proportional_fill_fd0.5_dispFalse
+2022,Gusteroids,72.5,4.5,77.0,81.0,11,11,proportional_fill_fd0.5_dispFalse
+2022,HAMMERHEADS,75.5,10.5,86.0,74.0,7,7,proportional_fill_fd0.5_dispFalse
+2022,Kerry & Mitch,53.0,1.0,54.0,56.0,6,6,proportional_fill_fd0.5_dispFalse
+2022,Livn Lex,48.5,0.0,48.5,42.5,1,1,proportional_fill_fd0.5_dispFalse
+2022,Mashers,40.0,13.0,53.0,51.0,7,7,proportional_fill_fd0.5_dispFalse
+2022,Mean Machine,77.0,5.0,82.0,75.5,3,3,proportional_fill_fd0.5_dispFalse
+2022,R&R,81.5,-9.5,72.0,79.0,9,9,proportional_fill_fd0.5_dispFalse
+2022,Shoeless Joe's,28.0,6.0,34.0,26.0,3,3,proportional_fill_fd0.5_dispFalse
+2022,Shrooms,67.0,28.5,95.5,59.0,10,10,proportional_fill_fd0.5_dispFalse
+2022,Thunder & Lightning,31.0,24.0,55.0,25.0,11,11,proportional_fill_fd0.5_dispFalse
+2023,Dancing With Dingos,72.0,46.0,118.0,79.5,23,23,proportional_fill_fd0.5_dispFalse
+2023,Gusteroids,64.0,75.0,139.0,71.0,40,40,proportional_fill_fd0.5_dispFalse
+2023,HAMMERHEADS,54.0,54.0,108.0,58.0,25,25,proportional_fill_fd0.5_dispFalse
+2023,Kerry & Mitch,31.0,73.0,104.0,72.0,34,34,proportional_fill_fd0.5_dispFalse
+2023,Livn Lex,34.0,112.0,146.0,33.0,26,26,proportional_fill_fd0.5_dispFalse
+2023,Mean Machine,71.0,16.0,87.0,66.5,35,35,proportional_fill_fd0.5_dispFalse
+2023,On a Bender,72.0,19.0,91.0,59.0,37,37,proportional_fill_fd0.5_dispFalse
+2023,R&R,55.0,65.0,120.0,48.0,43,43,proportional_fill_fd0.5_dispFalse
+2023,Shrooms,52.0,16.0,68.0,29.0,39,39,proportional_fill_fd0.5_dispFalse
+2023,Thunder & Lightning,45.0,95.0,140.0,34.0,37,37,proportional_fill_fd0.5_dispFalse
+2024,Ayal Feinberg,44.0,58.0,102.0,16.0,26,26,proportional_fill_fd0.5_dispFalse
+2024,Dancing With Dingos,72.0,20.0,92.0,77.0,19,19,proportional_fill_fd0.5_dispFalse
+2024,Gusteroids,77.0,27.0,104.0,73.5,33,33,proportional_fill_fd0.5_dispFalse
+2024,HAMMERHEADS,49.0,131.0,180.0,41.0,30,30,proportional_fill_fd0.5_dispFalse
+2024,Kerry & Mitch,76.0,8.0,84.0,81.5,28,28,proportional_fill_fd0.5_dispFalse
+2024,Mean Machine,53.0,69.0,122.0,55.5,27,27,proportional_fill_fd0.5_dispFalse
+2024,On a Bender,35.0,119.0,154.0,57.5,29,29,proportional_fill_fd0.5_dispFalse
+2024,R&R,26.0,54.0,80.0,34.0,35,35,proportional_fill_fd0.5_dispFalse
+2024,Shrooms,65.0,55.0,120.0,36.0,33,33,proportional_fill_fd0.5_dispFalse
+2024,Thunder & Lightning,53.0,83.0,136.0,78.0,35,35,proportional_fill_fd0.5_dispFalse
+2025,Dancing With Dingos,62.0,7.0,69.0,66.0,21,21,proportional_fill_fd0.5_dispFalse
+2025,Gusteroids,33.0,116.0,149.0,22.0,43,43,proportional_fill_fd0.5_dispFalse
+2025,HAMMERHEADS,33.0,106.0,139.0,69.5,26,26,proportional_fill_fd0.5_dispFalse
+2025,Kerry & Mitch,47.0,61.0,108.0,56.5,37,37,proportional_fill_fd0.5_dispFalse
+2025,Kosher Hogs,52.0,66.0,118.0,51.0,24,24,proportional_fill_fd0.5_dispFalse
+2025,Mean Machine,59.0,46.0,105.0,65.5,34,34,proportional_fill_fd0.5_dispFalse
+2025,On a Bender,49.0,107.0,156.0,25.0,41,41,proportional_fill_fd0.5_dispFalse
+2025,R&R,77.0,25.0,102.0,76.0,28,28,proportional_fill_fd0.5_dispFalse
+2025,Shrooms,50.0,47.0,97.0,42.5,44,44,proportional_fill_fd0.5_dispFalse
+2025,Thunder & Lightning,88.0,56.0,144.0,76.0,39,39,proportional_fill_fd0.5_dispFalse
+2019,Boppers,62.0,36.0,98.0,47.0,29,29,proportional_fill_fd0.75_dispTrue
+2019,Dancing With Dingos,72.0,8.0,80.0,65.5,22,22,proportional_fill_fd0.75_dispTrue
+2019,Gusteroids,73.0,41.0,114.0,89.5,26,26,proportional_fill_fd0.75_dispTrue
+2019,HAMMERHEADS,62.0,60.0,122.0,69.5,23,23,proportional_fill_fd0.75_dispTrue
+2019,Kerry & Mitch,67.0,64.0,131.0,31.5,32,32,proportional_fill_fd0.75_dispTrue
+2019,Livn Lex,27.0,192.0,219.0,49.0,33,33,proportional_fill_fd0.75_dispTrue
+2019,Mashers,67.0,14.0,81.0,45.0,26,26,proportional_fill_fd0.75_dispTrue
+2019,R&R,55.0,57.0,112.0,50.5,34,34,proportional_fill_fd0.75_dispTrue
+2019,Shrooms,60.0,-3.0,57.0,63.0,25,25,proportional_fill_fd0.75_dispTrue
+2019,Thunder & Lightning,63.0,40.0,103.0,69.5,21,21,proportional_fill_fd0.75_dispTrue
+2019,mean machine,52.0,44.0,96.0,58.0,30,30,proportional_fill_fd0.75_dispTrue
+2021,Dancing With Dingos,58.0,50.0,108.0,27.0,43,43,proportional_fill_fd0.75_dispTrue
+2021,Gusteroids,97.0,3.0,100.0,101.0,25,25,proportional_fill_fd0.75_dispTrue
+2021,HAMMERHEADS,70.0,14.0,84.0,65.0,25,25,proportional_fill_fd0.75_dispTrue
+2021,Kerry & Mitch,52.0,0.0,52.0,54.0,40,40,proportional_fill_fd0.75_dispTrue
+2021,Livn Lex,42.0,86.0,128.0,54.0,31,31,proportional_fill_fd0.75_dispTrue
+2021,Mashers,67.0,36.0,103.0,65.0,35,35,proportional_fill_fd0.75_dispTrue
+2021,Mean Machine,42.0,87.0,129.0,68.0,39,39,proportional_fill_fd0.75_dispTrue
+2021,R&R,78.0,12.0,90.0,89.0,26,26,proportional_fill_fd0.75_dispTrue
+2021,Shoeless Joe's,67.0,50.0,117.0,47.0,22,22,proportional_fill_fd0.75_dispTrue
+2021,Shrooms,31.0,-29.0,2.0,21.0,47,47,proportional_fill_fd0.75_dispTrue
+2021,Thunder & Lightning,56.0,15.0,71.0,69.0,34,34,proportional_fill_fd0.75_dispTrue
+2022,Dancing With Dingos,87.0,1.0,88.0,91.0,5,5,proportional_fill_fd0.75_dispTrue
+2022,Gusteroids,68.5,2.0,70.5,81.0,11,11,proportional_fill_fd0.75_dispTrue
+2022,HAMMERHEADS,79.5,7.5,87.0,74.0,7,7,proportional_fill_fd0.75_dispTrue
+2022,Kerry & Mitch,50.0,4.0,54.0,56.0,6,6,proportional_fill_fd0.75_dispTrue
+2022,Livn Lex,49.5,0.0,49.5,42.5,1,1,proportional_fill_fd0.75_dispTrue
+2022,Mashers,37.0,12.0,49.0,51.0,7,7,proportional_fill_fd0.75_dispTrue
+2022,Mean Machine,74.0,7.0,81.0,75.5,3,3,proportional_fill_fd0.75_dispTrue
+2022,R&R,79.5,-23.5,56.0,79.0,9,9,proportional_fill_fd0.75_dispTrue
+2022,Shoeless Joe's,26.0,1.0,27.0,26.0,3,3,proportional_fill_fd0.75_dispTrue
+2022,Shrooms,72.0,18.5,90.5,59.0,10,10,proportional_fill_fd0.75_dispTrue
+2022,Thunder & Lightning,37.0,24.0,61.0,25.0,11,11,proportional_fill_fd0.75_dispTrue
+2023,Dancing With Dingos,68.0,54.0,122.0,79.5,23,23,proportional_fill_fd0.75_dispTrue
+2023,Gusteroids,65.0,35.0,100.0,71.0,40,40,proportional_fill_fd0.75_dispTrue
+2023,HAMMERHEADS,55.0,43.0,98.0,58.0,25,25,proportional_fill_fd0.75_dispTrue
+2023,Kerry & Mitch,31.0,74.0,105.0,72.0,34,34,proportional_fill_fd0.75_dispTrue
+2023,Livn Lex,34.0,104.0,138.0,33.0,26,26,proportional_fill_fd0.75_dispTrue
+2023,Mean Machine,72.0,-3.0,69.0,66.5,35,35,proportional_fill_fd0.75_dispTrue
+2023,On a Bender,72.0,13.0,85.0,59.0,37,37,proportional_fill_fd0.75_dispTrue
+2023,R&R,56.0,23.0,79.0,48.0,43,43,proportional_fill_fd0.75_dispTrue
+2023,Shrooms,52.0,-19.0,33.0,29.0,39,39,proportional_fill_fd0.75_dispTrue
+2023,Thunder & Lightning,45.0,116.0,161.0,34.0,37,37,proportional_fill_fd0.75_dispTrue
+2024,Ayal Feinberg,44.0,49.0,93.0,16.0,26,26,proportional_fill_fd0.75_dispTrue
+2024,Dancing With Dingos,70.0,13.0,83.0,77.0,19,19,proportional_fill_fd0.75_dispTrue
+2024,Gusteroids,77.0,-22.0,55.0,73.5,33,33,proportional_fill_fd0.75_dispTrue
+2024,HAMMERHEADS,55.0,38.0,93.0,41.0,30,30,proportional_fill_fd0.75_dispTrue
+2024,Kerry & Mitch,75.0,1.0,76.0,81.5,28,28,proportional_fill_fd0.75_dispTrue
+2024,Mean Machine,50.0,75.0,125.0,55.5,27,27,proportional_fill_fd0.75_dispTrue
+2024,On a Bender,34.0,96.0,130.0,57.5,29,29,proportional_fill_fd0.75_dispTrue
+2024,R&R,27.0,40.0,67.0,34.0,35,35,proportional_fill_fd0.75_dispTrue
+2024,Shrooms,63.0,56.0,119.0,36.0,33,33,proportional_fill_fd0.75_dispTrue
+2024,Thunder & Lightning,55.0,38.0,93.0,78.0,35,35,proportional_fill_fd0.75_dispTrue
+2025,Dancing With Dingos,62.0,5.0,67.0,66.0,21,21,proportional_fill_fd0.75_dispTrue
+2025,Gusteroids,33.0,134.0,167.0,22.0,43,43,proportional_fill_fd0.75_dispTrue
+2025,HAMMERHEADS,37.0,9.0,46.0,69.5,26,26,proportional_fill_fd0.75_dispTrue
+2025,Kerry & Mitch,46.0,83.0,129.0,56.5,37,37,proportional_fill_fd0.75_dispTrue
+2025,Kosher Hogs,54.0,10.0,64.0,51.0,24,24,proportional_fill_fd0.75_dispTrue
+2025,Mean Machine,59.0,2.0,61.0,65.5,34,34,proportional_fill_fd0.75_dispTrue
+2025,On a Bender,49.0,75.0,124.0,25.0,41,41,proportional_fill_fd0.75_dispTrue
+2025,R&R,75.0,33.0,108.0,76.0,28,28,proportional_fill_fd0.75_dispTrue
+2025,Shrooms,48.0,92.0,140.0,42.5,44,44,proportional_fill_fd0.75_dispTrue
+2025,Thunder & Lightning,87.0,62.0,149.0,76.0,39,39,proportional_fill_fd0.75_dispTrue
+2019,Boppers,62.0,49.0,111.0,47.0,29,29,proportional_fill_fd0.75_dispFalse
+2019,Dancing With Dingos,72.0,20.0,92.0,65.5,22,22,proportional_fill_fd0.75_dispFalse
+2019,Gusteroids,73.0,71.0,144.0,89.5,26,26,proportional_fill_fd0.75_dispFalse
+2019,HAMMERHEADS,62.0,96.0,158.0,69.5,23,23,proportional_fill_fd0.75_dispFalse
+2019,Kerry & Mitch,67.0,92.0,159.0,31.5,32,32,proportional_fill_fd0.75_dispFalse
+2019,Livn Lex,27.0,220.0,247.0,49.0,33,33,proportional_fill_fd0.75_dispFalse
+2019,Mashers,67.0,21.0,88.0,45.0,26,26,proportional_fill_fd0.75_dispFalse
+2019,R&R,55.0,112.0,167.0,50.5,34,34,proportional_fill_fd0.75_dispFalse
+2019,Shrooms,60.0,34.0,94.0,63.0,25,25,proportional_fill_fd0.75_dispFalse
+2019,Thunder & Lightning,63.0,75.0,138.0,69.5,21,21,proportional_fill_fd0.75_dispFalse
+2019,mean machine,52.0,74.0,126.0,58.0,30,30,proportional_fill_fd0.75_dispFalse
+2021,Dancing With Dingos,58.0,59.0,117.0,27.0,43,43,proportional_fill_fd0.75_dispFalse
+2021,Gusteroids,97.0,7.0,104.0,101.0,25,25,proportional_fill_fd0.75_dispFalse
+2021,HAMMERHEADS,70.0,36.0,106.0,65.0,25,25,proportional_fill_fd0.75_dispFalse
+2021,Kerry & Mitch,52.0,27.0,79.0,54.0,40,40,proportional_fill_fd0.75_dispFalse
+2021,Livn Lex,42.0,136.0,178.0,54.0,31,31,proportional_fill_fd0.75_dispFalse
+2021,Mashers,67.0,64.0,131.0,65.0,35,35,proportional_fill_fd0.75_dispFalse
+2021,Mean Machine,42.0,116.0,158.0,68.0,39,39,proportional_fill_fd0.75_dispFalse
+2021,R&R,78.0,41.0,119.0,89.0,26,26,proportional_fill_fd0.75_dispFalse
+2021,Shoeless Joe's,67.0,61.0,128.0,47.0,22,22,proportional_fill_fd0.75_dispFalse
+2021,Shrooms,31.0,-12.0,19.0,21.0,47,47,proportional_fill_fd0.75_dispFalse
+2021,Thunder & Lightning,56.0,63.0,119.0,69.0,34,34,proportional_fill_fd0.75_dispFalse
+2022,Dancing With Dingos,87.0,1.0,88.0,91.0,5,5,proportional_fill_fd0.75_dispFalse
+2022,Gusteroids,68.5,5.5,74.0,81.0,11,11,proportional_fill_fd0.75_dispFalse
+2022,HAMMERHEADS,79.5,10.5,90.0,74.0,7,7,proportional_fill_fd0.75_dispFalse
+2022,Kerry & Mitch,50.0,4.0,54.0,56.0,6,6,proportional_fill_fd0.75_dispFalse
+2022,Livn Lex,49.5,1.0,50.5,42.5,1,1,proportional_fill_fd0.75_dispFalse
+2022,Mashers,37.0,13.0,50.0,51.0,7,7,proportional_fill_fd0.75_dispFalse
+2022,Mean Machine,74.0,7.0,81.0,75.5,3,3,proportional_fill_fd0.75_dispFalse
+2022,R&R,79.5,-10.5,69.0,79.0,9,9,proportional_fill_fd0.75_dispFalse
+2022,Shoeless Joe's,26.0,1.0,27.0,26.0,3,3,proportional_fill_fd0.75_dispFalse
+2022,Shrooms,72.0,18.5,90.5,59.0,10,10,proportional_fill_fd0.75_dispFalse
+2022,Thunder & Lightning,37.0,27.0,64.0,25.0,11,11,proportional_fill_fd0.75_dispFalse
+2023,Dancing With Dingos,68.0,61.0,129.0,79.5,23,23,proportional_fill_fd0.75_dispFalse
+2023,Gusteroids,65.0,79.0,144.0,71.0,40,40,proportional_fill_fd0.75_dispFalse
+2023,HAMMERHEADS,55.0,55.0,110.0,58.0,25,25,proportional_fill_fd0.75_dispFalse
+2023,Kerry & Mitch,31.0,91.0,122.0,72.0,34,34,proportional_fill_fd0.75_dispFalse
+2023,Livn Lex,34.0,131.0,165.0,33.0,26,26,proportional_fill_fd0.75_dispFalse
+2023,Mean Machine,72.0,9.0,81.0,66.5,35,35,proportional_fill_fd0.75_dispFalse
+2023,On a Bender,72.0,31.0,103.0,59.0,37,37,proportional_fill_fd0.75_dispFalse
+2023,R&R,56.0,58.0,114.0,48.0,43,43,proportional_fill_fd0.75_dispFalse
+2023,Shrooms,52.0,30.0,82.0,29.0,39,39,proportional_fill_fd0.75_dispFalse
+2023,Thunder & Lightning,45.0,132.0,177.0,34.0,37,37,proportional_fill_fd0.75_dispFalse
+2024,Ayal Feinberg,44.0,57.0,101.0,16.0,26,26,proportional_fill_fd0.75_dispFalse
+2024,Dancing With Dingos,70.0,38.0,108.0,77.0,19,19,proportional_fill_fd0.75_dispFalse
+2024,Gusteroids,77.0,11.0,88.0,73.5,33,33,proportional_fill_fd0.75_dispFalse
+2024,HAMMERHEADS,55.0,71.0,126.0,41.0,30,30,proportional_fill_fd0.75_dispFalse
+2024,Kerry & Mitch,75.0,17.0,92.0,81.5,28,28,proportional_fill_fd0.75_dispFalse
+2024,Mean Machine,50.0,94.0,144.0,55.5,27,27,proportional_fill_fd0.75_dispFalse
+2024,On a Bender,34.0,120.0,154.0,57.5,29,29,proportional_fill_fd0.75_dispFalse
+2024,R&R,27.0,59.0,86.0,34.0,35,35,proportional_fill_fd0.75_dispFalse
+2024,Shrooms,63.0,68.0,131.0,36.0,33,33,proportional_fill_fd0.75_dispFalse
+2024,Thunder & Lightning,55.0,70.0,125.0,78.0,35,35,proportional_fill_fd0.75_dispFalse
+2025,Dancing With Dingos,62.0,16.0,78.0,66.0,21,21,proportional_fill_fd0.75_dispFalse
+2025,Gusteroids,33.0,147.0,180.0,22.0,43,43,proportional_fill_fd0.75_dispFalse
+2025,HAMMERHEADS,37.0,83.0,120.0,69.5,26,26,proportional_fill_fd0.75_dispFalse
+2025,Kerry & Mitch,46.0,99.0,145.0,56.5,37,37,proportional_fill_fd0.75_dispFalse
+2025,Kosher Hogs,54.0,28.0,82.0,51.0,24,24,proportional_fill_fd0.75_dispFalse
+2025,Mean Machine,59.0,45.0,104.0,65.5,34,34,proportional_fill_fd0.75_dispFalse
+2025,On a Bender,49.0,104.0,153.0,25.0,41,41,proportional_fill_fd0.75_dispFalse
+2025,R&R,75.0,55.0,130.0,76.0,28,28,proportional_fill_fd0.75_dispFalse
+2025,Shrooms,48.0,119.0,167.0,42.5,44,44,proportional_fill_fd0.75_dispFalse
+2025,Thunder & Lightning,87.0,79.0,166.0,76.0,39,39,proportional_fill_fd0.75_dispFalse
+2019,Boppers,64.0,15.0,79.0,47.0,29,29,proportional_fill_fd1.0_dispTrue
+2019,Dancing With Dingos,72.0,3.0,75.0,65.5,22,22,proportional_fill_fd1.0_dispTrue
+2019,Gusteroids,71.0,57.0,128.0,89.5,26,26,proportional_fill_fd1.0_dispTrue
+2019,HAMMERHEADS,67.0,3.0,70.0,69.5,23,23,proportional_fill_fd1.0_dispTrue
+2019,Kerry & Mitch,65.0,87.0,152.0,31.5,32,32,proportional_fill_fd1.0_dispTrue
+2019,Livn Lex,34.0,107.0,141.0,49.0,33,33,proportional_fill_fd1.0_dispTrue
+2019,Mashers,64.0,20.0,84.0,45.0,26,26,proportional_fill_fd1.0_dispTrue
+2019,R&R,58.0,57.0,115.0,50.5,34,34,proportional_fill_fd1.0_dispTrue
+2019,Shrooms,58.0,10.0,68.0,63.0,25,25,proportional_fill_fd1.0_dispTrue
+2019,Thunder & Lightning,58.0,93.0,151.0,69.5,21,21,proportional_fill_fd1.0_dispTrue
+2019,mean machine,49.0,40.0,89.0,58.0,30,30,proportional_fill_fd1.0_dispTrue
+2021,Dancing With Dingos,61.0,34.0,95.0,27.0,43,43,proportional_fill_fd1.0_dispTrue
+2021,Gusteroids,98.0,-16.0,82.0,101.0,25,25,proportional_fill_fd1.0_dispTrue
+2021,HAMMERHEADS,70.0,9.0,79.0,65.0,25,25,proportional_fill_fd1.0_dispTrue
+2021,Kerry & Mitch,51.0,15.0,66.0,54.0,40,40,proportional_fill_fd1.0_dispTrue
+2021,Livn Lex,46.0,62.0,108.0,54.0,31,31,proportional_fill_fd1.0_dispTrue
+2021,Mashers,65.0,58.0,123.0,65.0,35,35,proportional_fill_fd1.0_dispTrue
+2021,Mean Machine,41.0,83.0,124.0,68.0,39,39,proportional_fill_fd1.0_dispTrue
+2021,R&R,78.0,15.0,93.0,89.0,26,26,proportional_fill_fd1.0_dispTrue
+2021,Shoeless Joe's,68.0,6.0,74.0,47.0,22,22,proportional_fill_fd1.0_dispTrue
+2021,Shrooms,31.0,-9.0,22.0,21.0,47,47,proportional_fill_fd1.0_dispTrue
+2021,Thunder & Lightning,51.0,59.0,110.0,69.0,34,34,proportional_fill_fd1.0_dispTrue
+2022,Dancing With Dingos,84.0,4.0,88.0,91.0,5,5,proportional_fill_fd1.0_dispTrue
+2022,Gusteroids,65.5,5.0,70.5,81.0,11,11,proportional_fill_fd1.0_dispTrue
+2022,HAMMERHEADS,84.5,-7.5,77.0,74.0,7,7,proportional_fill_fd1.0_dispTrue
+2022,Kerry & Mitch,48.0,3.0,51.0,56.0,6,6,proportional_fill_fd1.0_dispTrue
+2022,Livn Lex,48.5,2.0,50.5,42.5,1,1,proportional_fill_fd1.0_dispTrue
+2022,Mashers,37.0,10.0,47.0,51.0,7,7,proportional_fill_fd1.0_dispTrue
+2022,Mean Machine,71.0,3.0,74.0,75.5,3,3,proportional_fill_fd1.0_dispTrue
+2022,R&R,75.5,-18.5,57.0,79.0,9,9,proportional_fill_fd1.0_dispTrue
+2022,Shoeless Joe's,25.0,1.0,26.0,26.0,3,3,proportional_fill_fd1.0_dispTrue
+2022,Shrooms,78.0,-3.5,74.5,59.0,10,10,proportional_fill_fd1.0_dispTrue
+2022,Thunder & Lightning,43.0,20.0,63.0,25.0,11,11,proportional_fill_fd1.0_dispTrue
+2023,Dancing With Dingos,68.0,6.0,74.0,79.5,23,23,proportional_fill_fd1.0_dispTrue
+2023,Gusteroids,64.0,61.0,125.0,71.0,40,40,proportional_fill_fd1.0_dispTrue
+2023,HAMMERHEADS,55.0,47.0,102.0,58.0,25,25,proportional_fill_fd1.0_dispTrue
+2023,Kerry & Mitch,30.0,88.0,118.0,72.0,34,34,proportional_fill_fd1.0_dispTrue
+2023,Livn Lex,37.0,65.0,102.0,33.0,26,26,proportional_fill_fd1.0_dispTrue
+2023,Mean Machine,70.0,18.0,88.0,66.5,35,35,proportional_fill_fd1.0_dispTrue
+2023,On a Bender,72.0,2.0,74.0,59.0,37,37,proportional_fill_fd1.0_dispTrue
+2023,R&R,56.0,45.0,101.0,48.0,43,43,proportional_fill_fd1.0_dispTrue
+2023,Shrooms,49.0,68.0,117.0,29.0,39,39,proportional_fill_fd1.0_dispTrue
+2023,Thunder & Lightning,49.0,70.0,119.0,34.0,37,37,proportional_fill_fd1.0_dispTrue
+2024,Ayal Feinberg,45.0,15.0,60.0,16.0,26,26,proportional_fill_fd1.0_dispTrue
+2024,Dancing With Dingos,69.0,17.0,86.0,77.0,19,19,proportional_fill_fd1.0_dispTrue
+2024,Gusteroids,72.0,40.0,112.0,73.5,33,33,proportional_fill_fd1.0_dispTrue
+2024,HAMMERHEADS,59.0,40.0,99.0,41.0,30,30,proportional_fill_fd1.0_dispTrue
+2024,Kerry & Mitch,75.0,-9.0,66.0,81.5,28,28,proportional_fill_fd1.0_dispTrue
+2024,Mean Machine,50.0,60.0,110.0,55.5,27,27,proportional_fill_fd1.0_dispTrue
+2024,On a Bender,34.0,73.0,107.0,57.5,29,29,proportional_fill_fd1.0_dispTrue
+2024,R&R,27.0,60.0,87.0,34.0,35,35,proportional_fill_fd1.0_dispTrue
+2024,Shrooms,63.0,22.0,85.0,36.0,33,33,proportional_fill_fd1.0_dispTrue
+2024,Thunder & Lightning,56.0,28.0,84.0,78.0,35,35,proportional_fill_fd1.0_dispTrue
+2025,Dancing With Dingos,63.0,13.0,76.0,66.0,21,21,proportional_fill_fd1.0_dispTrue
+2025,Gusteroids,35.0,123.0,158.0,22.0,43,43,proportional_fill_fd1.0_dispTrue
+2025,HAMMERHEADS,37.0,32.0,69.0,69.5,26,26,proportional_fill_fd1.0_dispTrue
+2025,Kerry & Mitch,48.0,53.0,101.0,56.5,37,37,proportional_fill_fd1.0_dispTrue
+2025,Kosher Hogs,51.0,42.0,93.0,51.0,24,24,proportional_fill_fd1.0_dispTrue
+2025,Mean Machine,56.0,51.0,107.0,65.5,34,34,proportional_fill_fd1.0_dispTrue
+2025,On a Bender,49.0,89.0,138.0,25.0,41,41,proportional_fill_fd1.0_dispTrue
+2025,R&R,73.0,51.0,124.0,76.0,28,28,proportional_fill_fd1.0_dispTrue
+2025,Shrooms,49.0,92.0,141.0,42.5,44,44,proportional_fill_fd1.0_dispTrue
+2025,Thunder & Lightning,89.0,-7.0,82.0,76.0,39,39,proportional_fill_fd1.0_dispTrue
+2019,Boppers,64.0,27.0,91.0,47.0,29,29,proportional_fill_fd1.0_dispFalse
+2019,Dancing With Dingos,72.0,14.0,86.0,65.5,22,22,proportional_fill_fd1.0_dispFalse
+2019,Gusteroids,71.0,89.0,160.0,89.5,26,26,proportional_fill_fd1.0_dispFalse
+2019,HAMMERHEADS,67.0,68.0,135.0,69.5,23,23,proportional_fill_fd1.0_dispFalse
+2019,Kerry & Mitch,65.0,105.0,170.0,31.5,32,32,proportional_fill_fd1.0_dispFalse
+2019,Livn Lex,34.0,179.0,213.0,49.0,33,33,proportional_fill_fd1.0_dispFalse
+2019,Mashers,64.0,48.0,112.0,45.0,26,26,proportional_fill_fd1.0_dispFalse
+2019,R&R,58.0,126.0,184.0,50.5,34,34,proportional_fill_fd1.0_dispFalse
+2019,Shrooms,58.0,54.0,112.0,63.0,25,25,proportional_fill_fd1.0_dispFalse
+2019,Thunder & Lightning,58.0,138.0,196.0,69.5,21,21,proportional_fill_fd1.0_dispFalse
+2019,mean machine,49.0,94.0,143.0,58.0,30,30,proportional_fill_fd1.0_dispFalse
+2021,Dancing With Dingos,61.0,48.0,109.0,27.0,43,43,proportional_fill_fd1.0_dispFalse
+2021,Gusteroids,98.0,-2.0,96.0,101.0,25,25,proportional_fill_fd1.0_dispFalse
+2021,HAMMERHEADS,70.0,33.0,103.0,65.0,25,25,proportional_fill_fd1.0_dispFalse
+2021,Kerry & Mitch,51.0,43.0,94.0,54.0,40,40,proportional_fill_fd1.0_dispFalse
+2021,Livn Lex,46.0,104.0,150.0,54.0,31,31,proportional_fill_fd1.0_dispFalse
+2021,Mashers,65.0,78.0,143.0,65.0,35,35,proportional_fill_fd1.0_dispFalse
+2021,Mean Machine,41.0,123.0,164.0,68.0,39,39,proportional_fill_fd1.0_dispFalse
+2021,R&R,78.0,39.0,117.0,89.0,26,26,proportional_fill_fd1.0_dispFalse
+2021,Shoeless Joe's,68.0,44.0,112.0,47.0,22,22,proportional_fill_fd1.0_dispFalse
+2021,Shrooms,31.0,20.0,51.0,21.0,47,47,proportional_fill_fd1.0_dispFalse
+2021,Thunder & Lightning,51.0,114.0,165.0,69.0,34,34,proportional_fill_fd1.0_dispFalse
+2022,Dancing With Dingos,84.0,4.0,88.0,91.0,5,5,proportional_fill_fd1.0_dispFalse
+2022,Gusteroids,65.5,8.5,74.0,81.0,11,11,proportional_fill_fd1.0_dispFalse
+2022,HAMMERHEADS,84.5,1.5,86.0,74.0,7,7,proportional_fill_fd1.0_dispFalse
+2022,Kerry & Mitch,48.0,3.0,51.0,56.0,6,6,proportional_fill_fd1.0_dispFalse
+2022,Livn Lex,48.5,2.0,50.5,42.5,1,1,proportional_fill_fd1.0_dispFalse
+2022,Mashers,37.0,11.0,48.0,51.0,7,7,proportional_fill_fd1.0_dispFalse
+2022,Mean Machine,71.0,3.0,74.0,75.5,3,3,proportional_fill_fd1.0_dispFalse
+2022,R&R,75.5,-3.5,72.0,79.0,9,9,proportional_fill_fd1.0_dispFalse
+2022,Shoeless Joe's,25.0,2.0,27.0,26.0,3,3,proportional_fill_fd1.0_dispFalse
+2022,Shrooms,78.0,-1.5,76.5,59.0,10,10,proportional_fill_fd1.0_dispFalse
+2022,Thunder & Lightning,43.0,25.0,68.0,25.0,11,11,proportional_fill_fd1.0_dispFalse
+2023,Dancing With Dingos,68.0,45.0,113.0,79.5,23,23,proportional_fill_fd1.0_dispFalse
+2023,Gusteroids,64.0,114.0,178.0,71.0,40,40,proportional_fill_fd1.0_dispFalse
+2023,HAMMERHEADS,55.0,65.0,120.0,58.0,25,25,proportional_fill_fd1.0_dispFalse
+2023,Kerry & Mitch,30.0,125.0,155.0,72.0,34,34,proportional_fill_fd1.0_dispFalse
+2023,Livn Lex,37.0,115.0,152.0,33.0,26,26,proportional_fill_fd1.0_dispFalse
+2023,Mean Machine,70.0,30.0,100.0,66.5,35,35,proportional_fill_fd1.0_dispFalse
+2023,On a Bender,72.0,32.0,104.0,59.0,37,37,proportional_fill_fd1.0_dispFalse
+2023,R&R,56.0,80.0,136.0,48.0,43,43,proportional_fill_fd1.0_dispFalse
+2023,Shrooms,49.0,104.0,153.0,29.0,39,39,proportional_fill_fd1.0_dispFalse
+2023,Thunder & Lightning,49.0,108.0,157.0,34.0,37,37,proportional_fill_fd1.0_dispFalse
+2024,Ayal Feinberg,45.0,36.0,81.0,16.0,26,26,proportional_fill_fd1.0_dispFalse
+2024,Dancing With Dingos,69.0,34.0,103.0,77.0,19,19,proportional_fill_fd1.0_dispFalse
+2024,Gusteroids,72.0,51.0,123.0,73.5,33,33,proportional_fill_fd1.0_dispFalse
+2024,HAMMERHEADS,59.0,62.0,121.0,41.0,30,30,proportional_fill_fd1.0_dispFalse
+2024,Kerry & Mitch,75.0,22.0,97.0,81.5,28,28,proportional_fill_fd1.0_dispFalse
+2024,Mean Machine,50.0,80.0,130.0,55.5,27,27,proportional_fill_fd1.0_dispFalse
+2024,On a Bender,34.0,99.0,133.0,57.5,29,29,proportional_fill_fd1.0_dispFalse
+2024,R&R,27.0,89.0,116.0,34.0,35,35,proportional_fill_fd1.0_dispFalse
+2024,Shrooms,63.0,53.0,116.0,36.0,33,33,proportional_fill_fd1.0_dispFalse
+2024,Thunder & Lightning,56.0,64.0,120.0,78.0,35,35,proportional_fill_fd1.0_dispFalse
+2025,Dancing With Dingos,63.0,30.0,93.0,66.0,21,21,proportional_fill_fd1.0_dispFalse
+2025,Gusteroids,35.0,139.0,174.0,22.0,43,43,proportional_fill_fd1.0_dispFalse
+2025,HAMMERHEADS,37.0,102.0,139.0,69.5,26,26,proportional_fill_fd1.0_dispFalse
+2025,Kerry & Mitch,48.0,83.0,131.0,56.5,37,37,proportional_fill_fd1.0_dispFalse
+2025,Kosher Hogs,51.0,57.0,108.0,51.0,24,24,proportional_fill_fd1.0_dispFalse
+2025,Mean Machine,56.0,81.0,137.0,65.5,34,34,proportional_fill_fd1.0_dispFalse
+2025,On a Bender,49.0,119.0,168.0,25.0,41,41,proportional_fill_fd1.0_dispFalse
+2025,R&R,73.0,85.0,158.0,76.0,28,28,proportional_fill_fd1.0_dispFalse
+2025,Shrooms,49.0,116.0,165.0,42.5,44,44,proportional_fill_fd1.0_dispFalse
+2025,Thunder & Lightning,89.0,32.0,121.0,76.0,39,39,proportional_fill_fd1.0_dispFalse
+2019,Boppers,60.0,68.5,128.5,47.0,29,29,keeper_only_fd0.75_dispTrue
+2019,Dancing With Dingos,74.5,11.0,85.5,65.5,22,22,keeper_only_fd0.75_dispTrue
+2019,Gusteroids,74.5,83.5,158.0,89.5,26,26,keeper_only_fd0.75_dispTrue
+2019,HAMMERHEADS,57.0,58.0,115.0,69.5,23,23,keeper_only_fd0.75_dispTrue
+2019,Kerry & Mitch,70.0,80.5,150.5,31.5,32,32,keeper_only_fd0.75_dispTrue
+2019,Livn Lex,23.0,119.0,142.0,49.0,33,33,keeper_only_fd0.75_dispTrue
+2019,Mashers,75.0,11.0,86.0,45.0,26,26,keeper_only_fd0.75_dispTrue
+2019,R&R,48.5,38.0,86.5,50.5,34,34,keeper_only_fd0.75_dispTrue
+2019,Shrooms,56.0,71.5,127.5,63.0,25,25,keeper_only_fd0.75_dispTrue
+2019,Thunder & Lightning,65.0,38.0,103.0,69.5,21,21,keeper_only_fd0.75_dispTrue
+2019,mean machine,56.5,84.0,140.5,58.0,30,30,keeper_only_fd0.75_dispTrue
+2021,Dancing With Dingos,64.0,-80.0,-16.0,27.0,43,43,keeper_only_fd0.75_dispTrue
+2021,Gusteroids,95.5,0.0,95.5,101.0,25,25,keeper_only_fd0.75_dispTrue
+2021,HAMMERHEADS,71.0,57.0,128.0,65.0,25,25,keeper_only_fd0.75_dispTrue
+2021,Kerry & Mitch,49.5,67.0,116.5,54.0,40,40,keeper_only_fd0.75_dispTrue
+2021,Livn Lex,37.0,96.0,133.0,54.0,31,31,keeper_only_fd0.75_dispTrue
+2021,Mashers,70.0,85.5,155.5,65.0,35,35,keeper_only_fd0.75_dispTrue
+2021,Mean Machine,46.5,80.5,127.0,68.0,39,39,keeper_only_fd0.75_dispTrue
+2021,R&R,72.5,126.5,199.0,89.0,26,26,keeper_only_fd0.75_dispTrue
+2021,Shoeless Joe's,70.0,35.0,105.0,47.0,22,22,keeper_only_fd0.75_dispTrue
+2021,Shrooms,21.0,111.0,132.0,21.0,47,47,keeper_only_fd0.75_dispTrue
+2021,Thunder & Lightning,63.0,110.5,173.5,69.0,34,34,keeper_only_fd0.75_dispTrue
+2022,Dancing With Dingos,86.5,5.0,91.5,91.0,5,5,keeper_only_fd0.75_dispTrue
+2022,Gusteroids,74.5,-3.5,71.0,81.0,11,11,keeper_only_fd0.75_dispTrue
+2022,HAMMERHEADS,62.5,23.0,85.5,74.0,7,7,keeper_only_fd0.75_dispTrue
+2022,Kerry & Mitch,59.0,15.0,74.0,56.0,6,6,keeper_only_fd0.75_dispTrue
+2022,Livn Lex,41.5,2.0,43.5,42.5,1,1,keeper_only_fd0.75_dispTrue
+2022,Mashers,45.5,13.5,59.0,51.0,7,7,keeper_only_fd0.75_dispTrue
+2022,Mean Machine,80.0,3.0,83.0,75.5,3,3,keeper_only_fd0.75_dispTrue
+2022,R&R,82.5,-8.5,74.0,79.0,9,9,keeper_only_fd0.75_dispTrue
+2022,Shoeless Joe's,40.0,-2.0,38.0,26.0,3,3,keeper_only_fd0.75_dispTrue
+2022,Shrooms,60.0,3.5,63.5,59.0,10,10,keeper_only_fd0.75_dispTrue
+2022,Thunder & Lightning,28.0,7.0,35.0,25.0,11,11,keeper_only_fd0.75_dispTrue
+2023,Dancing With Dingos,73.0,36.5,109.5,79.5,23,23,keeper_only_fd0.75_dispTrue
+2023,Gusteroids,65.0,51.5,116.5,71.0,40,40,keeper_only_fd0.75_dispTrue
+2023,HAMMERHEADS,55.0,51.0,106.0,58.0,25,25,keeper_only_fd0.75_dispTrue
+2023,Kerry & Mitch,28.0,73.0,101.0,72.0,34,34,keeper_only_fd0.75_dispTrue
+2023,Livn Lex,35.0,69.5,104.5,33.0,26,26,keeper_only_fd0.75_dispTrue
+2023,Mean Machine,71.0,15.5,86.5,66.5,35,35,keeper_only_fd0.75_dispTrue
+2023,On a Bender,71.0,6.5,77.5,59.0,37,37,keeper_only_fd0.75_dispTrue
+2023,R&R,53.0,72.0,125.0,48.0,43,43,keeper_only_fd0.75_dispTrue
+2023,Shrooms,54.0,-27.0,27.0,29.0,39,39,keeper_only_fd0.75_dispTrue
+2023,Thunder & Lightning,45.0,42.0,87.0,34.0,37,37,keeper_only_fd0.75_dispTrue
+2024,Ayal Feinberg,46.5,29.5,76.0,16.0,26,26,keeper_only_fd0.75_dispTrue
+2024,Dancing With Dingos,71.0,32.5,103.5,77.0,19,19,keeper_only_fd0.75_dispTrue
+2024,Gusteroids,80.0,37.0,117.0,73.5,33,33,keeper_only_fd0.75_dispTrue
+2024,HAMMERHEADS,47.0,105.5,152.5,41.0,30,30,keeper_only_fd0.75_dispTrue
+2024,Kerry & Mitch,75.0,10.5,85.5,81.5,28,28,keeper_only_fd0.75_dispTrue
+2024,Mean Machine,56.0,29.5,85.5,55.5,27,27,keeper_only_fd0.75_dispTrue
+2024,On a Bender,36.0,135.0,171.0,57.5,29,29,keeper_only_fd0.75_dispTrue
+2024,R&R,19.0,89.0,108.0,34.0,35,35,keeper_only_fd0.75_dispTrue
+2024,Shrooms,67.0,35.5,102.5,36.0,33,33,keeper_only_fd0.75_dispTrue
+2024,Thunder & Lightning,52.5,68.0,120.5,78.0,35,35,keeper_only_fd0.75_dispTrue
+2025,Dancing With Dingos,61.5,17.5,79.0,66.0,21,21,keeper_only_fd0.75_dispTrue
+2025,Gusteroids,27.5,158.5,186.0,22.0,43,43,keeper_only_fd0.75_dispTrue
+2025,HAMMERHEADS,30.0,134.5,164.5,69.5,26,26,keeper_only_fd0.75_dispTrue
+2025,Kerry & Mitch,42.5,150.5,193.0,56.5,37,37,keeper_only_fd0.75_dispTrue
+2025,Kosher Hogs,57.5,60.5,118.0,51.0,24,24,keeper_only_fd0.75_dispTrue
+2025,Mean Machine,60.5,50.5,111.0,65.5,34,34,keeper_only_fd0.75_dispTrue
+2025,On a Bender,54.0,78.5,132.5,25.0,41,41,keeper_only_fd0.75_dispTrue
+2025,R&R,80.5,30.5,111.0,76.0,28,28,keeper_only_fd0.75_dispTrue
+2025,Shrooms,48.0,94.5,142.5,42.5,44,44,keeper_only_fd0.75_dispTrue
+2025,Thunder & Lightning,88.0,44.5,132.5,76.0,39,39,keeper_only_fd0.75_dispTrue

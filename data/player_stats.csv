@@ -2887,3 +2887,586 @@ year,fantasy_team,player_name,fg_id,mlb_team,position,salary,contract_year,statu
 2024,Gusteroids,Luis Castillo,15689,Sea,P,27,b,dis,P,30,,,,,,,,175.1,11.0,0.0,3.64,1.17,175.0,True
 2024,On a Bender,Mark Leiter Jr.,15551,FA,P,2,a,act,P,60,,,,,,,,58.0,4.0,0.0,4.5,1.33,86.0,True
 2024,Gusteroids,Simeon Woods Richardson,24494,Min,P,10,a,act,P,28,,,,,,,,133.2,5.0,0.0,4.17,1.29,117.0,True
+2025,Mean Machine,Aaron Judge,15640,NYY,OF,47,a,act,OF,152,541.0,679.0,137.0,53.0,114.0,12.0,0.331,,,,,,,False
+2025,HAMMERHEADS,Jeremy Pena,21636,Hou,UT,17,a,act,"SS,MI",125,493.0,543.0,68.0,17.0,62.0,20.0,0.304,,,,,,,False
+2025,Thunder & Lightning,Julio Rodriguez,23697,Sea,OF,20,y,act,OF,160,652.0,710.0,106.0,32.0,95.0,30.0,0.267,,,,,,,False
+2025,HAMMERHEADS,George Springer,12856,Tor,OF,16,a,act,OF,140,498.0,586.0,106.0,32.0,84.0,18.0,0.309,,,,,,,False
+2025,Thunder & Lightning,Byron Buxton,14161,Min,OF,16,b,act,OF,126,488.0,542.0,97.0,35.0,83.0,24.0,0.264,,,,,,,False
+2025,R&R,Cody Bellinger,15998,NYY,CI,24,a,act,"OF,CI,1B",152,588.0,656.0,89.0,29.0,98.0,13.0,0.272,,,,,,,False
+2025,Kosher Hogs,Cody Bellinger,15998,NYY,CI,24,a,trd,0,152,588.0,656.0,89.0,29.0,98.0,13.0,0.272,,,,,,,False
+2025,Gusteroids,Gunnar Henderson,26289,Bal,UT,23,c,trd,8,154,577.0,651.0,85.0,17.0,68.0,30.0,0.274,,,,,,,False
+2025,On a Bender,Alejandro Kirk,22581,Tor,C,10,a,act,C,130,451.0,506.0,45.0,15.0,76.0,1.0,0.282,,,,,,,False
+2025,Thunder & Lightning,Nick Kurtz,35110,ATH,1B,5,ar,act,1B,117,420.0,489.0,90.0,36.0,86.0,2.0,0.29,,,,,,,False
+2025,Mean Machine,Junior Caminero,28163,TB,3B,7,br,act,"3B,CI",154,602.0,653.0,93.0,45.0,110.0,7.0,0.264,,,,,,,False
+2025,Mean Machine,Wyatt Langford,33333,Tex,OF,33,b,act,OF,134,489.0,573.0,73.0,22.0,62.0,22.0,0.241,,,,,,,False
+2025,Mean Machine,Dillon Dingler,27464,Det,C,10,a,act,C,126,435.0,469.0,54.0,13.0,57.0,0.0,0.278,,,,,,,False
+2025,Gusteroids,Dillon Dingler,27464,Det,UT,10,a,wai,3,126,435.0,469.0,54.0,13.0,57.0,0.0,0.278,,,,,,,False
+2025,Shrooms,Corey Seager,13624,Tex,UT,28,a,res,"SS,MI",102,380.0,445.0,61.0,21.0,50.0,3.0,0.271,,,,,,,False
+2025,R&R,Shea Langeliers,25816,ATH,C,10,c,act,C,123,481.0,523.0,73.0,31.0,72.0,7.0,0.277,,,,,,,False
+2025,Kerry & Mitch,Vladimir Guerrero Jr.,19611,Tor,1B,39,a,act,"1B,3B,CI",156,589.0,680.0,96.0,23.0,84.0,6.0,0.292,,,,,,,False
+2025,Mean Machine,Jarren Duran,24617,Bos,OF,15,y,act,OF,157,620.0,696.0,86.0,16.0,84.0,24.0,0.256,,,,,,,False
+2025,R&R,Bo Bichette,19612,Tor,3B,29,a,res,"SS,MI",139,582.0,628.0,78.0,18.0,94.0,4.0,0.311,,,,,,,False
+2025,Gusteroids,Bo Bichette,19612,Tor,SS,29,a,trd,7,139,582.0,628.0,78.0,18.0,94.0,4.0,0.311,,,,,,,False
+2025,Shrooms,Bo Bichette,19612,Tor,MI,29,a,trd,7,139,582.0,628.0,78.0,18.0,94.0,4.0,0.311,,,,,,,False
+2025,Dancing With Dingos,Bo Bichette,19612,Tor,3B,29,a,dis,7,139,582.0,628.0,78.0,18.0,94.0,4.0,0.311,,,,,,,False
+2025,Thunder & Lightning,Eugenio Suarez,12552,FA,UT,46,a,act,"3B,CI",159,588.0,657.0,91.0,49.0,118.0,4.0,0.228,,,,,,,False
+2025,Shrooms,Ceddanne Rafaela,24262,Bos,OF,7,br,act,"OF,MI,SS,2B",156,546.0,587.0,84.0,16.0,63.0,20.0,0.249,,,,,,,False
+2025,Thunder & Lightning,Alex Bregman,17678,Bos,3B,26,a,act,"3B,CI",114,433.0,495.0,64.0,18.0,62.0,1.0,0.273,,,,,,,False
+2025,Thunder & Lightning,Jacob Wilson,33266,ATH,UT,5,ar,act,"SS,MI",125,486.0,523.0,62.0,13.0,63.0,5.0,0.311,,,,,,,False
+2025,Thunder & Lightning,Tyler Soderstrom,27467,ATH,CI,10,a,act,"CI,1B",158,561.0,624.0,75.0,25.0,93.0,8.0,0.276,,,,,,,False
+2025,R&R,Trent Grisham,18564,NYY,OF,10,a,act,OF,143,494.0,581.0,87.0,34.0,74.0,3.0,0.235,,,,,,,False
+2025,R&R,Zach McKinstry,19392,Det,3B,10,a,act,"3B,SS,2B,OF,CI,MI",144,452.0,511.0,68.0,12.0,49.0,19.0,0.259,,,,,,,False
+2025,Kosher Hogs,Ernie Clement,20352,Tor,SS,6,a,act,"3B,CI,SS,MI",157,545.0,588.0,83.0,9.0,50.0,6.0,0.277,,,,,,,False
+2025,Gusteroids,Steven Kwan,24610,Cle,OF,15,z,trd,4,156,625.0,693.0,81.0,11.0,56.0,21.0,0.272,,,,,,,False
+2025,HAMMERHEADS,Josh Naylor,18839,FA,CI,32,aL,act,"1B,CI",147,543.0,604.0,81.0,20.0,92.0,30.0,0.295,,,,,,,False
+2025,Shrooms,Zach Neto,31347,LAA,SS,15,y,res,"SS,MI",128,502.0,554.0,82.0,26.0,62.0,26.0,0.257,,,,,,,False
+2025,HAMMERHEADS,Zach Neto,31347,LAA,SS,15,y,dis,0,128,502.0,554.0,82.0,26.0,62.0,26.0,0.257,,,,,,,False
+2025,Gusteroids,Ben Rice,29576,NYY,C,3,a,act,"1B,CI",138,467.0,530.0,74.0,26.0,65.0,3.0,0.255,,,,,,,False
+2025,R&R,Trevor Story,12564,Bos,SS,8,y,act,"SS,MI",157,612.0,654.0,91.0,25.0,96.0,31.0,0.263,,,,,,,False
+2025,Dancing With Dingos,Austin Wells,27562,NYY,C,5,b,act,C,126,401.0,448.0,51.0,21.0,71.0,5.0,0.219,,,,,,,False
+2025,R&R,Yandy Diaz,16578,TB,1B,15,a,act,"1B,CI",150,583.0,651.0,79.0,25.0,83.0,3.0,0.3,,,,,,,False
+2025,Gusteroids,Yandy Diaz,16578,TB,1B,15,a,trd,114,150,583.0,651.0,79.0,25.0,83.0,3.0,0.3,,,,,,,False
+2025,Kosher Hogs,Max Muncy,13301,LAD,2B,1,a,act,3B,100,313.0,388.0,48.0,19.0,67.0,4.0,0.243,,,,,,,False
+2025,Kerry & Mitch,Max Muncy,13301,LAD,2B,1,a,trd,0,100,313.0,388.0,48.0,19.0,67.0,4.0,0.243,,,,,,,False
+2025,Mean Machine,Max Muncy,13301,LAD,MI,1,a,trd,0,100,313.0,388.0,48.0,19.0,67.0,4.0,0.243,,,,,,,False
+2025,Gusteroids,Riley Greene,25976,Det,OF,15,z,trd,23,157,600.0,655.0,84.0,36.0,111.0,2.0,0.258,,,,,,,False
+2025,Shrooms,Taylor Ward,17548,LAA,OF,15,z,trd,4,157,579.0,663.0,86.0,36.0,103.0,4.0,0.228,,,,,,,False
+2025,Thunder & Lightning,Randy Arozarena,19290,Sea,OF,16,a,act,OF,160,613.0,709.0,95.0,27.0,76.0,31.0,0.238,,,,,,,False
+2025,Mean Machine,J.P. Crawford,15491,Sea,MI,10,a,act,"SS,MI",157,570.0,654.0,69.0,12.0,58.0,8.0,0.265,,,,,,,False
+2025,HAMMERHEADS,J.P. Crawford,15491,Sea,SS,10,a,wai,0,157,570.0,654.0,69.0,12.0,58.0,8.0,0.265,,,,,,,False
+2025,Gusteroids,Roman Anthony,31812,Bos,OF,5,ar,dis,OF,71,257.0,303.0,48.0,8.0,32.0,4.0,0.292,,,,,,,False
+2025,Kosher Hogs,Colson Montgomery,29712,CWS,MI,5,ar,act,SS,71,255.0,284.0,43.0,21.0,55.0,0.0,0.239,,,,,,,False
+2025,Shrooms,Carlos Narvaez,19722,Bos,C,10,a,act,C,118,403.0,446.0,51.0,15.0,50.0,1.0,0.241,,,,,,,False
+2025,R&R,Jorge Polanco,13152,Sea,2B,5,a,act,"2B,MI",138,471.0,524.0,64.0,26.0,78.0,6.0,0.265,,,,,,,False
+2025,R&R,Gleyber Torres,16997,Det,MI,15,a,act,"2B,MI",145,532.0,628.0,79.0,16.0,74.0,4.0,0.256,,,,,,,False
+2025,Thunder & Lightning,Gleyber Torres,16997,Det,2B,15,a,trd,10,145,532.0,628.0,79.0,16.0,74.0,4.0,0.256,,,,,,,False
+2025,Thunder & Lightning,Carlos Correa,14162,FA,SS,16,b,act,"SS,MI",144,537.0,584.0,63.0,13.0,52.0,0.0,0.276,,,,,,,False
+2025,Dancing With Dingos,Jonathan Aranda,21837,TB,UT,4,a,res,"1B,CI",106,370.0,422.0,56.0,14.0,59.0,0.0,0.316,,,,,,,False
+2025,Thunder & Lightning,Jonathan Aranda,21837,TB,UT,4,a,dis,10,106,370.0,422.0,56.0,14.0,59.0,0.0,0.316,,,,,,,False
+2025,On a Bender,Isaac Paredes,20036,Hou,3B,15,a,act,"3B,CI,1B",102,378.0,438.0,53.0,20.0,53.0,0.0,0.254,,,,,,,False
+2025,On a Bender,Brent Rooker,19627,ATH,OF,15,y,act,OF,162,626.0,699.0,92.0,30.0,89.0,6.0,0.262,,,,,,,False
+2025,Mean Machine,Wilyer Abreu,23772,Bos,UT,10,b,act,OF,115,373.0,417.0,53.0,22.0,69.0,6.0,0.247,,,,,,,False
+2025,Mean Machine,Spencer Torkelson,27465,Det,1B,6,a,act,"1B,CI",155,563.0,649.0,82.0,31.0,78.0,2.0,0.24,,,,,,,False
+2025,Shrooms,Mike Yastrzemski,14854,FA,OF,9,a,act,OF,147,477.0,558.0,68.0,17.0,46.0,7.0,0.233,,,,,,,False
+2025,Mean Machine,Jake Meyers,20308,Hou,UT,2,b,act,OF,104,343.0,381.0,53.0,3.0,24.0,16.0,0.292,,,,,,,False
+2025,Shrooms,Daulton Varsho,19918,Tor,OF,9,a,act,OF,71,248.0,271.0,43.0,20.0,55.0,2.0,0.238,,,,,,,False
+2025,On a Bender,Addison Barger,24598,Tor,OF,10,a,act,"3B,OF,CI",135,460.0,502.0,61.0,21.0,74.0,4.0,0.243,,,,,,,False
+2025,R&R,Mauricio Dubon,16530,Hou,1B,5,a,wai,0,133,369.0,398.0,43.0,7.0,33.0,3.0,0.241,,,,,,,False
+2025,Kerry & Mitch,Mauricio Dubon,16530,Hou,UT,10,a,wai,0,133,369.0,398.0,43.0,7.0,33.0,3.0,0.241,,,,,,,False
+2025,HAMMERHEADS,Mauricio Dubon,16530,Hou,3B,10,a,wai,0,133,369.0,398.0,43.0,7.0,33.0,3.0,0.241,,,,,,,False
+2025,Shrooms,Tyler Heineman,13897,Tor,C,10,a,wai,0,64,149.0,174.0,25.0,3.0,20.0,2.0,0.289,,,,,,,False
+2025,Kerry & Mitch,Ryan Jeffers,24618,Min,C,1,c,dis,29,119,406.0,464.0,47.0,9.0,47.0,1.0,0.266,,,,,,,False
+2025,Mean Machine,Jose Caballero,23401,FA,OF,6,b,act,"3B,MI,SS,2B,CI",126,314.0,370.0,52.0,5.0,36.0,49.0,0.236,,,,,,,False
+2025,Kerry & Mitch,Marcus Semien,12533,Tex,2B,19,a,dis,"2B,MI",127,470.0,534.0,62.0,15.0,62.0,11.0,0.23,,,,,,,False
+2025,Kosher Hogs,Marcus Semien,12533,Tex,2B,19,a,trd,0,127,470.0,534.0,62.0,15.0,62.0,11.0,0.23,,,,,,,False
+2025,Kerry & Mitch,Lawrence Butler,22542,ATH,OF,3,b,act,OF,152,569.0,630.0,83.0,21.0,63.0,22.0,0.234,,,,,,,False
+2025,HAMMERHEADS,Giancarlo Stanton,4949,NYY,UT,10,a,act,UT,77,249.0,281.0,36.0,24.0,66.0,0.0,0.273,,,,,,,False
+2025,On a Bender,Giancarlo Stanton,4949,NYY,UT,10,a,trd,47,77,249.0,281.0,36.0,24.0,66.0,0.0,0.273,,,,,,,False
+2025,R&R,Kyle Teel,33549,CWS,OF,5,ar,act,C,78,253.0,297.0,38.0,8.0,35.0,3.0,0.273,,,,,,,False
+2025,Kosher Hogs,Jordan Westburg,27815,Bal,CI,15,y,act,"3B,2B,CI,MI",85,328.0,352.0,59.0,17.0,41.0,1.0,0.265,,,,,,,False
+2025,HAMMERHEADS,Ryan McMahon,15112,FA,3B,15,a,act,"3B,CI",154,509.0,586.0,62.0,20.0,53.0,3.0,0.214,,,,,,,False
+2025,Dancing With Dingos,Ryan McMahon,15112,FA,CI,15,a,wai,1,154,509.0,586.0,62.0,20.0,53.0,3.0,0.214,,,,,,,False
+2025,Kerry & Mitch,Mike Trout,10155,LAA,OF,25,a,act,OF,130,456.0,556.0,73.0,26.0,64.0,2.0,0.232,,,,,,,False
+2025,Kosher Hogs,Mike Trout,10155,LAA,OF,25,a,trd,106,130,456.0,556.0,73.0,26.0,64.0,2.0,0.232,,,,,,,False
+2025,Gusteroids,Nathan Lukes,18123,Tor,OF,10,a,act,OF,135,388.0,438.0,55.0,12.0,65.0,2.0,0.255,,,,,,,False
+2025,R&R,Nathan Lukes,18123,Tor,OF,10,a,wai,1,135,388.0,438.0,55.0,12.0,65.0,2.0,0.255,,,,,,,False
+2025,R&R,Josh Smith,26396,Tex,UT,1,a,act,"SS,3B,MI,CI",144,495.0,563.0,70.0,10.0,35.0,12.0,0.251,,,,,,,False
+2025,Gusteroids,Jake Mangum,26202,TB,OF,10,a,act,OF,118,405.0,428.0,37.0,3.0,40.0,27.0,0.296,,,,,,,False
+2025,On a Bender,Jake Mangum,26202,TB,OF,10,a,wai,1,118,405.0,428.0,37.0,3.0,40.0,27.0,0.296,,,,,,,False
+2025,Gusteroids,Myles Straw,17620,Tor,OF,10,a,act,OF,137,267.0,299.0,51.0,4.0,32.0,12.0,0.262,,,,,,,False
+2025,Dancing With Dingos,Brandon Lowe,18882,TB,2B,17,a,act,"2B,CI,1B,MI",134,507.0,553.0,79.0,31.0,83.0,3.0,0.256,,,,,,,False
+2025,On a Bender,Brandon Lowe,18882,TB,2B,17,a,trd,9,134,507.0,553.0,79.0,31.0,83.0,3.0,0.256,,,,,,,False
+2025,Shrooms,Wenceel Perez,22857,Det,OF,10,a,act,OF,100,344.0,383.0,47.0,13.0,43.0,8.0,0.244,,,,,,,False
+2025,HAMMERHEADS,Wenceel Perez,22857,Det,UT,10,a,trd,1,100,344.0,383.0,47.0,13.0,43.0,8.0,0.244,,,,,,,False
+2025,Kosher Hogs,Josh Jung,26299,Tex,3B,15,y,act,"3B,CI",131,482.0,511.0,53.0,14.0,61.0,4.0,0.251,,,,,,,False
+2025,Gusteroids,Luke Keaschall,33321,Min,UT,5,ar,act,2B,49,182.0,207.0,25.0,4.0,28.0,14.0,0.302,,,,,,,False
+2025,Gusteroids,Colt Keith,27899,Det,MI,11,a,act,"MI,2B",137,414.0,468.0,65.0,13.0,45.0,1.0,0.256,,,,,,,False
+2025,Gusteroids,Yainer Diaz,23003,Hou,C,10,c,trd,25,143,542.0,567.0,56.0,20.0,70.0,1.0,0.256,,,,,,,False
+2025,Dancing With Dingos,Dominic Canzone,26438,Sea,UT,10,a,act,OF,82,243.0,268.0,30.0,11.0,32.0,3.0,0.3,,,,,,,False
+2025,Shrooms,Romy Gonzalez,21562,Bos,MI,10,a,act,"1B,MI,CI,3B,OF,2B,SS",96,315.0,341.0,47.0,9.0,53.0,6.0,0.305,,,,,,,False
+2025,HAMMERHEADS,Romy Gonzalez,21562,Bos,UT,10,a,wai,5,96,315.0,341.0,47.0,9.0,53.0,6.0,0.305,,,,,,,False
+2025,Shrooms,Vinnie Pasquantino,27676,KC,1B,19,a,act,"1B,CI",160,621.0,682.0,72.0,32.0,113.0,1.0,0.264,,,,,,,False
+2025,On a Bender,Bo Naylor,21865,Cle,C,11,a,act,C,123,359.0,414.0,46.0,14.0,47.0,1.0,0.195,,,,,,,False
+2025,Kerry & Mitch,Matt Wallner,26466,Min,UT,10,c,dis,15,104,336.0,392.0,47.0,22.0,40.0,4.0,0.202,,,,,,,False
+2025,Gusteroids,Mike Tauchman,15274,CWS,OF,1,a,act,OF,93,335.0,385.0,44.0,9.0,40.0,0.0,0.263,,,,,,,False
+2025,R&R,Mike Tauchman,15274,CWS,OF,1,a,trd,19,93,335.0,385.0,44.0,9.0,40.0,0.0,0.263,,,,,,,False
+2025,Gusteroids,Evan Carter,27790,Tex,OF,10,a,dis,OF,63,194.0,220.0,31.0,5.0,25.0,14.0,0.247,,,,,,,False
+2025,Shrooms,Lenyn Sosa,22896,CWS,3B,1,a,act,"2B,MI,3B,CI",140,518.0,544.0,57.0,22.0,75.0,2.0,0.264,,,,,,,False
+2025,On a Bender,Kody Clemens,20572,FA,OF,10,a,wai,1,119,348.0,386.0,46.0,19.0,52.0,5.0,0.213,,,,,,,False
+2025,Thunder & Lightning,Kody Clemens,20572,FA,MI,10,a,wai,1,119,348.0,386.0,46.0,19.0,52.0,5.0,0.213,,,,,,,False
+2025,Dancing With Dingos,Kody Clemens,20572,FA,1B,10,a,wai,1,119,348.0,386.0,46.0,19.0,52.0,5.0,0.213,,,,,,,False
+2025,HAMMERHEADS,Javier Baez,12979,Det,OF,10,a,act,"SS,MI",126,417.0,437.0,55.0,12.0,57.0,5.0,0.257,,,,,,,False
+2025,HAMMERHEADS,Danny Jansen,16535,FA,C,3,a,wai,2,98,288.0,337.0,38.0,14.0,36.0,0.0,0.215,,,,,,,False
+2025,Gusteroids,Miguel Vargas,20178,CWS,CI,4,a,act,"3B,OF,CI",138,504.0,569.0,80.0,16.0,60.0,6.0,0.234,,,,,,,False
+2025,Dancing With Dingos,Miguel Vargas,20178,CWS,OF,4,a,trd,4,138,504.0,569.0,80.0,16.0,60.0,6.0,0.234,,,,,,,False
+2025,Shrooms,Cedric Mullins,17929,FA,OF,22,a,wai,2,133,435.0,498.0,58.0,17.0,59.0,22.0,0.216,,,,,,,False
+2025,Dancing With Dingos,Chase Meidroth,31580,CWS,MI,10,a,act,SS,122,450.0,505.0,54.0,5.0,23.0,14.0,0.253,,,,,,,False
+2025,Mean Machine,Chase Meidroth,31580,CWS,UT,10,a,wai,0,122,450.0,505.0,54.0,5.0,23.0,14.0,0.253,,,,,,,False
+2025,Mean Machine,Denzel Clarke,29858,ATH,UT,10,a,dis,OF,47,148.0,159.0,18.0,3.0,8.0,6.0,0.23,,,,,,,False
+2025,Gusteroids,Denzel Clarke,29858,ATH,OF,10,a,wai,0,47,148.0,159.0,18.0,3.0,8.0,6.0,0.23,,,,,,,False
+2025,Shrooms,Daniel Schneemann,25180,Cle,2B,10,a,act,"MI,OF,3B,CI,SS",131,379.0,422.0,48.0,12.0,41.0,9.0,0.206,,,,,,,False
+2025,Thunder & Lightning,Jo Adell,20220,LAA,OF,10,b,act,OF,152,526.0,573.0,63.0,37.0,98.0,5.0,0.236,,,,,,,False
+2025,On a Bender,Kyle Manzardo,29794,Cle,1B,7,br,act,UT,142,470.0,531.0,47.0,27.0,70.0,2.0,0.234,,,,,,,False
+2025,HAMMERHEADS,Kyle Manzardo,29794,Cle,CI,7,br,trd,81,142,470.0,531.0,47.0,27.0,70.0,2.0,0.234,,,,,,,False
+2025,Gusteroids,Jackson Holliday,31781,Bal,2B,7,br,act,"2B,MI",149,586.0,649.0,70.0,17.0,55.0,17.0,0.242,,,,,,,False
+2025,HAMMERHEADS,Jackson Holliday,31781,Bal,2B,7,br,trd,4,149,586.0,649.0,70.0,17.0,55.0,17.0,0.242,,,,,,,False
+2025,Gusteroids,Adley Rutschman,26288,Bal,C,15,z,trd,18,90,322.0,365.0,37.0,9.0,29.0,0.0,0.22,,,,,,,False
+2025,HAMMERHEADS,Adley Rutschman,26288,Bal,C,15,z,dis,18,90,322.0,365.0,37.0,9.0,29.0,0.0,0.22,,,,,,,False
+2025,Shrooms,Jahmai Jones,18872,Det,UT,10,a,act,OF,72,129.0,150.0,21.0,7.0,23.0,2.0,0.287,,,,,,,False
+2025,Shrooms,Miguel Andujar,15878,FA,UT,1,a,trd,27,94,321.0,341.0,36.0,10.0,44.0,1.0,0.318,,,,,,,False
+2025,Thunder & Lightning,Miguel Andujar,15878,FA,OF,1,a,trd,27,94,321.0,341.0,36.0,10.0,44.0,1.0,0.318,,,,,,,False
+2025,HAMMERHEADS,Alex Jackson,17276,Bal,C,10,a,act,C,37,91.0,100.0,17.0,5.0,8.0,0.0,0.22,,,,,,,False
+2025,On a Bender,Christian Walker,13419,Hou,CI,19,a,act,"1B,CI",154,585.0,640.0,72.0,27.0,88.0,2.0,0.238,,,,,,,False
+2025,HAMMERHEADS,Christian Walker,13419,Hou,CI,19,a,trd,2,154,585.0,640.0,72.0,27.0,88.0,2.0,0.238,,,,,,,False
+2025,R&R,Ramon Urias,18795,FA,3B,10,a,wai,2,112,352.0,391.0,33.0,11.0,44.0,3.0,0.241,,,,,,,False
+2025,Thunder & Lightning,Ramon Urias,18795,FA,UT,10,a,wai,2,112,352.0,391.0,33.0,11.0,44.0,3.0,0.241,,,,,,,False
+2025,Kosher Hogs,Kyle Isbel,21614,KC,OF,3,a,act,OF,135,368.0,409.0,42.0,4.0,33.0,4.0,0.255,,,,,,,False
+2025,HAMMERHEADS,Gabriel Arias,22563,Cle,SS,10,a,act,"SS,CI,OF,MI,3B",129,432.0,471.0,44.0,11.0,54.0,8.0,0.22,,,,,,,False
+2025,R&R,Gabriel Arias,22563,Cle,OF,10,a,trd,0,129,432.0,471.0,44.0,11.0,54.0,8.0,0.22,,,,,,,False
+2025,Dancing With Dingos,Gabriel Arias,22563,Cle,UT,10,a,wai,0,129,432.0,471.0,44.0,11.0,54.0,8.0,0.22,,,,,,,False
+2025,Shrooms,Austin Wynns,15271,FA,UT,10,a,wai,1,40,103.0,110.0,13.0,6.0,21.0,0.0,0.291,,,,,,,False
+2025,HAMMERHEADS,Austin Wynns,15271,FA,C,10,a,wai,1,40,103.0,110.0,13.0,6.0,21.0,0.0,0.291,,,,,,,False
+2025,Kosher Hogs,Rob Refsnyder,13770,Bos,OF,10,a,wai,20,70,182.0,209.0,29.0,9.0,30.0,3.0,0.269,,,,,,,False
+2025,R&R,Austin Martin,27462,Min,OF,10,a,act,"OF,2B,MI",50,156.0,181.0,22.0,1.0,7.0,11.0,0.282,,,,,,,False
+2025,On a Bender,Austin Martin,27462,Min,OF,10,a,wai,0,50,156.0,181.0,22.0,1.0,7.0,11.0,0.282,,,,,,,False
+2025,Shrooms,Jesus Sanchez,19913,FA,OF,9,a,act,OF,134,451.0,497.0,61.0,14.0,48.0,13.0,0.237,,,,,,,False
+2025,Thunder & Lightning,Kyle Higashioka,5517,Tex,C,1,a,act,C,94,303.0,327.0,33.0,11.0,47.0,3.0,0.241,,,,,,,False
+2025,Mean Machine,Kyle Higashioka,5517,Tex,C,1,a,wai,21,94,303.0,327.0,33.0,11.0,47.0,3.0,0.241,,,,,,,False
+2025,Thunder & Lightning,Cam Smith,35108,Hou,OF,17,a,act,OF,134,441.0,493.0,55.0,9.0,51.0,8.0,0.236,,,,,,,False
+2025,R&R,Royce Lewis,20437,Min,CI,10,c,trd,7,106,376.0,403.0,36.0,13.0,52.0,12.0,0.237,,,,,,,False
+2025,Kerry & Mitch,Anthony Volpe,27647,NYY,SS,15,y,act,"SS,MI",153,539.0,596.0,65.0,19.0,72.0,18.0,0.212,,,,,,,False
+2025,Thunder & Lightning,Nick Fortes,21538,FA,C,10,a,act,C,97,218.0,242.0,19.0,5.0,21.0,1.0,0.229,,,,,,,False
+2025,Gusteroids,Freddy Fermin,21840,FA,C,1,a,wai,5,109,319.0,347.0,32.0,5.0,26.0,1.0,0.251,,,,,,,False
+2025,Dancing With Dingos,Freddy Fermin,21840,FA,C,1,a,trd,5,109,319.0,347.0,32.0,5.0,26.0,1.0,0.251,,,,,,,False
+2025,Thunder & Lightning,Andres Gimenez,19950,Tor,MI,23,a,act,"2B,MI",101,329.0,369.0,39.0,7.0,35.0,12.0,0.21,,,,,,,False
+2025,R&R,Andres Gimenez,19950,Tor,MI,23,a,trd,0,101,329.0,369.0,39.0,7.0,35.0,12.0,0.21,,,,,,,False
+2025,Gusteroids,Ty France,17982,FA,1B,10,a,wai,5,138,444.0,490.0,50.0,7.0,52.0,1.0,0.257,,,,,,,False
+2025,Dancing With Dingos,Ty France,17982,FA,1B,7,a,wai,5,138,444.0,490.0,50.0,7.0,52.0,1.0,0.257,,,,,,,False
+2025,Mean Machine,Jeremiah Jackson,22239,Bal,UT,25,SE,act,OF,48,170.0,183.0,20.0,5.0,21.0,0.0,0.276,,,,,,,False
+2025,Shrooms,Paul Goldschmidt,9218,NYY,CI,18,a,act,"1B,CI",146,489.0,534.0,76.0,10.0,45.0,5.0,0.274,,,,,,,False
+2025,Thunder & Lightning,Paul Goldschmidt,9218,NYY,1B,18,a,trd,3,146,489.0,534.0,76.0,10.0,45.0,5.0,0.274,,,,,,,False
+2025,HAMMERHEADS,Victor Caratini,14968,Hou,C,10,a,act,"C,1B,CI",114,344.0,386.0,35.0,12.0,46.0,1.0,0.259,,,,,,,False
+2025,Dancing With Dingos,Victor Caratini,14968,Hou,CI,10,a,trd,30,114,344.0,386.0,35.0,12.0,46.0,1.0,0.259,,,,,,,False
+2025,Mean Machine,Carter Jensen,29478,KC,C,10,a,act,C,20,60.0,69.0,12.0,3.0,13.0,0.0,0.3,,,,,,,False
+2025,Dancing With Dingos,Joey Loperfido,29630,Tor,OF,10,a,res,OF,41,96.0,104.0,12.0,4.0,14.0,1.0,0.333,,,,,,,False
+2025,Mean Machine,Carlos Cortes,21842,ATH,UT,10,a,wai,1,42,94.0,99.0,11.0,4.0,14.0,0.0,0.309,,,,,,,False
+2025,Mean Machine,Yoan Moncada,17232,LAA,CI,3,a,act,"3B,CI",84,248.0,289.0,39.0,12.0,35.0,0.0,0.234,,,,,,,False
+2025,Kerry & Mitch,Dylan Beavers,31695,Bal,UT,10,a,act,OF,35,110.0,137.0,16.0,4.0,14.0,2.0,0.227,,,,,,,False
+2025,Thunder & Lightning,Adam Frazier,15223,FA,2B,1,a,act,"2B,CI,MI,OF,3B",134,419.0,459.0,43.0,7.0,44.0,8.0,0.267,,,,,,,False
+2025,Mean Machine,Chandler Simpson,31912,TB,OF,5,ar,act,OF,109,414.0,441.0,53.0,0.0,26.0,44.0,0.295,,,,,,,False
+2025,Dancing With Dingos,Adolis Garcia,19287,Tex,UT,15,a,act,OF,135,507.0,547.0,58.0,19.0,75.0,13.0,0.227,,,,,,,False
+2025,Kosher Hogs,Jonny DeLuca,26365,TB,OF,6,a,res,OF,20,57.0,59.0,5.0,0.0,4.0,6.0,0.333,,,,,,,False
+2025,Kerry & Mitch,Jasson Dominguez,28080,NYY,OF,5,ar,act,OF,123,381.0,429.0,58.0,10.0,47.0,23.0,0.257,,,,,,,False
+2025,Kosher Hogs,Colton Cowser,29591,Bal,OF,15,y,act,OF,92,327.0,360.0,36.0,16.0,40.0,14.0,0.196,,,,,,,False
+2025,Thunder & Lightning,Max Schuemann,24488,ATH,UT,10,a,wai,0,101,183.0,213.0,20.0,2.0,13.0,7.0,0.197,,,,,,,False
+2025,On a Bender,Zach Cole,31583,Hou,UT,10,a,act,OF,15,47.0,52.0,9.0,4.0,11.0,3.0,0.255,,,,,,,False
+2025,Dancing With Dingos,Yordan Alvarez,19556,Hou,UT,41,a,act,OF,48,165.0,199.0,17.0,6.0,27.0,1.0,0.273,,,,,,,False
+2025,Gusteroids,Yordan Alvarez,19556,Hou,OF,41,a,trd,32,48,165.0,199.0,17.0,6.0,27.0,1.0,0.273,,,,,,,False
+2025,R&R,Yordan Alvarez,19556,Hou,OF,41,a,dis,32,48,165.0,199.0,17.0,6.0,27.0,1.0,0.273,,,,,,,False
+2025,R&R,Salvador Perez,7304,KC,C,20,b,act,"C,1B,CI",155,597.0,641.0,54.0,30.0,100.0,0.0,0.236,,,,,,,False
+2025,R&R,Amed Rosario,15518,FA,3B,13,a,wai,1,63,181.0,191.0,20.0,6.0,23.0,1.0,0.276,,,,,,,False
+2025,Gusteroids,Marcelo Mayer,29668,Bos,3B,5,ar,act,3B,44,127.0,136.0,20.0,4.0,10.0,0.0,0.228,,,,,,,False
+2025,R&R,Marcelo Mayer,29668,Bos,3B,5,ar,trd,0,44,127.0,136.0,20.0,4.0,10.0,0.0,0.228,,,,,,,False
+2025,Kerry & Mitch,Kyren Paris,26420,LAA,UT,10,a,trd,1,44,126.0,140.0,20.0,6.0,11.0,7.0,0.19,,,,,,,False
+2025,Mean Machine,Kyren Paris,26420,LAA,MI,10,a,wai,1,44,126.0,140.0,20.0,6.0,11.0,7.0,0.19,,,,,,,False
+2025,On a Bender,Brayan Rocchio,23690,Cle,MI,7,br,act,"SS,MI",115,344.0,383.0,34.0,5.0,44.0,8.0,0.233,,,,,,,False
+2025,Thunder & Lightning,Ben Williamson,33197,Sea,UT,10,a,res,3B,85,277.0,295.0,36.0,1.0,21.0,5.0,0.253,,,,,,,False
+2025,On a Bender,Ben Williamson,33197,Sea,UT,10,a,wai,0,85,277.0,295.0,36.0,1.0,21.0,5.0,0.253,,,,,,,False
+2025,On a Bender,Tyler Tolbert,25779,KC,UT,10,a,wai,3,64,50.0,57.0,19.0,1.0,6.0,21.0,0.28,,,,,,,False
+2025,On a Bender,Brooks Lee,31595,Min,SS,7,br,act,"SS,MI,3B,CI,2B",139,487.0,527.0,50.0,16.0,64.0,3.0,0.236,,,,,,,False
+2025,Shrooms,Miles Mastrobuoni,20017,Sea,OF,10,a,wai,1,76,152.0,175.0,20.0,1.0,12.0,6.0,0.25,,,,,,,False
+2025,Thunder & Lightning,Kameron Misner,26374,TB,OF,10,a,wai,1,71,197.0,217.0,27.0,5.0,22.0,8.0,0.213,,,,,,,False
+2025,HAMMERHEADS,Kameron Misner,26374,TB,OF,10,a,wai,1,71,197.0,217.0,27.0,5.0,22.0,8.0,0.213,,,,,,,False
+2025,Kosher Hogs,Jake Rogers,19452,Det,C,4,b,act,C,49,123.0,142.0,14.0,3.0,19.0,0.0,0.187,,,,,,,False
+2025,Shrooms,Taylor Walls,22458,TB,UT,10,a,wai,1,101,282.0,317.0,36.0,4.0,38.0,14.0,0.22,,,,,,,False
+2025,Thunder & Lightning,Taylor Walls,22458,TB,2B,10,a,rel,1,101,282.0,317.0,36.0,4.0,38.0,14.0,0.22,,,,,,,False
+2025,Thunder & Lightning,Christian Vazquez,9774,Min,C,1,a,wai,0,65,190.0,214.0,14.0,3.0,14.0,1.0,0.189,,,,,,,False
+2025,Kosher Hogs,Korey Lee,25543,CWS,C,1,b,res,C,26,35.0,40.0,10.0,1.0,3.0,0.0,0.257,,,,,,,False
+2025,Kosher Hogs,Andrew Benintendi,17901,CWS,OF,9,a,act,OF,116,420.0,470.0,57.0,20.0,63.0,1.0,0.24,,,,,,,False
+2025,Dancing With Dingos,Trevor Larnach,21501,Min,OF,7,a,act,OF,142,503.0,567.0,62.0,17.0,60.0,4.0,0.25,,,,,,,False
+2025,Kosher Hogs,C.J. Kayfus,33704,Cle,UT,10,a,act,OF,44,123.0,138.0,16.0,4.0,19.0,4.0,0.22,,,,,,,False
+2025,R&R,Sam Haggerty,18054,Tex,OF,10,a,wai,12,64,162.0,182.0,31.0,2.0,13.0,12.0,0.253,,,,,,,False
+2025,Dancing With Dingos,Sam Haggerty,18054,Tex,UT,10,a,trd,12,64,162.0,182.0,31.0,2.0,13.0,12.0,0.253,,,,,,,False
+2025,Kosher Hogs,Coby Mayo,28312,Bal,1B,5,ar,act,"3B,CI",85,263.0,294.0,30.0,11.0,28.0,3.0,0.217,,,,,,,False
+2025,R&R,Coby Mayo,28312,Bal,3B,5,ar,trd,9,85,263.0,294.0,30.0,11.0,28.0,3.0,0.217,,,,,,,False
+2025,Gusteroids,Christian Moore,34979,LAA,UT,5,ar,res,2B,53,162.0,184.0,20.0,7.0,16.0,3.0,0.198,,,,,,,False
+2025,Kerry & Mitch,Luke Raley,19354,Sea,UT,7,b,dis,"OF,1B,CI",73,183.0,219.0,23.0,4.0,19.0,2.0,0.202,,,,,,,False
+2025,Kerry & Mitch,Parker Meadows,23800,Det,OF,7,a,act,OF,58,191.0,213.0,22.0,4.0,16.0,4.0,0.215,,,,,,,False
+2025,Gusteroids,Richie Palacios,24589,TB,OF,1,a,act,"OF,2B,MI",17,42.0,48.0,10.0,1.0,3.0,4.0,0.333,,,,,,,False
+2025,On a Bender,Rowdy Tellez,15679,FA,1B,1,a,wai,8,112,289.0,312.0,34.0,17.0,49.0,1.0,0.228,,,,,,,False
+2025,HAMMERHEADS,Rowdy Tellez,15679,FA,1B,10,a,wai,8,112,289.0,312.0,34.0,17.0,49.0,1.0,0.228,,,,,,,False
+2025,Kerry & Mitch,Zach Dezenzo,31562,Hou,CI,1,a,act,"UT,1B,CI",34,98.0,109.0,17.0,2.0,10.0,1.0,0.245,,,,,,,False
+2025,On a Bender,Brice Matthews,33280,Hou,UT,10,a,act,2B,13,42.0,47.0,6.0,4.0,9.0,1.0,0.167,,,,,,,False
+2025,Gusteroids,Luis Urias,16622,ATH,3B,10,a,wai,0,96,287.0,330.0,27.0,8.0,25.0,2.0,0.23,,,,,,,False
+2025,Dancing With Dingos,Luis Urias,16622,ATH,UT,10,a,wai,0,96,287.0,330.0,27.0,8.0,25.0,2.0,0.23,,,,,,,False
+2025,Shrooms,Nick Loftin,27630,KC,OF,10,a,wai,1,67,168.0,188.0,17.0,4.0,20.0,1.0,0.208,,,,,,,False
+2025,Mean Machine,Oswaldo Cabrera,21707,NYY,CI,10,a,wai,0,34,107.0,122.0,17.0,1.0,11.0,0.0,0.243,,,,,,,False
+2025,On a Bender,Curtis Mead,23986,FA,2B,1,a,act,"CI,2B,MI,3B",90,240.0,264.0,26.0,3.0,19.0,5.0,0.233,,,,,,,False
+2025,Dancing With Dingos,Curtis Mead,23986,FA,3B,1,a,trd,4,90,240.0,264.0,26.0,3.0,19.0,5.0,0.233,,,,,,,False
+2025,Kerry & Mitch,John Rave,26284,KC,UT,10,a,wai,1,72,153.0,175.0,18.0,4.0,14.0,7.0,0.196,,,,,,,False
+2025,Gusteroids,David Hamilton,27531,Bos,SS,1,a,act,"2B,MI,SS",91,177.0,194.0,27.0,6.0,19.0,22.0,0.198,,,,,,,False
+2025,Shrooms,Tim Anderson,15172,LAA,UT,10,a,trd,0,31,83.0,90.0,8.0,0.0,3.0,1.0,0.205,,,,,,,False
+2025,Thunder & Lightning,Tim Anderson,15172,LAA,UT,10,a,wai,0,31,83.0,90.0,8.0,0.0,3.0,1.0,0.205,,,,,,,False
+2025,HAMMERHEADS,Mitch Garver,15161,Sea,C,1,c,trd,39,87,254.0,290.0,29.0,9.0,30.0,3.0,0.209,,,,,,,False
+2025,On a Bender,Donovan Solano,8623,FA,1B,10,a,wai,0,71,166.0,179.0,10.0,3.0,21.0,0.0,0.247,,,,,,,False
+2025,On a Bender,Luis Rengifo,19858,LAA,OF,13,a,act,"3B,MI,2B,CI",147,501.0,541.0,55.0,9.0,43.0,10.0,0.238,,,,,,,False
+2025,Shrooms,Jhostynxon Garcia,28142,Bos,UT,10,a,res,OF,5,7.0,9.0,0.0,0.0,0.0,0.0,0.143,,,,,,,False
+2025,HAMMERHEADS,Matt Vierling,21558,Det,3B,2,b,dis,"OF,CI,3B",31,88.0,100.0,6.0,1.0,11.0,2.0,0.239,,,,,,,False
+2025,On a Bender,Ryan Bliss,29547,Sea,UT,5,a,dis,"2B,MI",11,35.0,39.0,1.0,1.0,3.0,2.0,0.2,,,,,,,False
+2025,Mean Machine,Alejandro Osuna,27915,Tex,UT,10,a,wai,7,63,151.0,176.0,12.0,2.0,15.0,5.0,0.212,,,,,,,False
+2025,Kerry & Mitch,Ezequiel Duran,23733,Tex,2B,10,a,wai,3,90,205.0,219.0,16.0,0.0,14.0,11.0,0.224,,,,,,,False
+2025,Thunder & Lightning,Ezequiel Duran,23733,Tex,MI,10,a,wai,3,90,205.0,219.0,16.0,0.0,14.0,11.0,0.224,,,,,,,False
+2025,R&R,Harry Ford,29958,Sea,C,5,r,min,C,8,6.0,8.0,1.0,0.0,1.0,0.0,0.167,,,,,,,False
+2025,Mean Machine,Coco Montes,21547,TB,UT,10,a,res,2B,5,10.0,10.0,0.0,0.0,1.0,0.0,0.2,,,,,,,False
+2025,Thunder & Lightning,Gary Sanchez,11442,Bal,C,1,a,dis,C,30,91.0,101.0,13.0,5.0,24.0,0.0,0.231,,,,,,,False
+2025,Kosher Hogs,Masataka Yoshida,31837,Bos,UT,10,a,act,UT,55,188.0,205.0,16.0,4.0,26.0,3.0,0.266,,,,,,,False
+2025,Shrooms,Jake Burger,22275,Tex,UT,18,a,act,"1B,3B,CI",103,356.0,376.0,43.0,16.0,53.0,1.0,0.236,,,,,,,False
+2025,R&R,Christopher Morel,21897,TB,3B,11,a,wai,18,105,278.0,305.0,37.0,11.0,33.0,7.0,0.219,,,,,,,False
+2025,Dancing With Dingos,Christopher Morel,21897,TB,3B,11,a,trd,18,105,278.0,305.0,37.0,11.0,33.0,7.0,0.219,,,,,,,False
+2025,HAMMERHEADS,Josh Lowe,19953,TB,OF,13,x,act,OF,108,396.0,435.0,56.0,11.0,40.0,18.0,0.22,,,,,,,False
+2025,Shrooms,Dylan Moore,18042,FA,2B,3,a,wai,6,106,219.0,243.0,35.0,11.0,25.0,14.0,0.201,,,,,,,False
+2025,Kerry & Mitch,Dylan Moore,18042,FA,OF,10,a,wai,6,106,219.0,243.0,35.0,11.0,25.0,14.0,0.201,,,,,,,False
+2025,Mean Machine,Angel Martinez,26540,Cle,2B,10,a,act,OF,139,446.0,484.0,56.0,11.0,45.0,8.0,0.224,,,,,,,False
+2025,Kosher Hogs,Michael A. Taylor,11489,CWS,OF,10,a,wai,2,134,295.0,325.0,33.0,9.0,35.0,8.0,0.2,,,,,,,False
+2025,Gusteroids,Manuel Margot,14712,Det,OF,10,a,wai,0,6,19.0,20.0,1.0,0.0,3.0,0.0,0.316,,,,,,,False
+2025,Shrooms,Chas McCormick,19599,Hou,UT,10,a,wai,1,66,100.0,116.0,13.0,1.0,5.0,2.0,0.21,,,,,,,False
+2025,Kerry & Mitch,Alan Roden,31564,FA,UT,10,a,dis,OF,55,136.0,153.0,17.0,2.0,9.0,1.0,0.191,,,,,,,False
+2025,R&R,Dairon Blanco,19779,KC,OF,4,b,act,OF,9,6.0,8.0,2.0,0.0,1.0,3.0,0.167,,,,,,,False
+2025,HAMMERHEADS,Justin Foscue,27501,Tex,UT,5,r,res,UT,4,9.0,9.0,0.0,0.0,2.0,0.0,0.111,,,,,,,False
+2025,Shrooms,Brooks Baldwin,31394,CWS,SS,10,a,act,"2B,SS,MI",103,300.0,328.0,32.0,11.0,38.0,5.0,0.24,,,,,,,False
+2025,Kosher Hogs,Brooks Baldwin,31394,CWS,UT,10,a,wai,0,103,300.0,328.0,32.0,11.0,38.0,5.0,0.24,,,,,,,False
+2025,Thunder & Lightning,Brooks Baldwin,31394,CWS,2B,10,a,wai,0,103,300.0,328.0,32.0,11.0,38.0,5.0,0.24,,,,,,,False
+2025,Kosher Hogs,Edgar Quero,28022,CWS,C,5,ar,act,C,111,365.0,403.0,31.0,5.0,36.0,0.0,0.268,,,,,,,False
+2025,On a Bender,Kristian Campbell,33644,Bos,OF,16,a,res,2B,67,229.0,263.0,24.0,6.0,21.0,2.0,0.223,,,,,,,False
+2025,Kerry & Mitch,Kristian Campbell,33644,Bos,2B,16,a,trd,1,67,229.0,263.0,24.0,6.0,21.0,2.0,0.223,,,,,,,False
+2025,Mean Machine,Taylor Trammell,19960,Hou,UT,10,a,dis,OF,52,117.0,135.0,15.0,3.0,12.0,3.0,0.197,,,,,,,False
+2025,Dancing With Dingos,Victor Robles,18363,Sea,OF,10,b,act,OF,32,106.0,114.0,12.0,1.0,9.0,6.0,0.245,,,,,,,False
+2025,Kerry & Mitch,Jorbit Vivas,23917,NYY,MI,10,a,wai,0,29,56.0,66.0,6.0,1.0,5.0,0.0,0.161,,,,,,,False
+2025,Kosher Hogs,Matthew Lugo,25980,LAA,UT,10,a,res,OF,31,69.0,70.0,9.0,4.0,9.0,0.0,0.232,,,,,,,False
+2025,Kerry & Mitch,Matthew Lugo,25980,LAA,UT,10,a,trd,0,31,69.0,70.0,9.0,4.0,9.0,0.0,0.232,,,,,,,False
+2025,On a Bender,Tyler O'Neill,15711,Bal,OF,15,b,dis,OF,54,181.0,209.0,22.0,9.0,26.0,4.0,0.199,,,,,,,False
+2025,R&R,Jorge Soler,14221,LAA,OF,15,a,dis,OF,82,279.0,315.0,31.0,12.0,34.0,0.0,0.215,,,,,,,False
+2025,On a Bender,Jonathan India,21523,KC,OF,20,a,act,"2B,MI",136,497.0,567.0,63.0,9.0,45.0,0.0,0.233,,,,,,,False
+2025,HAMMERHEADS,Jonathan India,21523,KC,3B,20,a,trd,27,136,497.0,567.0,63.0,9.0,45.0,0.0,0.233,,,,,,,False
+2025,Dancing With Dingos,Jonathan India,21523,KC,CI,20,a,wai,27,136,497.0,567.0,63.0,9.0,45.0,0.0,0.233,,,,,,,False
+2025,Kerry & Mitch,Cole Young,31680,Sea,MI,5,ar,act,2B,77,223.0,257.0,24.0,4.0,24.0,1.0,0.211,,,,,,,False
+2025,HAMMERHEADS,Will Wagner,29634,FA,UT,10,a,wai,6,55,129.0,149.0,15.0,0.0,7.0,1.0,0.225,,,,,,,False
+2025,Kerry & Mitch,Jonatan Clase,26599,Tor,UT,10,a,wai,1,34,100.0,112.0,10.0,2.0,9.0,3.0,0.21,,,,,,,False
+2025,Mean Machine,Carson Williams,30038,TB,SS,5,ar,act,SS,32,99.0,106.0,11.0,5.0,12.0,2.0,0.172,,,,,,,False
+2025,HAMMERHEADS,Samuel Basallo,28824,Bal,UT,5,r,min,C,31,109.0,118.0,10.0,4.0,15.0,0.0,0.165,,,,,,,False
+2025,On a Bender,Brendan Rodgers,17907,Hou,UT,1,a,wai,2,43,115.0,128.0,12.0,2.0,11.0,0.0,0.191,,,,,,,False
+2025,Mean Machine,Brendan Rodgers,17907,Hou,UT,1,a,wai,2,43,115.0,128.0,12.0,2.0,11.0,0.0,0.191,,,,,,,False
+2025,HAMMERHEADS,Bob Seymour,30028,TB,1B,10,a,wai,1,26,78.0,83.0,9.0,1.0,5.0,1.0,0.205,,,,,,,False
+2025,Mean Machine,Bob Seymour,30028,TB,UT,10,a,wai,1,26,78.0,83.0,9.0,1.0,5.0,1.0,0.205,,,,,,,False
+2025,Mean Machine,Zack Gelof,29766,ATH,UT,6,a,dis,"2B,MI",30,92.0,101.0,12.0,2.0,7.0,1.0,0.174,,,,,,,False
+2025,R&R,Jacob Melton,31661,Hou,OF,5,r,min,OF,32,70.0,78.0,7.0,0.0,7.0,7.0,0.157,,,,,,,False
+2025,Kerry & Mitch,Shay Whitcomb,27789,Hou,OF,10,a,wai,2,20,32.0,32.0,4.0,1.0,1.0,0.0,0.125,,,,,,,False
+2025,R&R,Jace Jung,31437,Det,UT,5,ar,res,"3B,CI",21,47.0,55.0,8.0,0.0,3.0,0.0,0.106,,,,,,,False
+2025,Mean Machine,Randal Grichuk,10243,FA,UT,10,a,wai,45,113,272.0,293.0,35.0,9.0,27.0,0.0,0.228,,,,,,,False
+2025,On a Bender,Ryan Mountcastle,18373,Bal,OF,18,a,act,"1B,CI",89,332.0,357.0,34.0,7.0,35.0,3.0,0.25,,,,,,,False
+2025,HAMMERHEADS,Ryan Mountcastle,18373,Bal,UT,18,a,trd,33,89,332.0,357.0,34.0,7.0,35.0,3.0,0.25,,,,,,,False
+2025,Kosher Hogs,Max Muncy,29779,ATH,2B,1,a,act,3B,63,206.0,220.0,17.0,9.0,23.0,1.0,0.214,,,,,,,False
+2025,Kerry & Mitch,Max Muncy,29779,ATH,2B,1,a,trd,0,63,206.0,220.0,17.0,9.0,23.0,1.0,0.214,,,,,,,False
+2025,Mean Machine,Max Muncy,29779,ATH,MI,1,a,trd,0,63,206.0,220.0,17.0,9.0,23.0,1.0,0.214,,,,,,,False
+2025,Mean Machine,Johnathan Rodriguez,22530,Cle,UT,10,a,wai,1,31,71.0,77.0,6.0,2.0,10.0,1.0,0.197,,,,,,,False
+2025,Shrooms,Dylan Carlson,20126,Bal,UT,10,a,wai,0,83,217.0,241.0,17.0,6.0,20.0,3.0,0.203,,,,,,,False
+2025,Kosher Hogs,Nolan Jones,20529,Cle,OF,5,a,act,OF,136,355.0,403.0,34.0,5.0,34.0,8.0,0.211,,,,,,,False
+2025,Kerry & Mitch,Michael Massey,27684,KC,2B,6,a,act,"2B,MI",77,262.0,277.0,20.0,3.0,20.0,2.0,0.244,,,,,,,False
+2025,Gusteroids,Michael Massey,27684,KC,SS,6,b,wai,4,77,262.0,277.0,20.0,3.0,20.0,2.0,0.244,,,,,,,False
+2025,Shrooms,Seth Brown,18171,ATH,OF,1,a,wai,2,38,65.0,76.0,6.0,1.0,3.0,1.0,0.185,,,,,,,False
+2025,Kosher Hogs,Chris Taylor,13757,FA,UT,10,a,wai,0,58,113.0,125.0,15.0,2.0,12.0,2.0,0.186,,,,,,,False
+2025,Dancing With Dingos,Jose Miranda,20538,Min,3B,2,a,res,"3B,CI,1B",12,36.0,36.0,2.0,1.0,5.0,0.0,0.167,,,,,,,False
+2025,Gusteroids,Carson McCusker,33098,Min,OF,10,a,wai,3,16,29.0,30.0,0.0,0.0,1.0,0.0,0.172,,,,,,,False
+2025,Shrooms,Jonah Heim,16930,Tex,C,6,a,act,C,124,395.0,433.0,38.0,11.0,43.0,3.0,0.213,,,,,,,False
+2025,HAMMERHEADS,Tim Elko,31522,CWS,UT,10,a,wai,3,23,67.0,72.0,6.0,4.0,8.0,1.0,0.134,,,,,,,False
+2025,Dancing With Dingos,Tim Elko,31522,CWS,UT,10,a,trd,3,23,67.0,72.0,6.0,4.0,8.0,1.0,0.134,,,,,,,False
+2025,Thunder & Lightning,Lane Thomas,16939,Cle,UT,17,a,dis,OF,39,125.0,142.0,10.0,4.0,11.0,4.0,0.16,,,,,,,False
+2025,Shrooms,Lane Thomas,16939,Cle,OF,17,a,trd,1,39,125.0,142.0,10.0,4.0,11.0,4.0,0.16,,,,,,,False
+2025,Dancing With Dingos,Jorge Mateo,17273,Bal,UT,10,a,wai,4,43,79.0,83.0,9.0,1.0,3.0,15.0,0.177,,,,,,,False
+2025,Kerry & Mitch,Drew Waters,20505,KC,OF,10,a,act,OF,71,206.0,219.0,21.0,1.0,14.0,5.0,0.243,,,,,,,False
+2025,Gusteroids,David Fry,24934,Cle,UT,10,a,wai,43,66,146.0,157.0,16.0,8.0,23.0,1.0,0.171,,,,,,,False
+2025,HAMMERHEADS,David Fry,24934,Cle,C,10,a,wai,43,66,146.0,157.0,16.0,8.0,23.0,1.0,0.171,,,,,,,False
+2025,R&R,Triston Casas,22514,Bos,1B,15,y,dis,"1B,CI",29,99.0,112.0,5.0,3.0,11.0,0.0,0.182,,,,,,,False
+2025,Thunder & Lightning,Logan Davidson,25844,FA,UT,10,a,wai,1,19,42.0,47.0,3.0,1.0,4.0,0.0,0.167,,,,,,,False
+2025,On a Bender,MJ Melendez,22197,KC,OF,5,a,res,OF,23,60.0,65.0,5.0,1.0,1.0,0.0,0.083,,,,,,,False
+2025,Shrooms,Abraham Toro,19844,Bos,3B,10,a,wai,0,77,259.0,284.0,33.0,7.0,27.0,2.0,0.239,,,,,,,False
+2025,On a Bender,Mark Canha,11445,KC,OF,10,a,trd,7,46,113.0,125.0,9.0,1.0,6.0,0.0,0.212,,,,,,,False
+2025,Kerry & Mitch,Mark Canha,11445,KC,OF,10,a,wai,7,46,113.0,125.0,9.0,1.0,6.0,0.0,0.212,,,,,,,False
+2025,Shrooms,Connor Wong,19896,Bos,UT,10,c,wai,1,63,168.0,188.0,16.0,0.0,7.0,2.0,0.19,,,,,,,False
+2025,Kerry & Mitch,Mickey Gasper,24759,Min,C,10,a,act,"MI,2B",45,95.0,110.0,15.0,2.0,11.0,2.0,0.158,,,,,,,False
+2025,Dancing With Dingos,Edouard Julien,27534,Min,2B,10,a,wai,10,64,182.0,208.0,13.0,3.0,12.0,0.0,0.22,,,,,,,False
+2025,Mean Machine,Logan O'Hoppe,24729,LAA,C,8,c,dis,9,119,423.0,451.0,35.0,19.0,43.0,2.0,0.213,,,,,,,False
+2025,Dancing With Dingos,Joc Pederson,11899,Tex,CI,9,a,act,UT,96,265.0,306.0,28.0,9.0,26.0,2.0,0.181,,,,,,,False
+2025,Mean Machine,Joc Pederson,11899,Tex,UT,9,a,trd,82,96,265.0,306.0,28.0,9.0,26.0,2.0,0.181,,,,,,,False
+2025,On a Bender,Leody Taveras,18900,FA,OF,3,c,res,0,58,171.0,180.0,13.0,3.0,17.0,9.0,0.205,,,,,,,False
+2025,HAMMERHEADS,Leody Taveras,18900,FA,OF,3,c,trd,0,58,171.0,180.0,13.0,3.0,17.0,9.0,0.205,,,,,,,False
+2025,Gusteroids,Will Robertson,25467,FA,UT,10,a,wai,0,27,70.0,75.0,2.0,0.0,9.0,0.0,0.129,,,,,,,False
+2025,Kosher Hogs,Anthony Santander,14551,Tor,OF,25,c,dis,30,54,194.0,221.0,16.0,6.0,18.0,0.0,0.175,,,,,,,False
+2025,Shrooms,Trey Sweeney,29575,Det,UT,4,a,wai,0,118,296.0,326.0,36.0,6.0,32.0,3.0,0.196,,,,,,,False
+2025,Dancing With Dingos,Trey Sweeney,29575,Det,MI,4,a,trd,0,118,296.0,326.0,36.0,6.0,32.0,3.0,0.196,,,,,,,False
+2025,Gusteroids,Hunter Renfroe,15464,KC,OF,10,a,wai,2,35,99.0,108.0,5.0,0.0,4.0,0.0,0.182,,,,,,,False
+2025,Gusteroids,Heston Kjerstad,31166,Bal,OF,5,a,res,OF,54,156.0,167.0,16.0,4.0,19.0,1.0,0.192,,,,,,,False
+2025,On a Bender,Heston Kjerstad,31166,Bal,OF,5,a,trd,1,54,156.0,167.0,16.0,4.0,19.0,1.0,0.192,,,,,,,False
+2025,HAMMERHEADS,Heston Kjerstad,31166,Bal,OF,5,a,trd,1,54,156.0,167.0,16.0,4.0,19.0,1.0,0.192,,,,,,,False
+2025,Dancing With Dingos,Jhonkensy Noel,24257,Cle,OF,2,a,res,"OF,1B,CI",69,148.0,153.0,19.0,6.0,13.0,0.0,0.162,,,,,,,False
+2025,Gusteroids,Jac Caglianone,35041,KC,UT,5,ar,act,OF,62,210.0,232.0,19.0,7.0,18.0,1.0,0.157,,,,,,,False
+2025,Dancing With Dingos,Bobby Witt Jr.,25764,KC,SS,20,y,act,"SS,MI",157,623.0,687.0,99.0,23.0,88.0,38.0,0.295,,,,,,,False
+2025,Thunder & Lightning,DJ LeMahieu,9874,NYY,2B,10,a,res,"CI,3B,1B",45,128.0,142.0,13.0,2.0,12.0,0.0,0.266,,,,,,,False
+2025,Kosher Hogs,JJ Bleday,26368,ATH,OF,10,a,act,OF,98,307.0,344.0,48.0,14.0,39.0,1.0,0.212,,,,,,,False
+2025,Shrooms,JJ Bleday,26368,ATH,OF,10,b,wai,0,98,307.0,344.0,48.0,14.0,39.0,1.0,0.212,,,,,,,False
+2025,R&R,Jazz Chisholm Jr.,20454,NYY,OF,35,b,act,"OF,3B,CI",130,462.0,531.0,75.0,31.0,80.0,31.0,0.242,,,,,,,False
+2025,Gusteroids,Jazz Chisholm Jr.,20454,NYY,OF,35,b,trd,0,130,462.0,531.0,75.0,31.0,80.0,31.0,0.242,,,,,,,False
+2025,HAMMERHEADS,Luis Robert Jr.,20043,CWS,OF,23,a,dis,OF,110,382.0,431.0,52.0,14.0,53.0,33.0,0.223,,,,,,,False
+2025,Thunder & Lightning,Travis d'Arnaud,7739,LAA,C,10,a,dis,C,69,213.0,231.0,16.0,6.0,21.0,0.0,0.197,,,,,,,False
+2025,R&R,Travis d'Arnaud,7739,LAA,UT,1,a,wai,3,69,213.0,231.0,16.0,6.0,21.0,0.0,0.197,,,,,,,False
+2025,Thunder & Lightning,Tarik Skubal,22267,Det,P,13,x,act,P,31,,,,,,,,195.1,13.0,0.0,2.21,0.89,241.0,True
+2025,Kosher Hogs,Garrett Crochet,27463,Bos,P,11,x,act,P,32,,,,,,,,205.1,18.0,0.0,2.59,1.03,255.0,True
+2025,Kosher Hogs,Max Fried,13743,NYY,P,24,a,act,P,32,,,,,,,,195.1,19.0,0.0,2.86,1.1,189.0,True
+2025,Shrooms,Hunter Brown,25880,Hou,P,15,y,act,P,31,,,,,,,,185.1,12.0,0.0,2.43,1.03,206.0,True
+2025,Dancing With Dingos,Kevin Gausman,14107,Tor,P,18,a,act,P,32,,,,,,,,193.0,10.0,0.0,3.59,1.06,189.0,True
+2025,Kerry & Mitch,Framber Valdez,17295,Hou,P,30,a,act,P,31,,,,,,,,192.0,13.0,0.0,3.66,1.24,187.0,True
+2025,R&R,Nathan Eovaldi,9132,Tex,P,10,c,dis,22,22,,,,,,,,130.0,11.0,0.0,1.73,0.85,129.0,True
+2025,Dancing With Dingos,Bryan Woo,30279,Sea,P,15,y,act,P,30,,,,,,,,186.2,15.0,0.0,2.94,0.93,198.0,True
+2025,R&R,Michael Wacha,14078,KC,P,8,b,act,P,31,,,,,,,,172.2,10.0,0.0,3.86,1.22,126.0,True
+2025,HAMMERHEADS,Trevor Rogers,22286,Bal,P,10,a,act,P,18,,,,,,,,109.2,9.0,0.0,1.81,0.9,103.0,True
+2025,Kerry & Mitch,Kris Bubic,21455,KC,P,7,a,dis,P,20,,,,,,,,116.1,8.0,0.0,2.55,1.18,116.0,True
+2025,Dancing With Dingos,Carlos Rodon,16137,NYY,P,17,c,trd,17,33,,,,,,,,195.1,18.0,0.0,3.09,1.05,203.0,True
+2025,Mean Machine,Joe Ryan,21390,Min,P,21,a,act,P,31,,,,,,,,171.0,13.0,0.0,3.42,1.04,194.0,True
+2025,Dancing With Dingos,Joe Ryan,21390,Min,P,21,a,trd,6,31,,,,,,,,171.0,13.0,0.0,3.42,1.04,194.0,True
+2025,Dancing With Dingos,Merrill Kelly,11156,FA,P,56,aL,act,P,32,,,,,,,,184.0,12.0,0.0,3.52,1.11,167.0,True
+2025,On a Bender,Jose Soriano,22100,LAA,P,1,b,act,P,31,,,,,,,,169.0,10.0,0.0,4.26,1.4,152.0,True
+2025,Kerry & Mitch,Cade Smith,27867,Cle,P,9,a,act,P,76,,,,,,,,73.2,8.0,16.0,2.93,1.0,104.0,True
+2025,Dancing With Dingos,Dean Kremer,19350,Bal,P,1,c,trd,17,31,,,,,,,,171.2,11.0,0.0,4.19,1.21,142.0,True
+2025,Thunder & Lightning,Logan Gilbert,22250,Sea,P,36,a,act,P,25,,,,,,,,131.0,6.0,0.0,3.44,1.03,173.0,True
+2025,On a Bender,Logan Gilbert,22250,Sea,P,36,a,trd,9,25,,,,,,,,131.0,6.0,0.0,3.44,1.03,173.0,True
+2025,Shrooms,Aroldis Chapman,10233,Bos,P,12,a,act,P,67,,,,,,,,61.1,5.0,32.0,1.17,0.7,85.0,True
+2025,Gusteroids,Aroldis Chapman,10233,Bos,P,12,a,trd,26,67,,,,,,,,61.1,5.0,32.0,1.17,0.7,85.0,True
+2025,R&R,Drew Rasmussen,25385,TB,P,6,b,act,P,31,,,,,,,,150.0,10.0,0.0,2.76,1.02,127.0,True
+2025,Kosher Hogs,Luis Severino,15890,ATH,P,6,a,act,P,29,,,,,,,,162.2,8.0,0.0,4.54,1.3,124.0,True
+2025,R&R,Luis Severino,15890,ATH,P,6,a,trd,19,29,,,,,,,,162.2,8.0,0.0,4.54,1.3,124.0,True
+2025,HAMMERHEADS,Jack Flaherty,17479,Det,P,18,a,act,P,31,,,,,,,,161.0,8.0,0.0,4.64,1.28,188.0,True
+2025,On a Bender,Yusei Kikuchi,20633,LAA,P,1,a,act,P,33,,,,,,,,178.1,7.0,0.0,3.99,1.42,174.0,True
+2025,Kosher Hogs,Yusei Kikuchi,20633,LAA,P,1,c,trd,18,33,,,,,,,,178.1,7.0,0.0,3.99,1.42,174.0,True
+2025,R&R,Yusei Kikuchi,20633,LAA,P,1,c,wai,7,33,,,,,,,,178.1,7.0,0.0,3.99,1.42,174.0,True
+2025,Kosher Hogs,Casey Mize,20492,Det,P,8,a,act,P,28,,,,,,,,149.0,14.0,0.0,3.87,1.27,139.0,True
+2025,R&R,Chris Bassitt,12304,Tor,P,9,a,dis,P,32,,,,,,,,170.1,11.0,0.0,3.96,1.33,166.0,True
+2025,Dancing With Dingos,George Kirby,25436,Sea,P,15,z,trd,6,23,,,,,,,,126.0,10.0,0.0,4.21,1.19,137.0,True
+2025,Thunder & Lightning,Jack Leiter,30146,Tex,P,2,a,act,P,29,,,,,,,,151.2,10.0,0.0,3.86,1.28,148.0,True
+2025,Kerry & Mitch,Adrian Houser,12718,FA,P,10,a,act,P,21,,,,,,,,125.0,8.0,0.0,3.31,1.28,92.0,True
+2025,On a Bender,Adrian Houser,12718,FA,P,10,a,wai,2,21,,,,,,,,125.0,8.0,0.0,3.31,1.28,92.0,True
+2025,Gusteroids,Garrett Whitlock,20191,Bos,P,2,a,act,P,62,,,,,,,,72.0,7.0,1.0,2.25,1.08,91.0,True
+2025,Dancing With Dingos,Shane Smith,31687,CWS,P,25,SE,act,P,29,,,,,,,,146.1,7.0,0.0,3.81,1.2,145.0,True
+2025,Thunder & Lightning,Shane Smith,31687,CWS,P,10,a,wai,16,29,,,,,,,,146.1,7.0,0.0,3.81,1.2,145.0,True
+2025,Kerry & Mitch,Will Warren,30182,NYY,P,1,a,act,P,33,,,,,,,,162.1,9.0,0.0,4.44,1.37,171.0,True
+2025,Thunder & Lightning,Cole Ragans,21846,KC,P,11,x,act,P,13,,,,,,,,61.2,3.0,0.0,4.67,1.18,98.0,True
+2025,HAMMERHEADS,Ryan Pepiot,26221,TB,P,15,b,act,P,31,,,,,,,,167.2,11.0,0.0,3.86,1.16,167.0,True
+2025,R&R,Lucas Giolito,15474,Bos,P,4,b,act,P,26,,,,,,,,145.0,10.0,0.0,3.41,1.29,121.0,True
+2025,Mean Machine,Shane Baz,22264,TB,P,10,a,act,P,31,,,,,,,,166.1,10.0,0.0,4.87,1.33,176.0,True
+2025,Kosher Hogs,David Bednar,19569,FA,P,15,a,act,P,64,,,,,,,,62.2,6.0,27.0,2.3,1.04,86.0,True
+2025,Dancing With Dingos,Mason Miller,31757,FA,P,15,y,wai,39,60,,,,,,,,61.2,1.0,22.0,2.63,0.91,104.0,True
+2025,Dancing With Dingos,Brayan Bello,23920,Bos,P,1,c,act,P,29,,,,,,,,166.2,11.0,0.0,3.35,1.24,124.0,True
+2025,HAMMERHEADS,Brayan Bello,23920,Bos,P,1,c,trd,4,29,,,,,,,,166.2,11.0,0.0,3.35,1.24,124.0,True
+2025,Thunder & Lightning,Patrick Corbin,9323,Tex,P,10,a,act,P,31,,,,,,,,155.1,7.0,0.0,4.4,1.36,131.0,True
+2025,HAMMERHEADS,Tyler Mahle,16358,Tex,P,1,a,act,P,16,,,,,,,,86.2,6.0,0.0,2.18,1.13,66.0,True
+2025,Shrooms,Andres Munoz,20373,Sea,P,10,z,trd,32,64,,,,,,,,62.1,3.0,38.0,1.73,1.03,83.0,True
+2025,On a Bender,Noah Cameron,30184,KC,P,10,a,act,P,24,,,,,,,,138.1,9.0,0.0,2.99,1.1,114.0,True
+2025,R&R,Kyle Hendricks,12049,LAA,P,10,a,act,P,31,,,,,,,,164.2,8.0,0.0,4.76,1.28,114.0,True
+2025,Shrooms,Kyle Hendricks,12049,LAA,P,10,a,wai,3,31,,,,,,,,164.2,8.0,0.0,4.76,1.28,114.0,True
+2025,Thunder & Lightning,Will Vest,19769,Det,P,10,a,act,P,64,,,,,,,,68.2,6.0,23.0,3.01,1.21,75.0,True
+2025,Dancing With Dingos,Taj Bradley,22543,FA,P,10,a,act,P,27,,,,,,,,142.2,6.0,0.0,5.05,1.31,127.0,True
+2025,HAMMERHEADS,Taj Bradley,22543,FA,P,10,c,wai,21,27,,,,,,,,142.2,6.0,0.0,5.05,1.31,127.0,True
+2025,On a Bender,Pablo Lopez,17085,Min,P,20,c,trd,10,14,,,,,,,,75.2,5.0,0.0,2.74,1.11,73.0,True
+2025,HAMMERHEADS,Pablo Lopez,17085,Min,P,20,c,dis,2,14,,,,,,,,75.2,5.0,0.0,2.74,1.11,73.0,True
+2025,Kosher Hogs,Jeffrey Springs,17677,ATH,P,6,b,act,P,32,,,,,,,,171.0,11.0,0.0,4.11,1.21,138.0,True
+2025,R&R,Logan Allen,27589,Cle,P,10,a,act,P,30,,,,,,,,156.2,8.0,0.0,4.25,1.4,122.0,True
+2025,Shrooms,Logan Allen,27589,Cle,P,10,a,wai,8,30,,,,,,,,156.2,8.0,0.0,4.25,1.4,122.0,True
+2025,Dancing With Dingos,Logan Allen,27589,Cle,P,10,a,wai,10,30,,,,,,,,156.2,8.0,0.0,4.25,1.4,122.0,True
+2025,Kosher Hogs,Stephen Kolek,21487,FA,P,2,a,act,P,19,,,,,,,,112.2,5.0,0.0,3.51,1.14,77.0,True
+2025,Thunder & Lightning,Gabe Speier,17170,Sea,P,10,a,wai,27,76,,,,,,,,62.0,4.0,0.0,2.61,0.87,82.0,True
+2025,Mean Machine,Sean Newcomb,16943,FA,P,10,a,dis,P,48,,,,,,,,92.1,2.0,2.0,2.73,1.35,91.0,True
+2025,Shrooms,Sean Newcomb,16943,FA,P,1,a,wai,12,48,,,,,,,,92.1,2.0,2.0,2.73,1.35,91.0,True
+2025,Gusteroids,Grant Taylor,33927,CWS,P,10,a,act,P,36,,,,,,,,36.2,2.0,6.0,4.91,1.42,54.0,True
+2025,Shrooms,Griffin Jax,20253,FA,P,6,b,act,P,73,,,,,,,,66.0,1.0,0.0,4.23,1.29,99.0,True
+2025,Thunder & Lightning,Steven Okert,13580,Hou,P,10,a,wai,24,68,,,,,,,,71.2,3.0,1.0,3.01,0.89,84.0,True
+2025,Mean Machine,Steven Okert,13580,Hou,P,10,a,wai,7,68,,,,,,,,71.2,3.0,1.0,3.01,0.89,84.0,True
+2025,Dancing With Dingos,Steven Okert,13580,Hou,P,10,a,wai,6,68,,,,,,,,71.2,3.0,1.0,3.01,0.89,84.0,True
+2025,Thunder & Lightning,Joey Cantillo,23335,Cle,P,10,a,act,P,34,,,,,,,,95.1,5.0,1.0,3.21,1.26,108.0,True
+2025,Kerry & Mitch,Phil Maton,18064,FA,P,4,a,act,P,63,,,,,,,,61.1,4.0,5.0,2.79,1.06,81.0,True
+2025,Shrooms,Eric Lauer,19316,Tor,P,10,a,act,P,28,,,,,,,,104.2,9.0,0.0,3.18,1.11,102.0,True
+2025,Dancing With Dingos,Zebby Matthews,31827,Min,P,5,ar,act,P,16,,,,,,,,79.1,5.0,0.0,5.56,1.49,88.0,True
+2025,HAMMERHEADS,Shawn Armstrong,12857,Tex,P,10,a,act,P,71,,,,,,,,74.0,4.0,9.0,2.31,0.81,74.0,True
+2025,Gusteroids,Reese Olson,24968,Det,P,7,b,res,P,13,,,,,,,,68.2,4.0,0.0,3.15,1.21,65.0,True
+2025,Shrooms,Reese Olson,24968,Det,P,7,b,trd,9,13,,,,,,,,68.2,4.0,0.0,3.15,1.21,65.0,True
+2025,Mean Machine,Devin Williams,15816,NYY,P,25,a,act,P,67,,,,,,,,62.0,4.0,18.0,4.79,1.13,90.0,True
+2025,Dancing With Dingos,Cade Povich,30055,Bal,P,1,a,act,P,22,,,,,,,,112.1,3.0,0.0,5.21,1.5,118.0,True
+2025,HAMMERHEADS,Cade Povich,30055,Bal,P,1,a,trd,13,22,,,,,,,,112.1,3.0,0.0,5.21,1.5,118.0,True
+2025,Thunder & Lightning,Brendon Little,21574,Tor,P,10,a,wai,7,79,,,,,,,,68.1,4.0,1.0,3.03,1.36,91.0,True
+2025,HAMMERHEADS,Brendon Little,21574,Tor,P,10,a,wai,20,79,,,,,,,,68.1,4.0,1.0,3.03,1.36,91.0,True
+2025,Thunder & Lightning,Clarke Schmidt,19899,NYY,P,3,b,dis,P,14,,,,,,,,78.2,4.0,0.0,3.32,1.09,73.0,True
+2025,Mean Machine,Jacob Lopez,25098,ATH,P,10,a,dis,P,21,,,,,,,,92.2,7.0,0.0,4.08,1.27,113.0,True
+2025,R&R,Michael Lorenzen,14843,KC,P,10,a,wai,5,27,,,,,,,,141.2,7.0,0.0,4.64,1.33,127.0,True
+2025,Mean Machine,Michael Lorenzen,14843,KC,P,10,a,wai,13,27,,,,,,,,141.2,7.0,0.0,4.64,1.33,127.0,True
+2025,Gusteroids,Bailey Ober,21224,Min,P,10,a,act,P,27,,,,,,,,146.1,6.0,0.0,5.1,1.3,120.0,True
+2025,Kerry & Mitch,Bailey Ober,21224,Min,P,10,c,wai,15,27,,,,,,,,146.1,6.0,0.0,5.1,1.3,120.0,True
+2025,Shrooms,Reid Detmers,27468,LAA,P,10,a,res,P,61,,,,,,,,63.2,5.0,3.0,3.96,1.3,80.0,True
+2025,Gusteroids,Reid Detmers,27468,LAA,P,1,a,wai,11,61,,,,,,,,63.2,5.0,3.0,3.96,1.3,80.0,True
+2025,HAMMERHEADS,Reid Detmers,27468,LAA,P,10,a,trd,7,61,,,,,,,,63.2,5.0,3.0,3.96,1.3,80.0,True
+2025,Kerry & Mitch,Louie Varland,27691,FA,P,10,a,act,P,74,,,,,,,,72.2,4.0,0.0,2.97,1.2,75.0,True
+2025,R&R,Louie Varland,27691,FA,P,10,a,trd,21,74,,,,,,,,72.2,4.0,0.0,2.97,1.2,75.0,True
+2025,Dancing With Dingos,Louie Varland,27691,FA,P,10,a,wai,5,74,,,,,,,,72.2,4.0,0.0,2.97,1.2,75.0,True
+2025,Gusteroids,Kyle Finnegan,15009,FA,P,12,a,act,P,56,,,,,,,,57.0,4.0,24.0,3.47,1.11,55.0,True
+2025,Thunder & Lightning,Josh Hader,14212,Hou,P,28,b,dis,P,48,,,,,,,,52.2,6.0,28.0,2.05,0.85,76.0,True
+2025,Thunder & Lightning,Bennett Sousa,21345,Hou,P,10,a,res,P,44,,,,,,,,50.2,5.0,4.0,2.84,1.03,59.0,True
+2025,Gusteroids,Bennett Sousa,21345,Hou,P,10,a,wai,13,44,,,,,,,,50.2,5.0,4.0,2.84,1.03,59.0,True
+2025,Shrooms,Steven Matz,13361,FA,P,7,a,act,P,53,,,,,,,,76.2,5.0,2.0,3.05,1.1,59.0,True
+2025,Kerry & Mitch,Emmanuel Clase,21032,Cle,P,25,b,res,P,48,,,,,,,,47.1,5.0,24.0,3.23,1.23,47.0,True
+2025,On a Bender,Emmanuel Clase,21032,Cle,P,25,b,trd,23,48,,,,,,,,47.1,5.0,24.0,3.23,1.23,47.0,True
+2025,HAMMERHEADS,Carlos Estevez,14542,KC,P,7,c,trd,34,67,,,,,,,,66.0,4.0,42.0,2.45,1.06,54.0,True
+2025,Kerry & Mitch,Ian Seymour,27932,TB,P,10,a,act,P,19,,,,,,,,57.0,4.0,0.0,3.63,1.18,64.0,True
+2025,On a Bender,Connelly Early,33666,Bos,P,10,a,act,P,4,,,,,,,,19.1,1.0,0.0,2.33,1.09,29.0,True
+2025,HAMMERHEADS,Kyle Bradish,24586,Bal,P,2,a,act,P,6,,,,,,,,32.0,1.0,0.0,2.53,1.03,47.0,True
+2025,Shrooms,Hunter Dobbins,30240,Bos,P,10,a,res,P,13,,,,,,,,61.0,4.0,0.0,4.13,1.28,45.0,True
+2025,Kerry & Mitch,Hunter Dobbins,30240,Bos,P,10,a,wai,6,13,,,,,,,,61.0,4.0,0.0,4.13,1.28,45.0,True
+2025,Thunder & Lightning,Parker Messick,31986,Cle,P,25,SE,act,P,7,,,,,,,,39.2,3.0,0.0,2.72,1.31,38.0,True
+2025,Gusteroids,Ryan Bergert,29863,FA,P,10,a,act,P,19,,,,,,,,76.1,2.0,0.0,3.66,1.26,73.0,True
+2025,Shrooms,Edwin Uceta,20539,TB,P,4,a,act,P,70,,,,,,,,76.0,10.0,1.0,3.79,1.17,103.0,True
+2025,On a Bender,Lucas Erceg,19360,KC,P,8,a,dis,P,61,,,,,,,,61.1,8.0,2.0,2.64,1.17,48.0,True
+2025,Gusteroids,Seranthony Dominguez,19249,FA,P,1,a,act,P,67,,,,,,,,62.2,4.0,2.0,3.16,1.28,79.0,True
+2025,Thunder & Lightning,Cristian Javier,17606,Hou,P,10,a,act,P,8,,,,,,,,37.0,2.0,0.0,4.62,1.27,34.0,True
+2025,Mean Machine,Justin Topa,15145,Min,P,10,a,dis,P,54,,,,,,,,60.0,1.0,4.0,3.9,1.43,49.0,True
+2025,Kerry & Mitch,Braydon Fisher,24609,Tor,P,10,a,act,P,52,,,,,,,,50.0,7.0,0.0,2.7,1.02,62.0,True
+2025,Dancing With Dingos,Dustin May,19716,FA,P,12,a,dis,P,25,,,,,,,,132.1,7.0,0.0,4.96,1.42,123.0,True
+2025,Thunder & Lightning,Ryan Gusto,26440,FA,P,10,a,wai,4,27,,,,,,,,101.2,7.0,0.0,5.67,1.48,97.0,True
+2025,Mean Machine,Ryan Gusto,26440,FA,P,10,a,trd,1,27,,,,,,,,101.2,7.0,0.0,5.67,1.48,97.0,True
+2025,Dancing With Dingos,Ryan Gusto,26440,FA,P,10,a,wai,4,27,,,,,,,,101.2,7.0,0.0,5.67,1.48,97.0,True
+2025,HAMMERHEADS,Caleb Ferguson,19349,FA,P,4,a,act,P,70,,,,,,,,65.1,5.0,0.0,3.58,1.16,51.0,True
+2025,Shrooms,Andrew Kittredge,12828,FA,P,10,a,wai,30,54,,,,,,,,53.0,4.0,5.0,3.4,0.98,64.0,True
+2025,Dancing With Dingos,Cole Sands,21461,Min,P,2,a,act,P,69,,,,,,,,72.0,4.0,3.0,4.5,1.17,64.0,True
+2025,Kerry & Mitch,Cole Sands,21461,Min,P,2,a,wai,34,69,,,,,,,,72.0,4.0,3.0,4.5,1.17,64.0,True
+2025,Mean Machine,J.T. Ginn,27889,ATH,P,10,a,act,P,23,,,,,,,,90.1,4.0,0.0,5.08,1.36,99.0,True
+2025,Gusteroids,J.T. Ginn,27889,ATH,P,10,a,wai,2,23,,,,,,,,90.1,4.0,0.0,5.08,1.36,99.0,True
+2025,Kerry & Mitch,Fernando Cruz,7048,NYY,P,10,a,act,P,49,,,,,,,,48.0,3.0,2.0,3.56,1.19,72.0,True
+2025,On a Bender,Fernando Cruz,7048,NYY,P,10,a,wai,11,49,,,,,,,,48.0,3.0,2.0,3.56,1.19,72.0,True
+2025,HAMMERHEADS,Hunter Gaddis,25636,Cle,P,10,a,act,P,73,,,,,,,,66.2,2.0,3.0,3.11,1.19,73.0,True
+2025,Gusteroids,Hunter Gaddis,25636,Cle,P,10,a,wai,15,73,,,,,,,,66.2,2.0,3.0,3.11,1.19,73.0,True
+2025,Gusteroids,Matt Brash,25756,Sea,P,1,a,act,P,53,,,,,,,,47.1,1.0,4.0,2.47,1.25,58.0,True
+2025,Gusteroids,Brandon Walter,26056,Hou,P,10,a,wai,7,9,,,,,,,,53.2,1.0,0.0,3.35,0.93,52.0,True
+2025,R&R,Martin Perez,6902,CWS,P,25,a,dis,P,11,,,,,,,,56.0,1.0,0.0,3.54,1.11,44.0,True
+2025,HAMMERHEADS,Martin Perez,6902,CWS,P,25,SE,wai,3,11,,,,,,,,56.0,1.0,0.0,3.54,1.11,44.0,True
+2025,On a Bender,Slade Cecconi,27500,Cle,P,10,a,act,P,23,,,,,,,,132.0,7.0,0.0,4.3,1.19,109.0,True
+2025,On a Bender,Greg Weissert,20375,Bos,P,10,a,wai,16,72,,,,,,,,67.0,6.0,4.0,2.82,1.16,57.0,True
+2025,R&R,Bryan King,25890,Hou,P,10,a,act,P,68,,,,,,,,68.0,5.0,2.0,2.78,1.04,69.0,True
+2025,Gusteroids,Chris Paddack,20099,FA,P,10,a,act,P,33,,,,,,,,158.0,5.0,1.0,5.35,1.28,112.0,True
+2025,R&R,Chris Paddack,20099,FA,P,10,a,wai,5,33,,,,,,,,158.0,5.0,1.0,5.35,1.28,112.0,True
+2025,Dancing With Dingos,Chris Paddack,20099,FA,P,10,a,trd,12,33,,,,,,,,158.0,5.0,1.0,5.35,1.28,112.0,True
+2025,On a Bender,Sean Burke,29878,CWS,P,10,a,wai,2,28,,,,,,,,134.1,4.0,0.0,4.22,1.44,133.0,True
+2025,Thunder & Lightning,Sean Burke,29878,CWS,P,10,a,wai,5,28,,,,,,,,134.1,4.0,0.0,4.22,1.44,133.0,True
+2025,R&R,Garrett Cleavinger,17897,TB,P,10,a,act,P,67,,,,,,,,61.1,2.0,2.0,2.35,0.95,82.0,True
+2025,Mean Machine,Garrett Cleavinger,17897,TB,P,10,a,wai,7,67,,,,,,,,61.1,2.0,2.0,2.35,0.95,82.0,True
+2025,Dancing With Dingos,Garrett Cleavinger,17897,TB,P,10,a,wai,18,67,,,,,,,,61.1,2.0,2.0,2.35,0.95,82.0,True
+2025,Mean Machine,Luis Garcia,6984,FA,P,10,a,dis,P,58,,,,,,,,55.1,2.0,2.0,3.42,1.46,48.0,True
+2025,R&R,Brant Hurter,30133,Det,P,10,a,res,P,43,,,,,,,,63.0,4.0,2.0,2.43,1.33,68.0,True
+2025,Mean Machine,Luis Gil,21052,NYY,P,2,a,act,P,11,,,,,,,,57.0,4.0,0.0,3.32,1.4,41.0,True
+2025,On a Bender,Camilo Doval,21992,FA,P,15,a,act,P,69,,,,,,,,65.1,4.0,16.0,3.58,1.32,72.0,True
+2025,R&R,Ronel Blanco,19407,Hou,P,10,b,dis,P,9,,,,,,,,48.1,3.0,0.0,4.1,1.18,48.0,True
+2025,Thunder & Lightning,Chris Martin,11847,Tex,P,3,b,act,P,49,,,,,,,,42.1,2.0,2.0,2.98,1.2,43.0,True
+2025,Kerry & Mitch,Hogan Harris,21520,ATH,P,10,a,act,P,48,,,,,,,,64.2,2.0,4.0,3.2,1.35,65.0,True
+2025,HAMMERHEADS,Felix Bautista,20666,Bal,P,11,b,wai,35,35,,,,,,,,34.2,1.0,19.0,2.6,1.13,50.0,True
+2025,Kosher Hogs,JP Sears,23429,FA,P,3,a,wai,22,27,,,,,,,,135.2,9.0,0.0,5.04,1.32,117.0,True
+2025,On a Bender,Seth Lugo,12447,KC,P,1,b,dis,P,26,,,,,,,,145.1,8.0,0.0,4.15,1.29,125.0,True
+2025,Dancing With Dingos,Bailey Falter,20070,FA,P,21,a,wai,1,26,,,,,,,,125.1,7.0,0.0,4.45,1.28,81.0,True
+2025,HAMMERHEADS,Eduard Bazardo,20997,Sea,P,10,a,wai,11,73,,,,,,,,78.2,5.0,0.0,2.52,1.02,82.0,True
+2025,Shrooms,Jordan Leasure,29950,CWS,P,10,a,act,P,68,,,,,,,,64.1,5.0,7.0,3.92,1.23,81.0,True
+2025,HAMMERHEADS,Jordan Leasure,29950,CWS,P,10,a,trd,25,68,,,,,,,,64.1,5.0,7.0,3.92,1.23,81.0,True
+2025,Dancing With Dingos,Jordan Leasure,29950,CWS,P,10,a,wai,1,68,,,,,,,,64.1,5.0,7.0,3.92,1.23,81.0,True
+2025,Gusteroids,Robert Garcia,23363,Tex,P,10,a,act,P,71,,,,,,,,64.0,4.0,9.0,2.95,1.25,68.0,True
+2025,Shrooms,Luis Morales,32227,ATH,P,10,a,act,P,10,,,,,,,,48.2,4.0,0.0,3.14,1.15,43.0,True
+2025,Kosher Hogs,Luke Weaver,16918,NYY,P,2,a,act,P,64,,,,,,,,64.2,4.0,8.0,3.62,1.02,72.0,True
+2025,Thunder & Lightning,Bryan Baker,19804,FA,P,10,a,wai,3,73,,,,,,,,68.2,4.0,3.0,4.06,1.11,83.0,True
+2025,Dancing With Dingos,Bryan Baker,19804,FA,P,10,a,wai,13,73,,,,,,,,68.2,4.0,3.0,4.06,1.11,83.0,True
+2025,Kerry & Mitch,Hunter Harvey,15507,KC,P,10,a,dis,P,12,,,,,,,,10.2,1.0,0.0,0.0,0.66,11.0,True
+2025,Mean Machine,Kyle Harrison,27758,FA,P,10,a,act,P,11,,,,,,,,35.2,1.0,0.0,4.04,1.37,38.0,True
+2025,On a Bender,Joe Boyle,29608,TB,P,10,a,act,P,13,,,,,,,,52.0,1.0,0.0,4.67,1.37,58.0,True
+2025,Gusteroids,Mike Vasil,30105,CWS,P,10,a,act,P,47,,,,,,,,101.0,5.0,4.0,2.5,1.25,82.0,True
+2025,Mean Machine,Max Scherzer,3137,Tor,P,11,b,act,P,17,,,,,,,,85.0,5.0,0.0,5.19,1.29,82.0,True
+2025,On a Bender,Ben Lively,14932,Cle,P,10,a,dis,P,9,,,,,,,,44.2,2.0,0.0,3.22,1.19,29.0,True
+2025,Shrooms,Justin Slaten,25648,Bos,P,10,b,wai,28,36,,,,,,,,34.0,2.0,3.0,4.24,1.09,25.0,True
+2025,On a Bender,Trey Yesavage,35456,Tor,P,10,a,act,P,3,,,,,,,,14.0,1.0,0.0,3.21,1.43,16.0,True
+2025,Thunder & Lightning,Shane Bieber,19427,Tor,P,7,a,act,P,7,,,,,,,,40.1,4.0,0.0,3.57,1.02,37.0,True
+2025,Shrooms,Tyler Ferguson,19481,ATH,P,10,a,wai,3,56,,,,,,,,58.0,4.0,2.0,4.66,1.33,54.0,True
+2025,Dancing With Dingos,Kumar Rocker,31843,Tex,P,10,b,res,P,14,,,,,,,,64.1,4.0,0.0,5.74,1.46,56.0,True
+2025,Dancing With Dingos,David Festa,30056,Min,P,10,a,dis,P,11,,,,,,,,53.1,3.0,0.0,5.4,1.28,53.0,True
+2025,Thunder & Lightning,Tyler Wells,20000,Bal,P,10,a,act,P,4,,,,,,,,21.2,2.0,0.0,2.91,0.88,18.0,True
+2025,Gusteroids,Jordan Hicks,19618,FA,P,7,a,dis,P,34,,,,,,,,67.1,2.0,2.0,6.95,1.66,58.0,True
+2025,Gusteroids,Eric Orze,27626,TB,P,10,a,wai,1,33,,,,,,,,41.2,1.0,3.0,3.02,1.37,40.0,True
+2025,Mean Machine,Mason Montgomery,29770,TB,P,10,a,wai,26,57,,,,,,,,46.0,1.0,1.0,5.67,1.65,63.0,True
+2025,On a Bender,Luinder Avila,24452,KC,P,10,a,act,P,13,,,,,,,,14.0,1.0,0.0,1.29,0.93,16.0,True
+2025,Gusteroids,Hayden Wesneski,27581,Hou,P,1,a,dis,P,6,,,,,,,,32.0,1.0,0.0,4.5,1.09,29.0,True
+2025,Gusteroids,Tomoyuki Sugano,35321,Bal,P,5,a,act,P,30,,,,,,,,157.0,10.0,0.0,4.64,1.33,106.0,True
+2025,Kosher Hogs,Tomoyuki Sugano,35321,Bal,P,5,a,wai,21,30,,,,,,,,157.0,10.0,0.0,4.64,1.33,106.0,True
+2025,On a Bender,Jackson Jobe,30203,Det,P,5,ar,dis,P,10,,,,,,,,49.0,4.0,0.0,4.22,1.49,39.0,True
+2025,Kerry & Mitch,Troy Melton,31807,Det,P,10,a,act,P,16,,,,,,,,45.2,3.0,0.0,2.76,1.01,36.0,True
+2025,Shrooms,Yariel Rodriguez,33838,Tor,P,10,a,act,P,66,,,,,,,,73.0,3.0,2.0,3.08,1.15,66.0,True
+2025,Mean Machine,Yariel Rodriguez,33838,Tor,P,10,a,trd,8,66,,,,,,,,73.0,3.0,2.0,3.08,1.15,66.0,True
+2025,Shrooms,Ryan Yarbrough,16502,NYY,P,10,a,act,P,19,,,,,,,,64.0,3.0,1.0,4.36,1.2,55.0,True
+2025,Gusteroids,Ryan Yarbrough,16502,NYY,P,10,a,trd,2,19,,,,,,,,64.0,3.0,1.0,4.36,1.2,55.0,True
+2025,On a Bender,Yennier Cano,25911,Bal,P,2,b,wai,49,65,,,,,,,,58.0,3.0,2.0,5.12,1.48,53.0,True
+2025,On a Bender,Mick Abel,27756,FA,P,10,a,res,P,10,,,,,,,,39.0,3.0,0.0,6.23,1.51,39.0,True
+2025,R&R,Marcus Stroman,13431,NYY,P,10,a,act,P,9,,,,,,,,39.0,3.0,0.0,6.23,1.54,26.0,True
+2025,Kerry & Mitch,Robert Stephenson,13594,LAA,P,10,a,dis,P,12,,,,,,,,10.0,2.0,0.0,2.7,1.0,10.0,True
+2025,Shrooms,Tyler Anderson,12880,LAA,P,1,a,wai,14,26,,,,,,,,136.1,2.0,0.0,4.56,1.41,104.0,True
+2025,Mean Machine,Luis Garcia,23735,Hou,P,10,a,dis,P,2,,,,,,,,7.2,1.0,0.0,3.52,0.52,7.0,True
+2025,On a Bender,Yimi Garcia,12095,Tor,P,1,b,dis,P,22,,,,,,,,21.0,1.0,3.0,3.86,1.19,25.0,True
+2025,Gusteroids,Emerson Hancock,27470,Sea,P,10,a,wai,2,22,,,,,,,,90.0,4.0,0.0,4.9,1.38,64.0,True
+2025,HAMMERHEADS,Emerson Hancock,27470,Sea,P,10,a,wai,6,22,,,,,,,,90.0,4.0,0.0,4.9,1.38,64.0,True
+2025,On a Bender,Bryce Miller,29837,Sea,P,15,y,act,P,18,,,,,,,,90.1,4.0,0.0,5.68,1.41,74.0,True
+2025,Thunder & Lightning,Bryce Miller,29837,Sea,P,15,y,trd,9,18,,,,,,,,90.1,4.0,0.0,5.68,1.41,74.0,True
+2025,On a Bender,Mitch Spence,27707,ATH,P,10,a,wai,5,32,,,,,,,,84.2,3.0,1.0,5.1,1.44,66.0,True
+2025,On a Bender,Easton Lucas,26058,Tor,P,10,a,wai,2,6,,,,,,,,24.1,3.0,0.0,6.66,1.52,23.0,True
+2025,Shrooms,Hunter Strickland,7836,LAA,P,10,a,res,P,19,,,,,,,,22.0,1.0,1.0,3.27,1.23,14.0,True
+2025,Mean Machine,Paul Sewald,13892,FA,P,2,a,dis,P,22,,,,,,,,19.2,1.0,2.0,4.58,1.22,20.0,True
+2025,HAMMERHEADS,Willi Castro,17338,Min,P,10,a,act,0,1,,,,,,,,1.0,0.0,0.0,0.0,1.0,0.0,True
+2025,Thunder & Lightning,Marc Church,26353,Tex,P,3,a,res,P,5,,,,,,,,4.2,0.0,0.0,3.86,2.14,5.0,True
+2025,Gusteroids,Liam Hendriks,3548,Bos,P,1,b,wai,10,14,,,,,,,,13.2,0.0,0.0,6.59,1.39,12.0,True
+2025,Mean Machine,Logan Evans,33699,Sea,P,10,a,wai,3,16,,,,,,,,81.1,6.0,0.0,4.32,1.39,59.0,True
+2025,Mean Machine,Spencer Arrighetti,29921,Hou,P,10,b,dis,P,7,,,,,,,,35.1,1.0,0.0,5.35,1.42,31.0,True
+2025,On a Bender,Mike Clevinger,12808,CWS,P,5,a,res,P,8,,,,,,,,5.2,0.0,0.0,7.94,2.29,3.0,True
+2025,On a Bender,Tyler Holton,26231,Det,P,4,a,act,P,70,,,,,,,,78.2,6.0,0.0,3.66,1.04,64.0,True
+2025,Kerry & Mitch,Tyler Holton,26231,Det,P,4,a,trd,21,70,,,,,,,,78.2,6.0,0.0,3.66,1.04,64.0,True
+2025,Mean Machine,Luke Jackson,11752,FA,P,4,a,wai,37,52,,,,,,,,51.0,2.0,9.0,4.06,1.35,38.0,True
+2025,Kerry & Mitch,Tommy Kahnle,11384,Det,P,1,a,rel,45,66,,,,,,,,63.0,1.0,9.0,4.43,1.3,50.0,True
+2025,Shrooms,Ben Joyce,31461,LAA,P,10,b,res,P,5,,,,,,,,4.1,1.0,0.0,6.23,1.38,1.0,True
+2025,Gusteroids,John Brebbia,12777,FA,P,10,a,wai,8,22,,,,,,,,23.1,1.0,0.0,7.71,1.71,26.0,True
+2025,Dancing With Dingos,Hunter Bigge,26259,TB,P,2,b,dis,P,13,,,,,,,,15.0,0.0,0.0,2.4,1.07,12.0,True
+2025,HAMMERHEADS,Hunter Bigge,26259,TB,P,2,b,trd,11,13,,,,,,,,15.0,0.0,0.0,2.4,1.07,12.0,True
+2025,On a Bender,Dan Altavilla,16507,CWS,P,10,a,wai,3,28,,,,,,,,29.0,0.0,2.0,2.48,1.17,21.0,True
+2025,Kerry & Mitch,Payton Tolle,35466,Bos,P,25,SE,wai,2,7,,,,,,,,16.1,0.0,0.0,6.06,1.59,19.0,True
+2025,Shrooms,Walker Buehler,19374,FA,P,13,a,wai,21,26,,,,,,,,126.0,10.0,0.0,4.93,1.52,92.0,True
+2025,Gusteroids,Zach Eflin,13774,Bal,P,11,c,wai,12,14,,,,,,,,71.1,6.0,0.0,5.93,1.42,50.0,True
+2025,Kerry & Mitch,Trent Thornton,17948,Sea,P,1,a,wai,16,33,,,,,,,,42.1,2.0,0.0,4.68,1.3,32.0,True
+2025,On a Bender,Richard Fitts,30160,Bos,P,3,a,wai,9,11,,,,,,,,45.0,2.0,0.0,5.0,1.31,40.0,True
+2025,On a Bender,Sawyer Gipson-Long,26048,Det,P,10,a,dis,P,8,,,,,,,,31.1,0.0,0.0,7.18,1.28,26.0,True
+2025,Gusteroids,Tanner Houck,19879,Bos,P,1,b,wai,9,9,,,,,,,,43.2,0.0,0.0,8.04,1.69,32.0,True
+2025,R&R,Jeff Hoffman,17432,Tor,P,20,a,act,P,71,,,,,,,,68.0,9.0,33.0,4.37,1.19,84.0,True
+2025,On a Bender,Gunnar Hoglund,31318,ATH,P,10,a,dis,P,6,,,,,,,,32.1,1.0,0.0,6.4,1.52,23.0,True
+2025,Kerry & Mitch,Jon Gray,14916,Tex,P,10,a,dis,P,6,,,,,,,,14.0,1.0,0.0,7.71,1.5,12.0,True
+2025,Kosher Hogs,Keegan Akin,19362,Bal,P,10,a,act,P,64,,,,,,,,63.1,5.0,8.0,3.41,1.37,59.0,True
+2025,Thunder & Lightning,Keegan Akin,19362,Bal,P,10,a,wai,13,64,,,,,,,,63.1,5.0,8.0,3.41,1.37,59.0,True
+2025,Gusteroids,Beau Brieske,26079,Det,P,6,a,wai,3,22,,,,,,,,22.0,1.0,1.0,6.55,1.64,16.0,True
+2025,Shrooms,Beau Brieske,26079,Det,P,6,a,trd,17,22,,,,,,,,22.0,1.0,1.0,6.55,1.64,16.0,True
+2025,Thunder & Lightning,Jonathan Loaisiga,19753,NYY,P,10,a,wai,8,30,,,,,,,,29.2,0.0,1.0,4.25,1.48,25.0,True
+2025,HAMMERHEADS,Ryan Zeferjahn,25420,LAA,P,10,a,wai,11,62,,,,,,,,57.0,6.0,2.0,4.74,1.47,73.0,True
+2025,Dancing With Dingos,Ryan Zeferjahn,25420,LAA,P,10,a,trd,3,62,,,,,,,,57.0,6.0,2.0,4.74,1.47,73.0,True
+2025,HAMMERHEADS,Jack Kochanowicz,27688,LAA,P,10,a,wai,3,23,,,,,,,,111.0,3.0,0.0,6.81,1.75,72.0,True
+2025,Gusteroids,Cam Booser,16061,CWS,P,10,a,wai,5,39,,,,,,,,31.0,2.0,1.0,5.52,1.52,35.0,True
+2025,Shrooms,Cam Booser,16061,CWS,P,10,a,trd,11,39,,,,,,,,31.0,2.0,1.0,5.52,1.52,35.0,True
+2025,R&R,Osvaldo Bido,23150,ATH,P,10,a,wai,6,26,,,,,,,,79.2,2.0,1.0,5.87,1.61,68.0,True
+2025,Mean Machine,Bowden Francis,20548,Tor,P,10,a,wai,14,14,,,,,,,,64.0,2.0,0.0,6.05,1.53,54.0,True
+2025,Thunder & Lightning,Chad Green,15552,Tor,P,10,a,res,P,45,,,,,,,,43.2,3.0,1.0,5.56,1.47,35.0,True
+2025,Thunder & Lightning,Danny Coulombe,13293,FA,P,10,a,dis,P,55,,,,,,,,43.0,2.0,2.0,2.3,1.16,43.0,True
+2025,Kosher Hogs,Jacob deGrom,10954,Tex,P,10,b,act,P,30,,,,,,,,172.2,12.0,0.0,2.97,0.92,185.0,True
+2025,Mean Machine,Lance McCullers Jr.,14120,Hou,P,10,a,wai,9,16,,,,,,,,55.1,2.0,0.0,6.51,1.81,61.0,True
+2025,HAMMERHEADS,Luis Castillo,15689,Sea,P,21,a,act,P,32,,,,,,,,180.2,11.0,0.0,3.54,1.18,162.0,True
+2025,Thunder & Lightning,Mark Leiter Jr.,15551,NYY,P,10,a,wai,47,59,,,,,,,,48.1,6.0,2.0,4.84,1.53,54.0,True
+2025,R&R,Simeon Woods Richardson,24494,Min,P,10,a,act,P,23,,,,,,,,111.1,7.0,0.0,4.04,1.28,107.0,True
+2025,Gusteroids,Simeon Woods Richardson,24494,Min,P,1,a,wai,17,23,,,,,,,,111.1,7.0,0.0,4.04,1.28,107.0,True

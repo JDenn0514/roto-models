@@ -13,7 +13,7 @@ import pybaseball
 
 pybaseball.cache.enable()
 
-YEARS = [2019, 2021, 2022, 2023, 2024]  # skip 2020 (COVID), skip 2025 (partial)
+YEARS = [2019, 2021, 2022, 2023, 2024, 2025]  # skip 2020 (COVID)
 
 # FanGraphs team abbreviation → OnRoto abbreviation
 TEAM_MAP = {

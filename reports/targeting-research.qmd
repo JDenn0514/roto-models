@@ -1,0 +1,504 @@
+---
+title: "Marginal Standings Points"
+subtitle: "A team-specific targeting metric for roto fantasy baseball"
+date: "2026-03-24"
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    code-fold: true
+    code-summary: "Show code"
+    fig-width: 10
+    fig-height: 6
+    self-contained: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| echo: false
+
+library(tidyverse)
+library(patchwork)
+library(gt)
+library(scales)
+library(ggsci)
+
+# ── Palette ──────────────────────────────────────────────────────────────────
+pal <- list(
+  primary   = "#3A6EA5",
+  secondary = "#C1666B",
+  accent    = "#2A9D8F",
+  bg        = "#faf9f5",
+  grid      = "#ededeb",
+  text      = "#2d2d2d",
+  mid       = "#666666",
+  light     = "#999999"
+)
+
+# Categorical year palette — distinct hues for each validation year
+year_pal <- pal_d3()(6)
+names(year_pal) <- c("2019", "2021", "2022", "2023", "2024", "2025")
+
+config_pal <- c(
+  "keeper_only" = pal$accent,
+  "proportional_fill" = pal$primary
+)
+
+# ── Theme ────────────────────────────────────────────────────────────────────
+theme_sgp <- function(base_size = 13) {
+  theme_minimal(base_size = base_size) +
+    theme(
+      plot.background    = element_rect(fill = pal$bg, color = NA),
+      panel.background   = element_rect(fill = pal$bg, color = NA),
+      panel.grid.minor   = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.grid.major.y = element_line(color = pal$grid, linewidth = 0.3),
+      axis.title         = element_text(color = pal$mid, size = rel(0.85)),
+      axis.text          = element_text(color = pal$light, size = rel(0.8)),
+      axis.ticks         = element_blank(),
+      plot.title = element_text(
+        color = pal$text, size = rel(1.15), face = "bold",
+        margin = margin(b = 2), hjust = 0
+      ),
+      plot.subtitle = element_text(
+        color = pal$mid, size = rel(0.85),
+        margin = margin(b = 12), hjust = 0
+      ),
+      plot.caption = element_text(
+        color = pal$light, size = rel(0.7),
+        hjust = 0, margin = margin(t = 10)
+      ),
+      plot.margin    = margin(15, 20, 10, 15),
+      legend.position = "none",
+      strip.text = element_text(
+        color = pal$text, face = "bold", size = rel(0.9)
+      )
+    )
+}
+
+theme_set(theme_sgp())
+
+h_grid <- theme(
+  panel.grid.major.y = element_blank(),
+  panel.grid.major.x = element_line(color = pal$grid, linewidth = 0.3)
+)
+
+# ── Data ─────────────────────────────────────────────────────────────────────
+sweep <- read_csv("../data/targeting_sweep_results.csv", show_col_types = FALSE)
+backtest_detail <- read_csv("../data/targeting_backtest_detail.csv", show_col_types = FALSE)
+standings_detail <- read_csv("../data/targeting_standings_detail.csv", show_col_types = FALSE)
+draft_detail <- read_csv("../data/targeting_draft_detail.csv", show_col_types = FALSE)
+optimal_detail <- read_csv("../data/targeting_optimal_detail.csv", show_col_types = FALSE)
+msp_2026 <- read_csv("../data/msp_gusteroids_atc_2026.csv", show_col_types = FALSE)
+proj_standings <- read_csv("../data/msp_projected_standings_2026.csv", show_col_types = FALSE)
+```
+
+# Introduction
+
+In rotisserie fantasy baseball, a player's value to your team depends on where you already rank in each category. A slugger projected for 40 HR is worth far less to a team that's already 1st in HR than to one fighting for 5th place. Generic dollar values --- the ones every projection system produces --- ignore this entirely.
+
+**Marginal Standings Points (MSP)** is a team-specific metric that answers a simple question: *if I add this player to my roster, how many standings points does my team gain?*
+
+The MSP framework works in four steps:
+
+1. **Keeper baselines** --- sum each team's keeper projected stats across all 10 categories
+2. **Fill model** --- estimate remaining production per team by distributing leftover auction dollars across league-average per-dollar stat rates (calibrated at a 50% discount to account for imperfect spending)
+3. **Project standings** --- combine keeper + fill, rank all 10 teams per category, compute baseline standings points
+4. **Marginal value** --- for each free agent, add their stats to the target team, re-rank, compute the standings point delta. That delta is MSP.
+
+We then derive a **Target Priority Score (TPS)** on a 1--100 scale that measures how much a player's MSP *diverges* from what you'd expect given their dollar value. Expensive players naturally have higher MSP (more stats = more standings impact), so raw MSP mostly just recapitulates dollar value. TPS strips out that baseline relationship: a TPS of 90+ means "this player helps your team far more than their price suggests --- target them aggressively." A TPS under 20 means "this player helps less than their price suggests --- let someone else pay market price."
+
+# Historical Validation
+
+We validate the MSP framework using 6 years of historical data (2019, 2021--2025), treating actual end-of-season stats as "perfect projections." This isolates the framework itself from projection noise --- if the model adds value with perfect information, you can trust it with any reasonable projection system at draft time.
+
+## Sweep Design
+
+We tested 7 model configurations across the 6 validation years (42 model-year evaluations total):
+
+| Parameter | Options | Notes |
+|-----------|---------|-------|
+| Baseline type | `proportional_fill`, `keeper_only` | With or without fill model |
+| Fill discount | 0.50, 0.75, 1.0 | Fraction of league-average rates captured |
+| Budget displacement | yes, no | Reduce fill when simulating adding a player |
+
+Three evaluation metrics capture different facets of model quality:
+
+1. **Predicted vs. actual standings** (Spearman $\rho$) --- for each team-year, compute predicted total = baseline standings points + sum of MSP for that team's actual draftees. Correlate with the team's actual end-of-season standings. This tests whether the model's overall picture of team strength is accurate.
+
+2. **Draft prediction AUC** --- rank all available free agents by MSP for each team. Compute the AUC for distinguishing actually-drafted players from undrafted ones. This tests whether the model captures the same logic managers already use (even implicitly).
+
+3. **Optimal draft uplift** --- simulate a greedy MSP-optimal draft for each team (pick the highest-MSP player within budget, repeat). Compare the total MSP of the optimal draft to the actual draft. This quantifies the theoretical edge from following the model.
+
+## Sweep Results
+
+```{r}
+#| fig-height: 5
+
+sweep_long <- sweep |>
+  select(config, baseline_type, fill_discount, budget_displacement,
+         predicted_vs_actual_r, draftee_msp_r, draft_auc, optimal_uplift_mean) |>
+  pivot_longer(
+    cols = c(predicted_vs_actual_r, draftee_msp_r, draft_auc, optimal_uplift_mean),
+    names_to = "metric",
+    values_to = "value"
+  ) |>
+  mutate(
+    metric = recode(metric,
+      predicted_vs_actual_r = "Predicted vs Actual (r)",
+      draftee_msp_r = "Draftee MSP (r)",
+      draft_auc = "Draft AUC",
+      optimal_uplift_mean = "Optimal Uplift (MSP)"
+    ),
+    config_short = str_replace(config, "proportional_fill_", "pf_") |>
+      str_replace("keeper_only_fd0.75_dispTrue", "keeper_only")
+  )
+
+ggplot(sweep_long, aes(x = reorder(config_short, value), y = value)) +
+  geom_col(aes(fill = baseline_type), width = 0.7) +
+  scale_fill_manual(values = config_pal) +
+  coord_flip() +
+  facet_wrap(~metric, scales = "free_x", nrow = 1) +
+  labs(
+    title = "MSP model variant sweep",
+    subtitle = "Each bar = one model configuration, colored by baseline type. Higher is better for all metrics.",
+    x = NULL, y = NULL
+  ) +
+  h_grid +
+  theme(
+    strip.text = element_text(size = rel(0.75)),
+    legend.position = "bottom",
+    legend.title = element_blank()
+  )
+```
+
+The chart above shows each model configuration's performance across four metrics. The `keeper_only` baseline (teal) backtests slightly better than `proportional_fill` (blue) on aggregate metrics because the fill model adds noise in historical data. However, we use `proportional_fill` (fd=0.5) for the live 2026 targeting because the fill model produces more realistic projected standings --- without it, category gaps become so large that no individual player can close them, making the model blind to aces in W/SO categories.
+
+```{r}
+sweep |>
+  arrange(desc(predicted_vs_actual_r)) |>
+  select(config, predicted_vs_actual_r, draftee_msp_r, draft_auc, optimal_uplift_mean) |>
+  gt() |>
+  cols_label(
+    config = "Configuration",
+    predicted_vs_actual_r = "Pred vs Actual (r)",
+    draftee_msp_r = "Draftee MSP (r)",
+    draft_auc = "Draft AUC",
+    optimal_uplift_mean = "Optimal Uplift"
+  ) |>
+  fmt_number(columns = c(predicted_vs_actual_r, draftee_msp_r, draft_auc), decimals = 3) |>
+  fmt_number(columns = optimal_uplift_mean, decimals = 1) |>
+  tab_style(
+    style = cell_fill(color = "#dceef8"),
+    locations = cells_body(rows = config == "proportional_fill_fd0.5_dispTrue")
+  ) |>
+  tab_header(
+    title = "Sweep Results",
+    subtitle = "Live config (proportional_fill fd=0.5) highlighted"
+  )
+```
+
+## Standings Prediction
+
+The most important validation: does the model's picture of team strength correlate with actual standings outcomes?
+
+```{r}
+#| fig-height: 7
+
+standings_detail <- standings_detail |>
+  mutate(year = factor(year))
+
+ggplot(standings_detail, aes(x = predicted_pts, y = actual_total_pts)) +
+  geom_abline(slope = 1, intercept = 0, color = pal$grid, linewidth = 0.5, linetype = "dashed") +
+  geom_point(aes(color = year), size = 2.5, alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, color = pal$primary, linewidth = 0.7, alpha = 0.15) +
+  scale_color_manual(values = year_pal) +
+  labs(
+    title = "Predicted vs actual standings points",
+    subtitle = "Each point is one team in one year. Predicted = baseline standings + sum of draftee MSP.\nPoints near the dashed line mean the model correctly estimated the team's final strength.",
+    x = "Predicted standings points (baseline + draftee MSP)",
+    y = "Actual end-of-season standings points",
+    caption = "Proportional fill config (fd=0.5). Shaded band = 95% confidence interval on linear fit."
+  ) +
+  theme(legend.position = "right", legend.title = element_blank())
+```
+
+The scatter shows moderate predictive power. Points cluster around the identity line, though with meaningful variance --- some teams over- or under-perform their projection, which is expected given injuries, trades, and in-season randomness. The upward trend confirms the model captures real signal: teams projected to be stronger generally finish stronger.
+
+```{r}
+#| fig-height: 7
+
+ggplot(standings_detail, aes(x = msp_sum_draftees, y = actual_total_pts - baseline_pts)) +
+  geom_hline(yintercept = 0, color = pal$grid) +
+  geom_vline(xintercept = 0, color = pal$grid) +
+  geom_point(aes(color = year), size = 2.5, alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, color = pal$accent, linewidth = 0.7, alpha = 0.15) +
+  scale_color_manual(values = year_pal) +
+  labs(
+    title = "Draft MSP vs standings movement above baseline",
+    subtitle = "X-axis: total MSP of players a team actually drafted. Y-axis: how much the team\nbeat (or missed) its pre-auction projected standings. Positive slope = model captures\nreal draft-driven standings movement.",
+    x = "Sum of draftee MSP",
+    y = "Actual pts - Baseline pts (standings movement)",
+    caption = "Each point = one team-year. Positive y = team beat its projected baseline."
+  ) +
+  theme(legend.position = "right", legend.title = element_blank())
+```
+
+This chart isolates the *draft contribution*: stripping out each team's keeper baseline, does drafting high-MSP players lead to above-baseline performance? The positive trend (Spearman $\rho$ = 0.17) suggests yes, though the relationship is noisy --- many factors beyond draft choices affect final standings.
+
+## Draft Prediction
+
+```{r}
+#| fig-height: 5
+
+draft_detail <- draft_detail |>
+  mutate(year = factor(year))
+
+ggplot(draft_detail, aes(x = year, y = auc)) +
+  geom_hline(yintercept = 0.5, color = pal$light, linetype = "dashed") +
+  geom_boxplot(fill = pal$primary, alpha = 0.2, color = pal$primary, width = 0.5) +
+  geom_jitter(aes(color = year), width = 0.1, size = 2.5, alpha = 0.7) +
+  scale_color_manual(values = year_pal) +
+  labs(
+    title = "Draft prediction AUC by year",
+    subtitle = "Can MSP distinguish drafted from undrafted players? Each point = one team.\nThe dashed line at 0.5 = random guessing. Values above 0.5 mean the model\ncorrectly ranks drafted players higher than undrafted ones.",
+    x = NULL, y = "AUC (area under ROC curve)"
+  ) +
+  scale_y_continuous(limits = c(0.3, 0.7))
+```
+
+AUC clusters near 0.5, which is not a failure --- it's expected. Managers draft based on many signals beyond standings need: player upside, positional scarcity, personal preferences, and bidding dynamics. MSP isn't trying to predict *what managers actually do*; it's trying to identify *what they should do* to maximize standings points. The fact that AUC is slightly above 0.5 on average (0.49--0.52 depending on year) suggests managers do implicitly factor category need into their decisions, but it's not the dominant signal.
+
+## Optimal Draft Simulation
+
+```{r}
+#| fig-height: 5
+
+optimal_detail <- optimal_detail |>
+  mutate(year = factor(year))
+
+ggplot(optimal_detail, aes(x = year, y = msp_uplift)) +
+  geom_hline(yintercept = 0, color = pal$grid) +
+  geom_boxplot(fill = pal$accent, alpha = 0.2, color = pal$accent, width = 0.5) +
+  geom_jitter(aes(color = year), width = 0.1, size = 2.5, alpha = 0.7) +
+  scale_color_manual(values = year_pal) +
+  labs(
+    title = "MSP uplift: optimal vs actual draft",
+    subtitle = "For each team-year, we simulate a greedy draft that always picks the highest-MSP\nplayer within budget. This chart shows how many more total standings points the\noptimal draft would produce compared to the team's actual draft picks.",
+    x = NULL, y = "MSP uplift (standings points)",
+    caption = "Positive = model-optimal draft beats actual. Note: individual MSP values don't perfectly\nsum due to diminishing marginal returns, so these are upper-bound estimates."
+  )
+```
+
+The model consistently identifies large theoretical uplift (median ~50 MSP across team-years). This is the core actionable finding: there is significant room for improvement over typical draft behavior. Even if the actual uplift is smaller than the theoretical maximum (because individual MSPs don't perfectly sum), the directional signal is strong.
+
+The 2022 cluster near zero is notable --- that year, most teams' actual drafts were already close to MSP-optimal, suggesting either less available talent or more category-aware drafting league-wide.
+
+# 2026 Gusteroids Analysis
+
+```{r}
+#| echo: false
+
+cats <- c("R", "HR", "RBI", "SB", "AVG", "W", "SV", "SO", "ERA", "WHIP")
+rank_cols <- paste0("rank_", cats)
+gust <- proj_standings |> filter(team == "Gusteroids")
+```
+
+## Category Need Profile
+
+```{r}
+#| fig-height: 5
+
+gust_ranks <- tibble(
+  category = cats,
+  rank = as.numeric(gust[1, rank_cols]),
+  type = if_else(category %in% c("W", "SV", "ERA", "WHIP", "SO"), "Pitching", "Batting")
+) |>
+  mutate(
+    gap = 10 - rank,
+    category = fct_reorder(category, rank)
+  )
+
+ggplot(gust_ranks, aes(x = category, y = rank)) +
+  geom_segment(aes(xend = category, y = 0, yend = rank, color = type), linewidth = 1.5) +
+  geom_point(aes(color = type), size = 4) +
+  geom_text(aes(label = paste0(rank, "/10")), hjust = -0.5, size = 3.5, color = pal$mid) +
+  scale_color_manual(values = c("Batting" = pal$primary, "Pitching" = pal$accent)) +
+  scale_y_continuous(limits = c(0, 12), breaks = seq(0, 10, 2)) +
+  coord_flip() +
+  labs(
+    title = "Gusteroids projected category ranks (pre-auction)",
+    subtitle = "Rank 1 = worst in league, rank 10 = best. Categories near the bottom have the\nmost room for improvement and should drive targeting decisions. W and SO are the\nbiggest weaknesses; AVG and SV are swing categories where the right player\ncould gain multiple standings points.",
+    x = NULL, y = "Projected rank (1 = worst, 10 = best)"
+  ) +
+  h_grid +
+  theme(legend.position = "bottom", legend.title = element_blank())
+```
+
+The Gusteroids keeper core (9 hitters + 2 pitchers) creates a clear pattern: strong batting counting stats (R, HR, RBI, SB all at rank 8 of 10) but dead last in pitching counting stats (W and SO at rank 1). AVG and SV sit in the middle with room to climb. ERA and WHIP are mid-pack and hard to move.
+
+**Implication**: the auction should heavily target starting pitchers (for W and SO) and closers (for SV), while high-AVG hitters are the best batting investments. Power hitters add to already-strong categories and provide minimal standings uplift.
+
+## Target Priority Score (TPS) Distribution
+
+```{r}
+#| fig-height: 5
+
+tps_data <- msp_2026 |>
+  filter(dollar_value >= 1) |>
+  mutate(pos_type_label = if_else(pos_type == "pitcher", "Pitcher", "Hitter"))
+
+ggplot(tps_data, aes(x = tps)) +
+  geom_histogram(aes(fill = pos_type_label), binwidth = 5, alpha = 0.7, position = "stack") +
+  scale_fill_manual(values = c("Hitter" = pal$primary, "Pitcher" = pal$accent)) +
+  labs(
+    title = "Target Priority Score distribution",
+    subtitle = "TPS measures how much a player's MSP diverges from what's expected for their price.\nHigh TPS = helps your team MORE than their cost suggests (target). Low TPS = helps\nLESS than their cost suggests (avoid). Since it's residual-based, cheap players with\nmodest MSP can score higher than expensive stars with large MSP.",
+    x = "Target Priority Score (1-100)", y = "Number of players"
+  ) +
+  theme(legend.position = "bottom", legend.title = element_blank())
+```
+
+## Top Targets
+
+```{r}
+top25 <- msp_2026 |>
+  filter(dollar_value >= 1) |>
+  slice_max(tps, n = 25)
+
+delta_cols <- paste0("delta_rank_", cats)
+
+top25 |>
+  select(player_name, pos_type, position, dollar_value, msp, msp_per_dollar, tps,
+         all_of(delta_cols)) |>
+  gt() |>
+  cols_label(
+    player_name = "Player",
+    pos_type = "Type",
+    position = "Pos",
+    dollar_value = "$Value",
+    msp = "MSP",
+    msp_per_dollar = "MSP/$",
+    tps = "TPS",
+    delta_rank_R = "R", delta_rank_HR = "HR", delta_rank_RBI = "RBI",
+    delta_rank_SB = "SB", delta_rank_AVG = "AVG",
+    delta_rank_W = "W", delta_rank_SV = "SV", delta_rank_SO = "SO",
+    delta_rank_ERA = "ERA", delta_rank_WHIP = "WHIP"
+  ) |>
+  fmt_number(columns = c(dollar_value, msp), decimals = 1) |>
+  fmt_number(columns = msp_per_dollar, decimals = 3) |>
+  fmt_number(columns = all_of(delta_cols), decimals = 1) |>
+  tab_spanner(label = "Category Rank Change", columns = all_of(delta_cols)) |>
+  data_color(
+    columns = tps,
+    palette = c("white", pal$accent),
+    domain = c(1, 100)
+  ) |>
+  tab_header(
+    title = "Top 25 targets for Gusteroids (by TPS)",
+    subtitle = "TPS measures targeting edge: how much more this player helps the Gusteroids than their\nprice suggests. High TPS at low dollar value = a bargain to target. Category columns\nshow how many ranks the Gusteroids gain in each category by adding that player."
+  )
+```
+
+The table reveals three distinct player profiles among top targets:
+
+- **High-AVG hitters** (Steven Kwan, Yordan Alvarez, Maikel Garcia) — gain 2--3 ranks in AVG, the Gusteroids' most accessible batting category
+- **Aces** (Logan Gilbert, Framber Valdez, Dylan Cease) — gain +2 in both W and SO, directly addressing the biggest weakness
+- **Elite closers** (Andrés Muñoz, Josh Hader, Carlos Estévez) — gain +2 to +4 in SV, the easiest pitching category to move
+
+## MSP vs Dollar Value
+
+```{r}
+#| fig-height: 7
+
+plot_data <- msp_2026 |>
+  filter(dollar_value >= 3) |>
+  mutate(
+    pos_type_label = if_else(pos_type == "pitcher", "Pitcher", "Hitter"),
+    tps_group = case_when(
+      tps >= 90 ~ "TPS 90+",
+      tps >= 50 ~ "TPS 50-89",
+      TRUE ~ "TPS < 50"
+    ),
+    label = if_else(
+      rank(-tps) <= 10 | (dollar_value > 25 & tps < 30),
+      player_name, NA_character_
+    )
+  )
+
+ggplot(plot_data, aes(x = dollar_value, y = msp)) +
+  geom_hline(yintercept = 0, color = pal$grid) +
+  geom_smooth(method = "loess", se = FALSE, color = pal$light, linewidth = 0.5, linetype = "dashed") +
+  geom_point(aes(color = pos_type_label, size = tps), alpha = 0.5) +
+  geom_text(
+    aes(label = label), size = 2.8, color = pal$text,
+    hjust = -0.1, vjust = 0.5, check_overlap = TRUE, na.rm = TRUE
+  ) +
+  scale_color_manual(values = c("Hitter" = pal$primary, "Pitcher" = pal$accent)) +
+  scale_size_continuous(range = c(1, 5), guide = "none") +
+  labs(
+    title = "MSP vs generic dollar value — where TPS finds the edge",
+    subtitle = "The dashed curve shows the expected MSP for each price level. TPS measures how\nfar above or below this curve each player sits. Larger points = higher TPS. Players\nabove the curve at a given price are the targeting edge — they help the Gusteroids\nmore than their cost suggests. Players below the curve are overpriced for what they offer.",
+    x = "Dollar value (ATC projections)",
+    y = "Marginal standings points (MSP)",
+    caption = "Gusteroids, proportional fill baseline (fd=0.5). Point size proportional to TPS.\nPlayers with $value < $3 excluded for clarity."
+  ) +
+  theme(legend.position = "bottom", legend.title = element_blank())
+```
+
+The dashed curve is the key to understanding TPS. It shows the average MSP at each dollar value level — the "expected" standings impact for a given price. Players above the curve provide more standings help than their price warrants (high TPS); players below provide less (low TPS). The vertical spread at each price level *is* the targeting edge: at $25--35, some pitchers provide 4--5 MSP while others provide 0--1. Generic dollar values treat them as equivalent; TPS identifies which ones specifically help the Gusteroids.
+
+Note: expensive aces like Dylan Cease ($37, 4 MSP) land right on the curve — they help a lot, but so does every $37 player. By contrast, Robert Garcia ($11, 4 MSP) sits well above the curve — that's an outsized return at a bargain price, which TPS rewards.
+
+## TPS by Position
+
+```{r}
+#| fig-height: 5
+
+pos_data <- msp_2026 |>
+  filter(dollar_value >= 1, !is.na(position)) |>
+  mutate(
+    pos_group = case_when(
+      position %in% c("SP") ~ "SP",
+      position %in% c("RP") ~ "RP",
+      position %in% c("C", "C/DH") ~ "C",
+      position %in% c("1B") ~ "1B",
+      position %in% c("2B") ~ "2B",
+      position %in% c("SS") ~ "SS",
+      position %in% c("3B") ~ "3B",
+      str_detect(position, "OF") ~ "OF",
+      TRUE ~ "Other"
+    )
+  )
+
+ggplot(pos_data, aes(x = reorder(pos_group, -tps, FUN = median), y = tps)) +
+  geom_boxplot(fill = pal$primary, alpha = 0.15, color = pal$primary, width = 0.6, outlier.alpha = 0.3) +
+  geom_hline(yintercept = 50, color = pal$light, linetype = "dashed") +
+  labs(
+    title = "Target Priority Score by position",
+    subtitle = "Boxes show the TPS distribution for each position group. Positions with higher\nmedian TPS are where the Gusteroids should concentrate auction spending.\nRP and SP rank highest, confirming the pitching-first draft strategy.",
+    x = NULL, y = "Target Priority Score (1-100)",
+    caption = "Dashed line at TPS=50 (median). Only players with $value >= $1 shown."
+  )
+```
+
+Since TPS is residual-based (controlling for dollar value), position differences here reflect genuine targeting edge, not just salary differences. Relief pitchers (RP) have the highest median TPS — closers are moderately priced but provide outsized standings movement in SV. Among hitters, SS and 3B rank high because players like Gunnar Henderson and Maikel Garcia provide high-AVG gains that most other players at their price level don't. Starting pitchers are more evenly split — some aces provide W/SO gains (high TPS) while other expensive SPs add to ERA/WHIP categories where the Gusteroids don't need help (low TPS).
+
+# Conclusions
+
+1. **Use the proportional fill model for live targeting.** While `keeper_only` backtests slightly better, the fill model produces realistic projected standings where category gaps are closeable. Without it, the model can't see the value of aces in W/SO.
+
+2. **W, SO, SV, and AVG are the Gusteroids' highest-leverage categories.** The team is projected last in W and SO, middle-of-the-pack in SV and AVG. Every standings point gained in these categories comes from the auction.
+
+3. **The biggest targeting edges are mid-priced pitchers and high-AVG bargain hitters.** TPS identifies players who help the Gusteroids far more than their price suggests: Robert Garcia ($11 RP, TPS 99), Kenley Jansen ($13 RP, TPS 99), Chase Meidroth ($6 2B/SS, TPS 100), and Nolan Schanuel ($11 1B, TPS 99). These are the players to bid aggressively on.
+
+4. **Aces are necessary but not underpriced.** Logan Gilbert ($44, 6 MSP, TPS 98) is the rare ace with high TPS — he provides significantly more MSP than other $40+ players. Most other aces (Dylan Cease, Sonny Gray, George Kirby) provide 4 MSP at TPS ~44, meaning they help about as much as you'd expect for their cost. Still worth buying, but don't overpay.
+
+5. **Avoid overpaying for power.** Cal Raleigh ($31, 1 MSP, TPS 4) is the clearest avoid — expensive and barely helps because the Gusteroids are already strong in HR. Pete Alonso ($30, 3 MSP, TPS 19) is similar. Let other teams drive up these prices.
+
+6. **TPS decouples from dollar value by design** (Spearman $\rho$ = 0.10). This means it provides genuinely new information beyond what you already know from player valuations. Sort your draft board by TPS to see where the Gusteroids-specific edge lies.
