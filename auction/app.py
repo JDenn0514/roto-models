@@ -44,6 +44,7 @@ TOTAL_BUDGET = 360
 HITTER_SLOTS = 15
 PITCHER_SLOTS = 11
 DOLLARS_PER_STANDINGS_PT = 6.55
+MSP_BID_RATE = 2.00             # $/SP for bid calculations (~30% of team-level $6.55)
 
 TIERS = [
     ("Elite",   25.0),
@@ -57,8 +58,18 @@ TIERS = [
 CATEGORIES   = ["R", "HR", "RBI", "SB", "AVG", "W", "SV", "ERA", "WHIP", "SO"]
 INVERSE_CATS = {"ERA", "WHIP"}
 
-MI_FULL_PENALTY = -8.0
-MI_PARTIAL_LOW  = -3.0
+TEAM_SHORT = {
+    "Dancing With Dingos": "Dingos",
+    "Gusteroids": "Gusteroids",
+    "HAMMERHEADS": "Hammers",
+    "Kerry & Mitch": "K&M",
+    "Kosher Hogs": "K. Hogs",
+    "Mean Machine": "Mean Mach",
+    "On a Bender": "Bender",
+    "R&R": "R&R",
+    "Shrooms": "Shrooms",
+    "Thunder & Lightning": "T&L",
+}
 
 # Lineup slots — 15 hitters, 11 pitchers (order = display order in card)
 HITTER_LINEUP_SLOTS  = ["C", "C", "1B", "2B", "3B", "SS",
@@ -326,29 +337,145 @@ hr { border-color: var(--grid) !important; margin: 10px 0 !important; }
 
 /* ── Collapse sidebar toggle ─────────────────────────────────── */
 [data-testid="stSidebarCollapsedControl"] { display: none !important; }
+
+/* ── Category breakdown panel (F1) ───────────────────────────── */
+.cat-break {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 5px; margin-top: 8px;
+}
+.cat-break-hdr {
+    grid-column: 1 / -1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--light); padding: 6px 0 2px 0;
+}
+.cb-cell {
+    background: white; border: 1px solid var(--border);
+    border-radius: 5px; padding: 6px 8px; text-align: center;
+}
+.cb-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; font-weight: 500; color: var(--mid);
+}
+.cb-rank {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 500; color: var(--text);
+    margin: 2px 0;
+}
+.cb-delta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 500;
+}
+.cb-up   { color: var(--accent); }
+.cb-flat { color: var(--light); }
+.cb-down { color: var(--secondary); }
+
+/* ── Inflation tracker (F3) ──────────────────────────────────── */
+.inf-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 6px; padding: 10px 14px; text-align: center;
+    margin-bottom: 2px;
+}
+.inf-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 21px; font-weight: 500; line-height: 1.1;
+}
+.inf-hot  { color: var(--secondary); }
+.inf-cool { color: var(--accent); }
+.inf-flat { color: var(--text); }
+.inf-lbl {
+    font-size: 9px; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--light); margin-top: 3px;
+}
+.inf-split {
+    display: flex; justify-content: center; gap: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--mid); margin-top: 4px;
+}
+
+/* ── Standings heatmap (F5) ──────────────────────────────────── */
+.hm-wrap {
+    border: 1px solid var(--border); border-radius: 6px;
+    overflow-x: auto; background: white;
+}
+table.hm-tbl {
+    width: 100%; border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+}
+table.hm-tbl th {
+    font-size: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--light); padding: 5px 4px; text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+table.hm-tbl td {
+    padding: 4px; text-align: center; border-bottom: 1px solid var(--grid);
+}
+table.hm-tbl tr:last-child td { border-bottom: none; }
+tr.hm-mine { background: #eef4fa !important; }
+tr.hm-mine td:first-child { border-left: 3px solid var(--primary); }
+.hm-team {
+    text-align: left !important; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; max-width: 64px;
+    font-size: 9px; font-weight: 500;
+}
+.hm-pts {
+    font-weight: 600; border-left: 1px solid var(--border) !important;
+}
+
+/* ── Slot scarcity badges (F2) ───────────────────────────────── */
+.lt-scar {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; text-align: right;
+}
+.lt-scar-critical { color: var(--secondary); font-weight: 600; }
+.lt-scar-tight    { color: #f4a261; }
+.lt-scar-ok       { color: var(--light); }
+
+/* ── Projection card (F8) ────────────────────────────────────── */
+.proj-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 6px; padding: 12px 14px; text-align: center;
+    margin-bottom: 2px;
+}
+.proj-place {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 28px; font-weight: 700; color: var(--primary);
+    line-height: 1.1;
+}
+.proj-pts {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--text); margin-top: 2px;
+}
+.proj-gap {
+    font-size: 10px; color: var(--mid); margin-top: 2px;
+}
+.proj-cats {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 4px; margin-top: 6px;
+}
+.proj-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px; background: var(--bg-card);
+    border-radius: 3px; padding: 1px 4px;
+}
 </style>
 """)
 
 
 # ─── Data loading (cached) ────────────────────────────────────────────────────
 
-@st.cache_data(show_spinner="Loading player data and computing auction values…")
-def load_players() -> pd.DataFrame:
+@st.cache_data(show_spinner="Loading player valuations…")
+def load_base_data() -> pd.DataFrame:
+    """Load ATC valuations + compute split-pool auction values. Cached."""
     from sgp.config import SGPConfig
     from sgp.data_prep import get_calibration_data
     from sgp.dollar_values import compute_historical_spending_split, compute_split_pool_values
     from sgp.replacement import compute_replacement_level
     from sgp.sgp_calc import compute_sgp
 
-    msp = pd.read_csv("data/msp_gusteroids_atc_2026.csv")
-
-    # Exclude all keepers — they're already assigned to teams, not in the auction pool
-    keepers_all = pd.read_csv("data/preauction_rosters_2026.csv")
-    keeper_names = set(keepers_all["player_name"].tolist())
-    msp = msp[~msp["player_name"].isin(keeper_names)].copy()
-
-    # Compute split-pool auction values
     atc = pd.read_csv("data/valuations_atc_2026.csv")
+
     config = SGPConfig.composite()
     standings_hist = get_calibration_data(config)
     sgp_result = compute_sgp(standings_hist, config, bootstrap=False)
@@ -359,16 +486,15 @@ def load_players() -> pd.DataFrame:
         if hist_split is not None and not hist_split.empty
         else 0.63
     )
+    # Recompute split-pool auction values using the same replacement dict that
+    # produced the CSV's dollar_value column.  Both use SGPConfig.composite(),
+    # so PAR will be consistent as long as composite config hasn't changed since
+    # the projection pipeline was last run.
     player_sgp = atc[["player_name", "pos_type", "total_sgp"]].copy()
     split_df = compute_split_pool_values(player_sgp, replacement, config, hitter_pct=hitter_pct)
-    name_to_auction = dict(zip(atc["player_name"], split_df["auction_value"].values))
+    atc["auction_value"] = split_df["auction_value"].values
 
-    msp["auction_value"] = msp["player_name"].map(name_to_auction)
-    msp.rename(columns={"dollar_value": "production_value"}, inplace=True)
-    msp["mi"] = msp["production_value"] - msp["auction_value"].fillna(msp["production_value"])
-    msp["tier"] = msp["production_value"].apply(_get_tier)
-    msp["profile"] = _classify_profiles(msp)
-    return msp
+    return atc
 
 
 @st.cache_data(show_spinner="Loading keeper rosters…")
@@ -376,9 +502,68 @@ def load_keepers() -> pd.DataFrame:
     return pd.read_csv("data/preauction_rosters_2026.csv")
 
 
-@st.cache_data(show_spinner="Loading projected standings…")
-def load_standings() -> pd.DataFrame:
-    return pd.read_csv("data/msp_projected_standings_2026.csv")
+# ─── Live MSP recomputation ─────────────────────────────────────────────────
+
+@st.cache_data(show_spinner="Recomputing targeting scores…")
+def compute_live_msp(draft_key: tuple) -> tuple:
+    """Re-run MSP pipeline with current draft state.
+
+    Drafted players are added as virtual active keepers for their new teams,
+    so MSP, projected standings, and category ranks all update live.
+
+    Args:
+        draft_key: Hashable tuple of (player, winner, price) for each draft pick.
+                   Used as cache key — MSP only recomputes when draft state changes.
+
+    Returns:
+        (players_df, projected_standings) — available players with live MSP,
+        and current projected standings with ranks.
+    """
+    from targeting.model import MSPConfig, run_msp
+
+    valuations = load_base_data()
+    keepers = load_keepers()
+
+    # Build live keepers: original roster + drafted players as virtual keepers
+    live_keepers = keepers.copy()
+    for player, winner, price in draft_key:
+        match = valuations[valuations["player_name"] == player]
+        if not match.empty:
+            row = match.iloc[0]
+            pos = "P" if row.get("pos_type") == "pitcher" else row.get("position", "UT")
+        else:
+            pos = "UT"
+        live_keepers = pd.concat([live_keepers, pd.DataFrame([{
+            "team": winner, "player_name": player,
+            "salary": price, "position": pos, "status": "act",
+        }])], ignore_index=True)
+
+    config = MSPConfig(
+        baseline_type="proportional_fill",
+        fill_discount=0.75,
+        budget_displacement=True,
+    )
+    msp_results, projected_standings = run_msp(
+        keepers=live_keepers,
+        valuations=valuations,
+        target_team=MY_TEAM,
+        config=config,
+    )
+
+    # Exclude all owned players (farm keepers + drafted) from the auction pool
+    all_owned = set(keepers["player_name"].tolist()) | {p for p, _, _ in draft_key}
+    msp_results = msp_results[~msp_results["player_name"].isin(all_owned)].copy()
+
+    # Add derived columns the app needs
+    msp_results.rename(columns={"dollar_value": "production_value"}, inplace=True)
+    msp_results["auction_value"] = msp_results["auction_value"].fillna(
+        msp_results["production_value"]
+    )
+    msp_results["is_pitcher"] = msp_results["pos_type"] == "pitcher"
+    msp_results["tier"] = msp_results["production_value"].apply(_get_tier)
+    msp_results["profile"] = _classify_profiles(msp_results)
+
+    return msp_results, projected_standings
 
 
 # ─── Classification helpers ───────────────────────────────────────────────────
@@ -412,6 +597,17 @@ def _classify_profiles(df: pd.DataFrame) -> pd.Series:
             else:
                 profiles.append("Balanced")
     return pd.Series(profiles, index=df.index)
+
+
+def _primary_pos(pos_str) -> str:
+    """Extract primary position for scarcity grouping."""
+    if not pos_str or (isinstance(pos_str, float) and pd.isna(pos_str)):
+        return "UT"
+    s = str(pos_str).strip()
+    for sep in [",", "/"]:
+        if sep in s:
+            return s.split(sep)[0].strip()
+    return s if s else "UT"
 
 
 # ─── Eligibility & roster placement ──────────────────────────────────────────
@@ -564,11 +760,12 @@ def init_state(keepers: pd.DataFrame):
         "budget_spent":     0,
         "hitters_won":      0,
         "pitchers_won":     0,
-        "salary_committed": int(my_k["salary"].sum()),
+        "salary_committed": int(act_k["salary"].sum()),
         "act_hitters":      act_h,
         "act_pitchers":     act_p,
         "roster_slots":     active_slots,
         "farm_players":     farm_players,
+        "punted_categories": set(),
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -577,8 +774,17 @@ def init_state(keepers: pd.DataFrame):
 
 # ─── Scoring ──────────────────────────────────────────────────────────────────
 
+def _rescale_0_10(series: pd.Series) -> pd.Series:
+    """Min-max rescale a Series to the 0–10 range."""
+    lo, hi = series.min(), series.max()
+    if hi - lo < 1e-9:
+        return pd.Series(5.0, index=series.index)
+    return (10.0 * (series - lo) / (hi - lo)).round(1)
+
+
 def compute_scarcity(players: pd.DataFrame, taken_names: set) -> pd.Series:
     available  = players[~players["player_name"].isin(taken_names)].copy()
+    available["_ppos"] = available["position"].apply(_primary_pos)
     sp         = pd.Series(0.0, index=players.index)
     tier_order = [n for n, _ in TIERS]
 
@@ -586,16 +792,28 @@ def compute_scarcity(players: pd.DataFrame, taken_names: set) -> pd.Series:
         if row["player_name"] in taken_names:
             continue
         tier, profile, pval = row["tier"], row["profile"], row["production_value"]
+        ppos = _primary_pos(row.get("position", ""))
+
+        # Position-aware comparables: same tier + profile + primary position
         comp = available[
             (available["tier"] == tier) &
             (available["profile"] == profile) &
+            (available["_ppos"] == ppos) &
             (available["player_name"] != row["player_name"])
         ]
         if len(comp) == 0:
             tidx = tier_order.index(tier) if tier in tier_order else len(tier_order) - 1
             fallback = 0.0
             for nt in tier_order[tidx + 1:]:
-                fb = available[(available["tier"] == nt) & (available["profile"] == profile)]
+                # Try position-matched lower tier first
+                fb = available[
+                    (available["tier"] == nt) &
+                    (available["profile"] == profile) &
+                    (available["_ppos"] == ppos)
+                ]
+                if len(fb) == 0:
+                    # Relax position for lower-tier fallback
+                    fb = available[(available["tier"] == nt) & (available["profile"] == profile)]
                 if len(fb) > 0:
                     fallback = fb["production_value"].nlargest(3).mean()
                     break
@@ -605,25 +823,91 @@ def compute_scarcity(players: pd.DataFrame, taken_names: set) -> pd.Series:
     return sp
 
 
-def compute_mi_adjustment(mi: float) -> float:
-    if mi >= MI_PARTIAL_LOW:
-        return 0.0
-    if mi <= MI_FULL_PENALTY:
-        return -5.0
-    return -5.0 * (mi - MI_PARTIAL_LOW) / (MI_FULL_PENALTY - MI_PARTIAL_LOW)
+def detect_punt_candidates(standings: pd.DataFrame, scored: pd.DataFrame) -> list:
+    """Identify categories that are punt candidates.
+
+    A category is a punt candidate if Gusteroids' rank <= 2 AND the best
+    available player for that category would improve rank by <= 1.
+    """
+    my_row = standings[standings["team"] == MY_TEAM]
+    if my_row.empty:
+        return []
+    mr = my_row.iloc[0]
+    candidates = []
+    for cat in CATEGORIES:
+        rank = float(mr.get(f"rank_{cat}", 5))
+        if rank <= 2:
+            col = f"delta_rank_{cat}"
+            if col in scored.columns and len(scored) > 0:
+                best_delta = scored[col].max()
+                if best_delta <= 1:
+                    candidates.append(cat)
+            else:
+                candidates.append(cat)
+    return candidates
 
 
-def score_players(players: pd.DataFrame, taken_names: set, budget_cap: float) -> pd.DataFrame:
+def score_players(players: pd.DataFrame, taken_names: set, budget_cap: float,
+                  punted_cats=None, inflation=None) -> pd.DataFrame:
     available = players[~players["player_name"].isin(taken_names)].copy()
     sp_series = compute_scarcity(players, taken_names)
-    available["sp"]     = sp_series.reindex(available.index).fillna(0.0)
-    available["pvp"]    = (available["msp"] * DOLLARS_PER_STANDINGS_PT).round(1)
-    available["mi_adj"] = available["mi"].apply(compute_mi_adjustment)
-    available["ts"]     = (available["pvp"] + available["sp"] + available["mi_adj"]).round(1)
+    available["sp_raw"]  = sp_series.reindex(available.index).fillna(0.0)
+
+    # PVP: use punted-cat-adjusted MSP if categories are punted (F9)
+    if punted_cats:
+        punt_cols = [f"delta_rank_{cat}" for cat in CATEGORIES
+                     if cat not in punted_cats and f"delta_rank_{cat}" in available.columns]
+        adjusted_msp = available[punt_cols].sum(axis=1) if punt_cols else 0.0
+        available["pvp_raw"] = (adjusted_msp * DOLLARS_PER_STANDINGS_PT).round(1)
+    else:
+        available["pvp_raw"] = (available["msp"] * DOLLARS_PER_STANDINGS_PT).round(1)
+
+    # MI: production value minus inflation-adjusted market price (consistent formula)
+    hitter_inf = 1.0 + (inflation.get("hitter_pct", 0.0) if inflation else 0.0)
+    pitcher_inf = 1.0 + (inflation.get("pitcher_pct", 0.0) if inflation else 0.0)
+    adjusted_mkt = available["auction_value"].copy()
+    is_p = available["is_pitcher"]
+    adjusted_mkt.loc[~is_p] *= hitter_inf
+    adjusted_mkt.loc[is_p] *= pitcher_inf
+    available["mi"] = available["production_value"] - adjusted_mkt
+
+    # Rescale each component to 0–10 for balanced composite targeting score
+    available["pvp"] = _rescale_0_10(available["pvp_raw"])
+    available["sp"]  = _rescale_0_10(available["sp_raw"])
+    available["mi_sc"] = _rescale_0_10(available["mi"])
+    available["ts"]  = ((available["pvp"] + available["sp"] + available["mi_sc"]) / 3).round(1)
+
+    # Punt penalty: discount TS by fraction of SGP in punted categories
+    if punted_cats:
+        total_abs_sgp = pd.Series(0.0, index=available.index)
+        punted_abs_sgp = pd.Series(0.0, index=available.index)
+        for cat in CATEGORIES:
+            col = f"sgp_{cat}"
+            if col in available.columns:
+                total_abs_sgp += available[col].abs()
+                if cat in punted_cats:
+                    punted_abs_sgp += available[col].abs()
+        punt_frac = punted_abs_sgp / total_abs_sgp.clip(lower=0.01)
+        available["ts"] = (available["ts"] * (1 - punt_frac)).round(1)
+
+    # ── Bid calculations ────────────────────────────────────────────────
+    # Max bid: production value + scaled MSP premium. Above this price the player
+    # becomes a net negative — the opportunity cost of overspending exceeds the
+    # standings-point gain.  MSP_BID_RATE ($2/SP) is ~30% of the team-level
+    # $6.55/SP, discounted for cascading fill impact and projection uncertainty.
+    msp_premium = available["msp"].clip(lower=0) * MSP_BID_RATE
+    available["max_bid"] = (
+        available["production_value"] + msp_premium
+    ).clip(lower=1, upper=budget_cap).round(0).astype(int)
+
+    # Target bid: what you should try to win the player for — market price plus
+    # a modest team-fit bump.  Half the max-bid MSP rate so you're aiming for
+    # value, not paying up to the ceiling.
     auc = available["auction_value"].fillna(available["production_value"])
-    available["bid_ceil"] = (
-        auc + available["pvp"].clip(lower=0) + available["sp"].clip(lower=0)
-    ).clip(upper=budget_cap).round(0).astype(int)
+    tgt_premium = available["msp"].clip(lower=0) * (MSP_BID_RATE * 0.5)
+    available["tgt_bid"] = (auc + tgt_premium).clip(lower=1).round(0).astype(int)
+    available["tgt_bid"] = available[["tgt_bid", "max_bid"]].min(axis=1)
+
     return available
 
 
@@ -656,6 +940,42 @@ def _log_result(player: str, price: int, winner: str, players_df: pd.DataFrame):
                 st.session_state.roster_slots,
                 is_keeper=False, is_farm=False,
             )
+
+
+# ─── Undo last result ────────────────────────────────────────────────────────
+
+def _undo_last_result():
+    """Reverse the most recent auction log entry."""
+    if not st.session_state.auction_log:
+        return
+    entry = st.session_state.auction_log.pop()
+    player = entry["player"]
+    winner = entry["winner"]
+    price = entry["price"]
+    st.session_state.taken.pop(player, None)
+    st.session_state.nom_counter = max(0, st.session_state.nom_counter - 1)
+
+    if winner == MY_TEAM:
+        st.session_state.budget_spent -= price
+        # Determine if pitcher by looking up in base data
+        base = load_base_data()
+        match = base[base["player_name"] == player]
+        is_p = False
+        if not match.empty:
+            is_p = match.iloc[0].get("pos_type") == "pitcher"
+        if is_p:
+            st.session_state.pitchers_won = max(0, st.session_state.pitchers_won - 1)
+        else:
+            st.session_state.hitters_won = max(0, st.session_state.hitters_won - 1)
+        # Remove player from roster_slots (non-keeper only)
+        for s in st.session_state.roster_slots:
+            if s["player"] == player and not s["is_keeper"]:
+                s["player"] = None
+                s["salary"] = None
+                s["eligibility"] = []
+                s["is_keeper"] = False
+                s["is_farm"] = False
+                break
 
 
 # ─── Position filter helper ───────────────────────────────────────────────────
@@ -705,9 +1025,10 @@ def _budget_html(budget_left: int, eff_budget: int, h_open: int, p_open: int) ->
 </div>"""
 
 
-def _lineup_section_html(title: str, slots: list) -> str:
+def _lineup_section_html(title: str, slots: list, slot_scarcity=None) -> str:
     rows = ""
     for s in slots:
+        idx = s.get("_idx")  # injected by _lineup_html
         if s["player"]:
             badge = ""
             if s["is_farm"]:
@@ -723,23 +1044,40 @@ def _lineup_section_html(title: str, slots: list) -> str:
                 f'</tr>'
             )
         else:
-            rows += (
-                f'<tr>'
-                f'<td class="lt-slot">{s["slot"]}</td>'
-                f'<td class="lt-empty" colspan="2">—</td>'
-                f'</tr>'
-            )
+            scar_html = ""
+            if slot_scarcity and idx is not None and idx in slot_scarcity:
+                sc = slot_scarcity[idx]
+                sev_cls = f"lt-scar-{sc['severity']}"
+                scar_html = f'<td class="lt-scar {sev_cls}">{sc["n_quality"]} left</td>'
+            if scar_html:
+                rows += (
+                    f'<tr>'
+                    f'<td class="lt-slot">{s["slot"]}</td>'
+                    f'<td class="lt-empty">—</td>'
+                    f'{scar_html}'
+                    f'</tr>'
+                )
+            else:
+                rows += (
+                    f'<tr>'
+                    f'<td class="lt-slot">{s["slot"]}</td>'
+                    f'<td class="lt-empty" colspan="2">—</td>'
+                    f'</tr>'
+                )
     return f'<div class="lineup-sec-hdr">{title}</div><table class="ltbl">{rows}</table>'
 
 
-def _lineup_html(slots: list, farm_players: list) -> str:
+def _lineup_html(slots: list, farm_players: list, slot_scarcity=None) -> str:
+    # Inject original index for scarcity lookup
+    for i, s in enumerate(slots):
+        s["_idx"] = i
     hitter_slots  = [s for s in slots if s["slot"] != "P"]
     pitcher_slots = [s for s in slots if s["slot"] == "P"]
 
     html = (
         '<div class="lineup-wrap">'
-        + _lineup_section_html("Hitters", hitter_slots)
-        + _lineup_section_html("Pitchers", pitcher_slots)
+        + _lineup_section_html("Hitters", hitter_slots, slot_scarcity)
+        + _lineup_section_html("Pitchers", pitcher_slots, slot_scarcity)
     )
 
     if farm_players:
@@ -806,6 +1144,275 @@ def _ticker_html(log: list) -> str:
     )
 
 
+# ─── Slot scarcity (F2) ──────────────────────────────────────────────────────
+
+def compute_slot_scarcity(roster_slots: list, scored: pd.DataFrame, taken_names: set) -> dict:
+    """For each unfilled active slot, count eligible quality available players.
+
+    Returns dict mapping slot_index -> {slot, n_quality, severity}.
+    Quality = tier in {Elite, Premium, Solid}.
+    """
+    quality_tiers = {"Elite", "Premium", "Solid"}
+    quality = scored[scored["tier"].isin(quality_tiers)]
+    result = {}
+
+    for i, s in enumerate(roster_slots):
+        if s["player"] is not None:
+            continue
+        slot = s["slot"]
+        is_pitcher_slot = (slot == "P")
+        n = 0
+        for _, row in quality.iterrows():
+            elig = parse_eligibility(row.get("position", ""))
+            is_p = bool(row.get("is_pitcher", False))
+            if is_eligible_for_slot(elig, slot, is_p):
+                n += 1
+        if n == 0:
+            severity = "critical"
+        elif n <= 3:
+            severity = "tight"
+        else:
+            severity = "ok"
+        result[i] = {"slot": slot, "n_quality": n, "severity": severity}
+    return result
+
+
+# ─── Inflation tracking (F3) ──────────────────────────────────────────────────
+
+def compute_inflation(auction_log: list, base_data: pd.DataFrame) -> dict:
+    """Compute market inflation/deflation from auction results."""
+    result = {"overall_pct": 0.0, "hitter_pct": 0.0, "pitcher_pct": 0.0,
+              "total_surplus": 0.0, "n_players": 0}
+    if not auction_log:
+        return result
+
+    pcts, h_pcts, p_pcts, surplus = [], [], [], 0.0
+    for entry in auction_log:
+        match = base_data[base_data["player_name"] == entry["player"]]
+        if match.empty:
+            continue
+        row = match.iloc[0]
+        mkt = row.get("auction_value", 0)
+        if mkt is None or pd.isna(mkt) or mkt <= 0:
+            continue
+        actual = entry["price"]
+        pct = (actual - mkt) / mkt
+        pcts.append(pct)
+        surplus += actual - mkt
+        if row.get("pos_type") == "pitcher":
+            p_pcts.append(pct)
+        else:
+            h_pcts.append(pct)
+
+    if pcts:
+        result["overall_pct"] = np.mean(pcts)
+        result["total_surplus"] = surplus
+        result["n_players"] = len(pcts)
+    if h_pcts:
+        result["hitter_pct"] = np.mean(h_pcts)
+    if p_pcts:
+        result["pitcher_pct"] = np.mean(p_pcts)
+    return result
+
+
+def _inflation_html(inflation: dict) -> str:
+    """Render inflation tracker card."""
+    pct = inflation.get("overall_pct", 0.0)
+    h_pct = inflation.get("hitter_pct", 0.0)
+    p_pct = inflation.get("pitcher_pct", 0.0)
+    n = inflation.get("n_players", 0)
+
+    if n == 0:
+        return (
+            '<div class="inf-card">'
+            '<div class="inf-val inf-flat">—</div>'
+            '<div class="inf-lbl">Market Inflation</div>'
+            '<div class="inf-split"><span>No data yet</span></div>'
+            '</div>'
+        )
+
+    sign = "+" if pct >= 0 else ""
+    cls = "inf-hot" if pct > 0.02 else ("inf-cool" if pct < -0.02 else "inf-flat")
+    h_sign = "+" if h_pct >= 0 else ""
+    p_sign = "+" if p_pct >= 0 else ""
+    return (
+        f'<div class="inf-card">'
+        f'<div class="inf-val {cls}">{sign}{pct:.0%}</div>'
+        f'<div class="inf-lbl">Market Inflation ({n} players)</div>'
+        f'<div class="inf-split">'
+        f'<span>H: {h_sign}{h_pct:.0%}</span>'
+        f'<span>P: {p_sign}{p_pct:.0%}</span>'
+        f'</div></div>'
+    )
+
+
+# ─── Standings heatmap (F5) ──────────────────────────────────────────────────
+
+def _rank_bg(rank: float) -> str:
+    """Background-color CSS for a rank 1-10."""
+    if rank >= 8:
+        return f"rgba(42, 157, 143, {0.15 + (rank - 8) * 0.1})"
+    elif rank >= 4:
+        return f"rgba(244, 162, 97, {0.08 + (rank - 4) * 0.04})"
+    else:
+        return f"rgba(193, 102, 107, {0.15 + (3 - rank) * 0.1})"
+
+
+def _standings_heatmap_html(standings: pd.DataFrame) -> str:
+    """Build 10-team x 10-category heatmap HTML table."""
+    sorted_st = standings.sort_values("total_pts", ascending=False)
+
+    header = '<th class="hm-team">Team</th>'
+    for cat in CATEGORIES:
+        header += f'<th>{cat}</th>'
+    header += '<th class="hm-pts">Pts</th>'
+
+    rows = ""
+    for _, row in sorted_st.iterrows():
+        team = row["team"]
+        short = TEAM_SHORT.get(team, team[:8])
+        tr_cls = ' class="hm-mine"' if team == MY_TEAM else ""
+        cells = f'<td class="hm-team">{short}</td>'
+        for cat in CATEGORIES:
+            rk = float(row.get(f"rank_{cat}", 5))
+            bg = _rank_bg(rk)
+            cells += f'<td style="background:{bg};">{int(rk)}</td>'
+        pts = float(row.get("total_pts", 0))
+        cells += f'<td class="hm-pts">{pts:.1f}</td>'
+        rows += f'<tr{tr_cls}>{cells}</tr>'
+
+    return (
+        f'<div class="hm-wrap"><table class="hm-tbl">'
+        f'<thead><tr>{header}</tr></thead>'
+        f'<tbody>{rows}</tbody>'
+        f'</table></div>'
+    )
+
+
+# ─── Projection card (F8) ────────────────────────────────────────────────────
+
+def _ordinal(n: int) -> str:
+    """1 → '1st', 2 → '2nd', 3 → '3rd', etc."""
+    if 11 <= (n % 100) <= 13:
+        return f"{n}th"
+    return f"{n}{['th','st','nd','rd'][n % 10] if n % 10 < 4 else 'th'}"
+
+
+def _projections_html(standings: pd.DataFrame) -> str:
+    """Render projected finish card for Gusteroids."""
+    sorted_st = standings.sort_values("total_pts", ascending=False).reset_index(drop=True)
+    my_mask = sorted_st["team"] == MY_TEAM
+    if not my_mask.any():
+        return ""
+    my_idx = sorted_st.index[my_mask][0]
+    my_row = sorted_st.iloc[my_idx]
+    place = my_idx + 1
+    total_pts = float(my_row["total_pts"])
+
+    gap_html = ""
+    if place > 1:
+        above = sorted_st.iloc[my_idx - 1]
+        gap = float(above["total_pts"]) - total_pts
+        gap_html = f'<div class="proj-gap">{gap:.1f} pts to {_ordinal(place - 1)}</div>'
+
+    badges = ""
+    for cat in CATEGORIES:
+        rk = int(my_row.get(f"rank_{cat}", 5))
+        cls = "rk-hi" if rk >= 7 else ("rk-lo" if rk <= 3 else "rk-mid")
+        badges += f'<span class="proj-badge {cls}">{cat}:{rk}</span>'
+
+    return (
+        f'<div class="proj-card">'
+        f'<div class="proj-place">{_ordinal(place)}</div>'
+        f'<div class="proj-pts">{total_pts:.1f} pts</div>'
+        f'{gap_html}'
+        f'<div class="proj-cats">{badges}</div>'
+        f'</div>'
+    )
+
+
+# ─── Nomination strategy (F7) ───────────────────────────────────────────────
+
+def compute_nomination_scores(scored: pd.DataFrame, standings: pd.DataFrame) -> pd.Series:
+    """Compute nomination score for each available player.
+
+    Good nomination targets have high value (rivals will bid), fill rival
+    weaknesses, and low/negative MSP for Gusteroids.
+    """
+    # Identify rival weak categories (rank <= 4)
+    rivals = standings[standings["team"] != MY_TEAM]
+    n_rivals = len(rivals)
+    if n_rivals == 0:
+        return pd.Series(0.0, index=scored.index)
+
+    # For each player, count how many rivals need what they provide
+    rival_need_counts = pd.Series(0.0, index=scored.index)
+    for _, rival_row in rivals.iterrows():
+        weak_cats = [cat for cat in CATEGORIES if float(rival_row.get(f"rank_{cat}", 5)) <= 4]
+        if not weak_cats:
+            continue
+        for cat in weak_cats:
+            sgp_col = f"sgp_{cat}"
+            if sgp_col not in scored.columns:
+                continue
+            # For ERA/WHIP: negative sgp = good pitcher (helps that category)
+            if cat in INVERSE_CATS:
+                helps = scored[sgp_col] < -0.3
+            else:
+                helps = scored[sgp_col] > 0.3
+            rival_need_counts += helps.astype(float)
+
+    rival_need_factor = rival_need_counts / (n_rivals * len(CATEGORIES))
+
+    # Normalize MSP to [0, 1] where 0 = highest MSP, 1 = lowest (don't need)
+    msp = scored["msp"].copy()
+    msp_range = msp.max() - msp.min()
+    if msp_range > 1e-9:
+        norm_msp = (msp - msp.min()) / msp_range
+    else:
+        norm_msp = pd.Series(0.5, index=scored.index)
+    anti_msp = 1.0 - norm_msp
+
+    pval = scored["production_value"].clip(lower=0)
+    nom_score = (pval * rival_need_factor * anti_msp).round(1)
+    return nom_score
+
+
+# ─── Category breakdown HTML (F1) ─────────────────────────────────────────────
+
+def _category_breakdown_html(player_row: pd.Series) -> str:
+    """Build HTML grid showing per-category rank deltas for a selected player."""
+    batting_cats = ["R", "HR", "RBI", "SB", "AVG"]
+    pitching_cats = ["W", "SV", "ERA", "WHIP", "SO"]
+
+    def _cell(cat):
+        cur = int(player_row.get(f"team_rank_{cat}", 5))
+        delta = float(player_row.get(f"delta_rank_{cat}", 0))
+        new_rank = cur + int(round(delta))
+        if delta > 0:
+            cls, sign = "cb-up", f"+{delta:.1f}"
+        elif delta < 0:
+            cls, sign = "cb-down", f"{delta:.1f}"
+        else:
+            cls, sign = "cb-flat", "0"
+        return (
+            f'<div class="cb-cell">'
+            f'<div class="cb-cat">{cat}</div>'
+            f'<div class="cb-rank">{cur} → {new_rank}</div>'
+            f'<div class="cb-delta {cls}">{sign}</div>'
+            f'</div>'
+        )
+
+    cells_bat = "".join(_cell(c) for c in batting_cats)
+    cells_pit = "".join(_cell(c) for c in pitching_cats)
+    return (
+        f'<div class="cat-break">'
+        f'<div class="cat-break-hdr">Batting</div>{cells_bat}'
+        f'<div class="cat-break-hdr">Pitching</div>{cells_pit}'
+        f'</div>'
+    )
+
+
 # ─── Render sections ───────────────────────────────────────────────────────────
 
 def render_nomination_bar(all_available: list, all_teams: list, players_df: pd.DataFrame):
@@ -818,7 +1425,7 @@ def render_nomination_bar(all_available: list, all_teams: list, players_df: pd.D
             placeholder="Player sold…",
         )
         price = c2.number_input(
-            "Price", min_value=1, max_value=75, value=1,
+            "Price", min_value=1, max_value=360, value=1,
             key="nom_price", label_visibility="collapsed",
         )
         winner = c3.selectbox(
@@ -842,21 +1449,58 @@ def render_nomination_bar(all_available: list, all_teams: list, players_df: pd.D
     if ticker:
         st.html(ticker)
 
+    # Undo button (F4)
+    if st.session_state.auction_log:
+        undo_col, spacer = st.columns([1, 5])
+        with undo_col:
+            if st.button("↩ Undo Last", key="undo_btn", use_container_width=True):
+                _undo_last_result()
+                st.rerun()
+
 
 def render_left_column(standings: pd.DataFrame,
                        budget_left: int, eff_budget: int,
-                       h_open: int, p_open: int):
+                       h_open: int, p_open: int,
+                       inflation: dict = None,
+                       scored: pd.DataFrame = None,
+                       slot_scarcity: dict = None):
+    # Projected Finish (F8)
+    st.html('<div class="sec-hdr">Projected Finish</div>')
+    st.html(_projections_html(standings))
+
     # Budget cards
     st.html('<div class="sec-hdr">Budget &amp; Spots</div>')
     st.html(_budget_html(budget_left, eff_budget, h_open, p_open))
 
-    # Lineup card
+    # Inflation Tracker (F3)
+    if inflation is not None:
+        st.html('<div class="sec-hdr">Market</div>')
+        st.html(_inflation_html(inflation))
+
+    # Lineup card with scarcity badges (F2)
     st.html('<div class="sec-hdr">My Lineup</div>')
-    st.html(_lineup_html(st.session_state.roster_slots, st.session_state.farm_players))
+    st.html(_lineup_html(st.session_state.roster_slots, st.session_state.farm_players,
+                         slot_scarcity=slot_scarcity))
 
     # Category ranks
     st.html('<div class="sec-hdr">Category Ranks</div>')
     st.html(_cat_ranks_html(standings))
+
+    # Punt Categories (F9)
+    if scored is not None:
+        st.html('<div class="sec-hdr">Punt Categories</div>')
+        punt_suggestions = detect_punt_candidates(standings, scored)
+        punted = st.multiselect(
+            "Punt categories", options=CATEGORIES,
+            default=list(st.session_state.punted_categories),
+            label_visibility="collapsed", key="punt_select",
+            placeholder=f"Suggested: {', '.join(punt_suggestions)}" if punt_suggestions else "None suggested",
+        )
+        st.session_state.punted_categories = set(punted)
+
+    # Field Standings heatmap (F5)
+    with st.expander("Field Standings", expanded=False):
+        st.html(_standings_heatmap_html(standings))
 
     # Full auction log (collapsible, collapsed by default)
     log = st.session_state.auction_log
@@ -872,8 +1516,8 @@ def render_left_column(standings: pd.DataFrame,
             )
 
 
-def render_right_column(scored: pd.DataFrame):
-    # ── Filter row — three controls, all collapsed labels for alignment ──
+def render_right_column(scored: pd.DataFrame, standings: pd.DataFrame = None):
+    # ── Filter row — three controls ──────────────────────────────────
     fc1, fc2, fc3 = st.columns([4, 3, 5])
 
     pos_filter = fc1.multiselect(
@@ -917,6 +1561,10 @@ def render_right_column(scored: pd.DataFrame):
     if search:
         view = view[view["player_name"].str.contains(search, case=False, na=False)]
 
+    # Always compute nomination scores (F7)
+    if standings is not None:
+        view["nom_score"] = compute_nomination_scores(view, standings)
+
     view = view.sort_values("ts", ascending=False)
 
     # ── Header ───────────────────────────────────────────────────────
@@ -925,24 +1573,53 @@ def render_right_column(scored: pd.DataFrame):
         f'<span class="tbl-count">({len(view)})</span></div>'
     )
 
-    # ── Table — Profile dropped to keep Bid $ visible ────────────────
-    display = view[[
+    # ── Table — both TS and Nom always visible, click headers to sort ─
+    cols = [
         "player_name", "position", "tier",
-        "production_value", "auction_value", "mi",
-        "pvp", "sp", "ts", "bid_ceil",
-    ]].copy().rename(columns={
+        "production_value", "auction_value",
+        "pvp", "sp", "mi_sc", "ts",
+        "tgt_bid", "max_bid",
+    ]
+    rename_map = {
         "player_name":      "Player",
         "position":         "Pos",
         "tier":             "Tier",
-        "production_value": "Prod $",
-        "auction_value":    "Auc $",
-        "mi":               "MI",
+        "production_value": "Value $",
+        "auction_value":    "Mkt $",
         "pvp":              "PVP",
         "sp":               "SP",
+        "mi_sc":            "MI",
         "ts":               "TS",
-        "bid_ceil":         "Bid $",
-    })
-    for col in ["Prod $", "Auc $", "MI", "PVP", "SP", "TS"]:
+        "tgt_bid":          "Target",
+        "max_bid":          "Max",
+    }
+    col_configs = {
+        "TS":     st.column_config.NumberColumn("TS",     format="%.1f",
+            help="Targeting Score (0–10) = avg(PVP, SP, MI). Higher = better fit for your roster."),
+        "Target": st.column_config.NumberColumn("Target", format="$%d",
+            help="Target bid: market price + $1/MSP. What you should try to win them for."),
+        "Max":    st.column_config.NumberColumn("Max",    format="$%d",
+            help="Max bid: production value + $2/MSP. Walk-away price — above this, net negative for your team."),
+        "Value $": st.column_config.NumberColumn("Value $", format="$%.1f",
+            help="Position-neutral production value (single-pool SGP). What this player is worth ignoring hitter/pitcher market split."),
+        "Mkt $":  st.column_config.NumberColumn("Mkt $",  format="$%.1f",
+            help="Expected market price (split-pool SGP). Accounts for historical ~63/37 hitter/pitcher spending split."),
+        "MI":     st.column_config.NumberColumn("MI",     format="%.1f",
+            help="Market Inefficiency (0–10 scale). Production value minus inflation-adjusted market price. Higher = more undervalued."),
+        "PVP":    st.column_config.NumberColumn("PVP",    format="%.1f",
+            help="Personal Value Premium (0–10 scale). How much this player helps YOUR standings specifically."),
+        "SP":     st.column_config.NumberColumn("SP",     format="%.1f",
+            help="Scarcity Premium (0–10 scale). Higher = fewer comparable alternatives at same position."),
+    }
+
+    if "nom_score" in view.columns:
+        cols.append("nom_score")
+        rename_map["nom_score"] = "Nom"
+        col_configs["Nom"] = st.column_config.NumberColumn("Nom", format="%.1f",
+            help="Nomination score. High = good to nominate (rivals want, you don't). Click header to sort.")
+
+    display = view[[c for c in cols if c in view.columns]].copy().rename(columns=rename_map)
+    for col in ["Value $", "Mkt $", "PVP", "SP", "MI", "TS"]:
         if col in display.columns:
             display[col] = display[col].round(1)
 
@@ -950,24 +1627,22 @@ def render_right_column(scored: pd.DataFrame):
         display,
         hide_index=True,
         use_container_width=True,
-        height=660,
-        column_config={
-            "TS":     st.column_config.NumberColumn("TS",     format="%.1f",
-                help="Targeting Score = PVP + SP + MI gate. Primary sort."),
-            "Bid $":  st.column_config.NumberColumn("Bid $",  format="$%d",
-                help="Bid ceiling = Auc$ + max(0,PVP) + max(0,SP), capped at budget."),
-            "Prod $": st.column_config.NumberColumn("Prod $", format="$%.1f",
-                help="Single-pool production value."),
-            "Auc $":  st.column_config.NumberColumn("Auc $",  format="$%.1f",
-                help="Split-pool market price."),
-            "MI":     st.column_config.NumberColumn("MI",     format="$%.1f",
-                help="Market Inefficiency = Prod$ − Auc$. Positive = undervalued."),
-            "PVP":    st.column_config.NumberColumn("PVP",    format="$%.1f",
-                help="Personal Value Premium = MSP × $6.55/pt."),
-            "SP":     st.column_config.NumberColumn("SP",     format="$%.1f",
-                help="Scarcity Premium. Opportunity cost of passing."),
-        },
+        height=600,
+        column_config=col_configs,
     )
+
+    # ── Category Breakdown (F1) ──────────────────────────────────────
+    visible_players = view["player_name"].tolist()
+    if visible_players:
+        detail_player = st.selectbox(
+            "Player Detail", options=[""] + visible_players,
+            placeholder="Select player for category breakdown…",
+            label_visibility="collapsed", key="detail_player",
+        )
+        if detail_player:
+            match = scored[scored["player_name"] == detail_player]
+            if not match.empty:
+                st.html(_category_breakdown_html(match.iloc[0]))
 
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
@@ -975,12 +1650,17 @@ def render_right_column(scored: pd.DataFrame):
 def main():
     inject_css()
 
-    players   = load_players()
     keepers   = load_keepers()
-    standings = load_standings()
     all_teams = sorted(keepers["team"].unique().tolist())
 
     init_state(keepers)
+
+    # Recompute MSP with current draft state (cached on draft_key)
+    draft_key = tuple(
+        (e["player"], e["winner"], e["price"])
+        for e in st.session_state.auction_log
+    )
+    players, live_standings = compute_live_msp(draft_key)
 
     # Budget calculations
     total_spent   = st.session_state.salary_committed + st.session_state.budget_spent
@@ -991,9 +1671,20 @@ def main():
     eff_budget = max(0, budget_left - spots)
     budget_cap = max(1, budget_left - max(0, spots - 1))
 
-    # Score available free agents
+    # Inflation tracking (F3)
+    base_data = load_base_data()
+    inflation = compute_inflation(st.session_state.auction_log, base_data)
+
+    # Score available free agents with punt + inflation adjustments (F6, F9)
     taken_names = set(st.session_state.taken.keys())
-    scored = score_players(players, taken_names, budget_cap)
+    punted = st.session_state.get("punted_categories", set())
+    scored = score_players(players, taken_names, budget_cap,
+                           punted_cats=punted, inflation=inflation)
+
+    # Slot scarcity (F2)
+    slot_scarcity = compute_slot_scarcity(
+        st.session_state.roster_slots, scored, taken_names
+    )
 
     # ── Page title ──────────────────────────────────────────────────
     st.html(
@@ -1005,17 +1696,18 @@ def main():
         f'</div>'
     )
 
-    # ── Nomination bar (always at top) ──────────────────────────────
+    # ── Nomination bar (F4: undo button added inside) ────────────────
     render_nomination_bar(scored["player_name"].tolist(), all_teams, players)
 
     # ── Two-column layout ────────────────────────────────────────────
     left, right = st.columns([30, 70])
 
     with left:
-        render_left_column(standings, budget_left, eff_budget, h_open, p_open)
+        render_left_column(live_standings, budget_left, eff_budget, h_open, p_open,
+                           inflation=inflation, scored=scored, slot_scarcity=slot_scarcity)
 
     with right:
-        render_right_column(scored)
+        render_right_column(scored, standings=live_standings)
 
 
 main()
