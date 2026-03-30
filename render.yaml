@@ -1,0 +1,47 @@
+# Render deployment config — https://render.com/docs/infrastructure-as-code
+#
+# Services:
+#   baseball-models-api  — FastAPI backend (Python)
+#   baseball-models-db   — Managed PostgreSQL
+#
+# To deploy:
+#   1. Push this file to GitHub
+#   2. Connect the repo in Render dashboard → "New Blueprint"
+#   3. Set ALLOWED_ORIGINS to your Vercel frontend URL after first deploy
+
+services:
+  - type: web
+    name: baseball-models-api
+    runtime: python
+    region: oregon
+    plan: starter          # upgrade to standard for production
+
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+
+    healthCheckPath: /health
+
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: baseball-models-db
+          property: connectionString       # Render injects postgresql://... automatically
+
+      - key: SECRET_KEY
+        generateValue: true               # Render generates a random secret on first deploy
+
+      - key: ALLOWED_ORIGINS
+        value: http://localhost:3000      # TODO: replace with https://your-app.vercel.app
+
+      # Uncomment and fill in if the OnRoto scrapers are ever called from the backend:
+      # - key: ONROTO_USERNAME
+      #   sync: false
+      # - key: ONROTO_PASSWORD
+      #   sync: false
+
+databases:
+  - name: baseball-models-db
+    databaseName: baseball_models
+    user: baseball_models
+    plan: starter          # upgrade to standard for production
+    region: oregon
