@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Data loader: extract the DATA object from the auction analysis HTML report.
 
-Observable Framework runs this loader from the project root (reports/auction-observable/).
-The HTML report is one level up at ../auction_analysis_2026_d3.html.
+Observable Framework runs this loader from the project root (site/).
+The HTML report is at ../reports/auction_analysis_2026_d3.html.
 
 When the HTML report is regenerated, re-running `npm run build` picks up fresh data
 automatically (Observable invalidates the cache when this file changes).
@@ -11,7 +11,7 @@ import sys
 import json
 from pathlib import Path
 
-html_path = Path("../auction_analysis_2026_d3.html")
+html_path = Path("../reports/auction_analysis_2026_d3.html")
 if not html_path.exists():
     print(f"ERROR: HTML report not found at {html_path.absolute()}", file=sys.stderr)
     sys.exit(1)
