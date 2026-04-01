@@ -256,8 +256,11 @@ svg text {
 }
 
 /* ─── Observable page overrides ──────────────────────────────────────────── */
-#observablehq-main, #observablehq-center {
-  max-width: 1020px;
+#observablehq-main {
+  max-width: 1068px;        /* 1020px content + 24px padding each side */
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 /* ─── Heading overrides (undo Observable's serif + blue link defaults) ────── */
