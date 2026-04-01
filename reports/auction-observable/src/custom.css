@@ -259,3 +259,20 @@ svg text {
 #observablehq-main, #observablehq-center {
   max-width: 1020px;
 }
+
+/* ─── Heading overrides (undo Observable's serif + blue link defaults) ────── */
+h1, h2, h3 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  color: #2d2d2d;
+}
+h1 { font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+h2 { font-size: 18px; font-weight: 700; margin-top: 0; margin-bottom: 4px; }
+
+/* Remove the anchor-link styling on heading permalinks */
+h1 a, h2 a, h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+h1 a:hover, h2 a:hover, h3 a:hover {
+  text-decoration: none;
+}
