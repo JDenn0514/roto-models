@@ -300,3 +300,259 @@ h1 a:hover, h2 a:hover, h3 a:hover {
 #observablehq-main > p:first-of-type em {
   font-style: normal;
 }
+
+/* ─── Google Fonts (hub aesthetic) ──────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap');
+
+/* ─── Hub: page-level overrides ─────────────────────────────────────────── */
+.hub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1a2e;
+  margin-bottom: 28px;
+}
+.hub-wordmark {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: #1a1a2e;
+  letter-spacing: -0.8px;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.hub-league-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #999;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.hub-accent { color: #c8a84b; }
+.hub-season-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1a1a2e;
+  border: 1.5px solid #1a1a2e;
+  padding: 5px 12px;
+  border-radius: 2px;
+}
+.hub-intro {
+  font-family: 'Source Serif 4', serif;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: italic;
+  color: #777;
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 28px;
+}
+
+/* ─── Hub: filter row (Inputs.radio as chips) ────────────────────────────── */
+.hub-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e0d8cc;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+/* Strip Observable's default fieldset chrome */
+.hub-filter-row form,
+.hub-filter-row fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.hub-filter-row legend { display: none; }
+/* Make each label look like a chip */
+.hub-filter-row label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid #d8d0c4;
+  border-radius: 2px;
+  color: #999;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+  user-select: none;
+}
+.hub-filter-row label:has(input:checked) {
+  background: #1a1a2e;
+  border-color: #1a1a2e;
+  color: #f5f0e8;
+}
+.hub-filter-row input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.hub-report-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #bbb;
+  letter-spacing: 0.06em;
+  margin: 6px 0 4px;
+}
+
+/* ─── Hub: report list ───────────────────────────────────────────────────── */
+.hub-report-list {
+  display: flex;
+  flex-direction: column;
+}
+.hub-report-entry {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  gap: 0 20px;
+  align-items: start;
+  padding: 20px 10px;
+  border-bottom: 1px solid #ede5d8;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 3px;
+  margin: 0 -10px;
+  transition: background 0.1s;
+}
+.hub-report-entry:last-child { border-bottom: none; }
+.hub-report-entry:hover { background: rgba(200, 168, 75, 0.06); }
+.hub-entry-date {
+  text-align: center;
+  padding-top: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.hub-month {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c8a84b;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.hub-day {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a2e;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.hub-year {
+  font-size: 9px;
+  color: #bbb;
+}
+.hub-entry-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1a2e;
+  line-height: 1.25;
+  margin-bottom: 6px;
+  transition: color 0.1s;
+}
+.hub-report-entry:hover .hub-entry-title { color: #8b6914; }
+.hub-entry-desc {
+  font-family: 'Source Serif 4', serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.hub-entry-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.hub-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #aaa;
+  border: 1px solid #e0d8cc;
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+.hub-tag-auction   { color: #c8a84b; border-color: rgba(200, 168, 75, 0.4); }
+.hub-tag-valuation { color: #5a8c6e; border-color: rgba(90, 140, 110, 0.4); }
+.hub-tag-targeting { color: #6a7fb5; border-color: rgba(106, 127, 181, 0.4); }
+.hub-tag-interactive { color: #888; }
+.hub-entry-arrow {
+  font-size: 16px;
+  color: #d8d0c4;
+  padding-top: 4px;
+  transition: color 0.1s, transform 0.15s;
+}
+.hub-report-entry:hover .hub-entry-arrow {
+  color: #c8a84b;
+  transform: translateX(3px);
+}
+
+/* ─── Hub: "add report" prompt ───────────────────────────────────────────── */
+.hub-new-prompt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 14px 18px;
+  background: white;
+  border: 1px dashed #d0c8bc;
+  border-radius: 3px;
+}
+.hub-new-icon {
+  font-size: 18px;
+  color: #ccc;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.hub-new-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #bbb;
+  line-height: 1.5;
+}
+.hub-new-text code {
+  background: #f5f0e8;
+  padding: 1px 5px;
+  border-radius: 2px;
+  color: #999;
+}
+
+/* ─── Report back-nav bar ────────────────────────────────────────────────── */
+.report-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0 14px;
+  border-bottom: 1px solid #e0d8cc;
+  margin-bottom: 28px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.back-link {
+  font-size: 11px;
+  color: #c8a84b;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: opacity 0.1s;
+}
+.back-link:hover { opacity: 0.7; }
+.report-nav-wordmark {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ccc;
+  letter-spacing: -0.2px;
+}
