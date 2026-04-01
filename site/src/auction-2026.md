@@ -1,6 +1,16 @@
 ---
-title: Moonlight Graham 2026 Auction Analysis
+title: 2026 Moonlight Graham Auction Analysis
+date: 2026-04-01
+description: Full post-draft breakdown — value vs. price, team spending patterns, position inflation, and the Gusteroids surplus story.
+tags: [auction, interactive]
 ---
+
+```js
+display(html`<div class="report-nav">
+  <a href="/roto-models/" class="back-link">← All Reports</a>
+  <span class="report-nav-wordmark">Moonlight Graham</span>
+</div>`);
+```
 
 ```js
 // ── Data ──────────────────────────────────────────────────────────────────
