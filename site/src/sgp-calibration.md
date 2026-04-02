@@ -535,9 +535,58 @@ The scatter below plots all 320 experiments. The ideal configuration sits in the
 </div>
 
 ```js
+const sweepMethod = Mutable(null);
+const setSweepMethod = m => { sweepMethod.value = m; };
+```
+
+```js
+// Method filter pills
+{
+  const bar = document.createElement("div");
+  bar.className = "filter-bar";
+  bar.style.marginBottom = "14px";
+
+  const lbl = document.createElement("span");
+  lbl.className = "filter-label";
+  lbl.textContent = "Method:";
+  bar.appendChild(lbl);
+
+  const wrap = document.createElement("div");
+  wrap.className = "toggle-pill";
+
+  const items = [
+    {key: null,              label: "All"},
+    {key: "pairwise_mean",   label: "Pairwise Mean"},
+    {key: "pairwise_median", label: "Pairwise Median"},
+    {key: "ols",             label: "OLS Regression"},
+    {key: "robust_reg",      label: "Robust Regression"},
+  ];
+
+  items.forEach(({key, label}) => {
+    const btn = document.createElement("button");
+    btn.className = key === null ? "tpill active" : "tpill";
+    btn.textContent = label;
+    btn.addEventListener("click", () => {
+      wrap.querySelectorAll(".tpill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      setSweepMethod(key);
+    });
+    wrap.appendChild(btn);
+  });
+
+  bar.appendChild(wrap);
+  display(bar);
+}
+```
+
+```js
 // Sweep scatter — all 320 configurations
 {
-  const configs = sweep.configs;
+  const activeMethod = sweepMethod;
+  const configs = activeMethod
+    ? sweep.configs.filter(d => d.method === activeMethod)
+    : sweep.configs;
+  const dotOpacity = activeMethod ? 0.65 : 0.45;
 
   const W = 920, iH = 340;
   const m = {t: 24, r: 170, b: 52, l: 64};
@@ -573,7 +622,7 @@ The scatter below plots all 320 experiments. The ideal configuration sits in the
     .attr("cy", d => y(d.rank_corr))
     .attr("r", 4)
     .attr("fill", d => METHOD_COLORS[d.method])
-    .attr("opacity", 0.45)
+    .attr("opacity", dotOpacity)
     .attr("stroke", "none")
     .on("mouseover", function(event, d) {
       d3.select(this).attr("r", 7).attr("opacity", 1);
@@ -588,19 +637,22 @@ The scatter below plots all 320 experiments. The ideal configuration sits in the
     })
     .on("mousemove", mv)
     .on("mouseleave", function() {
-      d3.select(this).attr("r", 4).attr("opacity", 0.45);
+      d3.select(this).attr("r", 4).attr("opacity", dotOpacity);
       ht();
     });
 
-  // Best config marker
-  const best = configs.reduce((a, b) => a.nrmse < b.nrmse ? a : b);
-  g.append("circle")
-    .attr("cx", x(best.nrmse)).attr("cy", y(best.rank_corr))
-    .attr("r", 9).attr("fill", "none")
-    .attr("stroke", C.txt).attr("stroke-width", 2).attr("stroke-dasharray", "3,2");
-  g.append("text")
-    .attr("x", x(best.nrmse) + 12).attr("y", y(best.rank_corr) + 4)
-    .attr("fill", C.txt).attr("font-size", 11).text("Best overall");
+  // Best config marker (always from full dataset — fixed reference point)
+  const best = sweep.configs.reduce((a, b) => a.nrmse < b.nrmse ? a : b);
+  const bestInView = configs.some(d => d.nrmse === best.nrmse && d.rank_corr === best.rank_corr);
+  if (bestInView || !activeMethod) {
+    g.append("circle")
+      .attr("cx", x(best.nrmse)).attr("cy", y(best.rank_corr))
+      .attr("r", 9).attr("fill", "none")
+      .attr("stroke", C.txt).attr("stroke-width", 2).attr("stroke-dasharray", "3,2");
+    g.append("text")
+      .attr("x", x(best.nrmse) + 12).attr("y", y(best.rank_corr) + 4)
+      .attr("fill", C.txt).attr("font-size", 11).text("Best overall");
+  }
 
   // Axes
   g.append("g").attr("transform", `translate(0,${iH})`)
@@ -652,13 +704,238 @@ The scatter below plots all 320 experiments. The ideal configuration sits in the
 
 ## Part 4 — The Composite Approach
 
-<p class="section-meta">One method isn't best for every category</p>
+<p class="section-meta">Per-category nRMSE distributions · all 320 configurations · select a category to explore</p>
 
 <div class="narrative">
-Although OLS wins overall, the sweep reveals that each scoring category has its own best-performing method. Pitcher wins (W) are notoriously volatile — some teams deliberately stream pitchers to accumulate wins, creating outlier years. Saves (SV) have enough distributional quirks (blown saves, closer injuries, tanking) that a robust estimator outperforms OLS. Batting average benefits from pairwise estimation since each team's lineup has a very different plate-appearance count.
+Although OLS wins on aggregate, looking at categories individually reveals two distinct patterns.
 
-The <strong>composite model</strong> runs each category's calibration independently, using whichever method minimized its nRMSE in cross-validation. This per-category tuning reduces the overall error compared to any single global method.
+<strong>The best method varies by category.</strong> Wins (W) and Stolen Bases (SB) are volatile enough year-to-year that smoother methods — Pairwise Median and Pairwise Mean, respectively — outperform OLS by resisting the outlier seasons that OLS amplifies. Saves (SV) has distributional quirks from closer changes and blown saves that favor Robust Regression's outlier resistance. The more statistically well-behaved categories — Runs, RBI, ERA — respond best to OLS's simultaneous use of all available data.
+
+<strong>Prediction difficulty also varies dramatically across categories.</strong> Switch to the global scale below to see this directly: Stolen Bases have mean nRMSE nearly three times higher than WHIP — the most predictable category — while Wins are roughly twice as hard to calibrate as WHIP or Strikeouts. This is not a model deficiency — it reflects the fundamental predictability of each category from historical standings data. Stolen bases shifted structurally in 2023 with rule changes that expanded base sizes and restricted pickoffs, making the early portion of the calibration window less representative of current league behavior. Wins depend on team offense, bullpen support, and close-game luck in ways that don't repeat reliably year to year. WHIP, by contrast, moves within a narrow range across teams and seasons, making it the single most stable denominator to estimate.
+
+The practical implication: <strong>dollar values for players who specialize in Stolen Bases or Wins carry more estimation uncertainty than valuations for WHIP or Strikeout contributors.</strong> A bid built on a pitcher's projected WHIP is on firmer statistical ground than one built on a stolen base specialist's projected SB total.
+
+The <strong>composite model</strong> addresses this by running each category's calibration independently, selecting whichever method minimized cross-validated nRMSE for that category. Per-category tuning reduces overall error compared to any single global method.
 </div>
+
+```js
+const p4Cat   = Mutable("HR");
+const setP4Cat   = cat => { p4Cat.value = cat; };
+const p4Scale = Mutable("per_cat");
+const setP4Scale = s   => { p4Scale.value = s; };
+```
+
+```js
+// Category selector + scale toggle
+{
+  const batting  = ["R","HR","RBI","SB","AVG"];
+  const pitching = ["W","SV","ERA","WHIP","SO"];
+
+  const bar = document.createElement("div");
+  bar.className = "filter-bar";
+  bar.style.marginBottom = "14px";
+
+  function addGroup(label, cats) {
+    const lbl = document.createElement("span");
+    lbl.className = "filter-label";
+    lbl.textContent = label + ":";
+    bar.appendChild(lbl);
+    bar.appendChild(makePills(cats, p4Cat, setP4Cat));
+  }
+  addGroup("Batting",  batting);
+  addGroup("Pitching", pitching);
+
+  // Separator
+  const sep = document.createElement("span");
+  sep.style.cssText = "width:1px;background:#ddd;height:16px;align-self:center;margin:0 6px;";
+  bar.appendChild(sep);
+
+  const scaleLbl = document.createElement("span");
+  scaleLbl.className = "filter-label";
+  scaleLbl.textContent = "Scale:";
+  bar.appendChild(scaleLbl);
+
+  const scaleWrap = document.createElement("div");
+  scaleWrap.className = "toggle-pill";
+  [["Per-category", "per_cat"], ["Global", "global"]].forEach(([label, val]) => {
+    const btn = document.createElement("button");
+    btn.className = val === p4Scale ? "tpill active" : "tpill";
+    btn.textContent = label;
+    btn.addEventListener("click", () => {
+      scaleWrap.querySelectorAll(".tpill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      setP4Scale(val);
+    });
+    scaleWrap.appendChild(btn);
+  });
+  bar.appendChild(scaleWrap);
+
+  display(bar);
+}
+```
+
+```js
+// Part 4 strip chart — per-category nRMSE by method
+{
+  const cat   = p4Cat;
+  const scale = p4Scale;
+
+  function bxStats(vals) {
+    const s = [...vals].sort(d3.ascending);
+    const q1 = d3.quantileSorted(s, 0.25);
+    const q3 = d3.quantileSorted(s, 0.75);
+    const iqr = q3 - q1;
+    const wLo = d3.min(s.filter(v => v >= q1 - 1.5 * iqr));
+    const wHi = d3.max(s.filter(v => v <= q3 + 1.5 * iqr));
+    return { q1, q3, median: d3.quantileSorted(s, 0.5), mean: d3.mean(s), wLo, wHi };
+  }
+
+  const methods = Object.keys(METHOD_LABELS);
+  const byMethod = methods.map(method => {
+    const vals = sweep.configs
+      .filter(c => c.method === method)
+      .map(c => c.cat_nrmse[cat])
+      .filter(v => v != null);
+    return { method, vals, stats: bxStats(vals) };
+  });
+
+  const catVals    = byMethod.flatMap(d => d.vals);
+  const allCatVals = sweep.configs.flatMap(c => Object.values(c.cat_nrmse || {}));
+  const [rawMin, rawMax] = scale === "global"
+    ? [d3.min(allCatVals), d3.max(allCatVals)]
+    : d3.extent(catVals);
+  const xPad = (rawMax - rawMin) * 0.04;
+
+  const W = 920, iH = 240;
+  const m = {t: 28, r: 40, b: 52, l: 172};
+  const iW = W - m.l - m.r;
+  const yBand = iH / byMethod.length;
+  const boxH  = yBand * 0.28;
+
+  const x = d3.scaleLinear().domain([rawMin - xPad, rawMax + xPad]).range([0, iW]);
+
+  const svg = d3.create("svg")
+    .attr("width", W).attr("height", iH + m.t + m.b)
+    .style("background", C.bg);
+
+  const g = svg.append("g").attr("transform", `translate(${m.l},${m.t})`);
+
+  // Grid
+  x.ticks(6).forEach(tv => {
+    g.append("line").attr("x1", x(tv)).attr("y1", 0).attr("x2", x(tv)).attr("y2", iH)
+      .attr("stroke", C.grd).attr("stroke-width", 1);
+  });
+
+  // Box legend — top left of inner chart
+  let legX = 0;
+  g.append("rect").attr("x", legX).attr("y", -16).attr("width", 16).attr("height", 8)
+    .attr("fill", C.mid + "22").attr("stroke", C.mid).attr("stroke-width", 1.5).attr("rx", 2);
+  g.append("text").attr("x", legX + 20).attr("y", -9).attr("fill", C.lit).attr("font-size", 10)
+    .text("IQR (25–75th pct)");
+  legX += 130;
+  g.append("line").attr("x1", legX + 4).attr("y1", -16).attr("x2", legX + 4).attr("y2", -8)
+    .attr("stroke", C.mid).attr("stroke-width", 2.5);
+  g.append("text").attr("x", legX + 12).attr("y", -9).attr("fill", C.lit).attr("font-size", 10)
+    .text("Median");
+  legX += 68;
+  g.append("circle").attr("cx", legX + 4).attr("cy", -12).attr("r", 4)
+    .attr("fill", C.mid).attr("opacity", 0.9).attr("stroke", C.bg).attr("stroke-width", 1.2);
+  g.append("text").attr("x", legX + 12).attr("y", -9).attr("fill", C.lit).attr("font-size", 10)
+    .text("Mean");
+
+  // Global scale label
+  if (scale === "global") {
+    g.append("text").attr("x", iW).attr("y", -9).attr("text-anchor", "end")
+      .attr("fill", C.lit).attr("font-size", 10).attr("font-style", "italic")
+      .text("global scale — x-axis shared across all categories");
+  }
+
+  // Per-method rows
+  byMethod.forEach(({ method, vals, stats }, mi) => {
+    const ym  = mi * yBand + yBand / 2;
+    const col = METHOD_COLORS[method];
+    const win = COMPOSITE[cat].method === method;
+
+    // Winner row tint
+    if (win) {
+      g.append("rect").attr("x", 0).attr("y", mi * yBand + 2)
+        .attr("width", iW).attr("height", yBand - 4)
+        .attr("fill", col + "0e").attr("rx", 3);
+    }
+
+    // Jittered dots
+    vals.forEach((v, i) => {
+      const jitter = (((i * 7919) % 100) / 100 - 0.5) * yBand * 0.72;
+      g.append("circle").attr("cx", x(v)).attr("cy", ym + jitter)
+        .attr("r", 2.8).attr("fill", col).attr("opacity", 0.32);
+    });
+
+    // Whiskers
+    g.append("line")
+      .attr("x1", x(stats.wLo)).attr("y1", ym).attr("x2", x(stats.q1)).attr("y2", ym)
+      .attr("stroke", col).attr("stroke-width", 1.5).attr("opacity", 0.7);
+    g.append("line")
+      .attr("x1", x(stats.q3)).attr("y1", ym).attr("x2", x(stats.wHi)).attr("y2", ym)
+      .attr("stroke", col).attr("stroke-width", 1.5).attr("opacity", 0.7);
+    [stats.wLo, stats.wHi].forEach(wv => {
+      g.append("line")
+        .attr("x1", x(wv)).attr("y1", ym - boxH * 0.6)
+        .attr("x2", x(wv)).attr("y2", ym + boxH * 0.6)
+        .attr("stroke", col).attr("stroke-width", 1.5).attr("opacity", 0.7);
+    });
+
+    // IQR box
+    g.append("rect")
+      .attr("x", x(stats.q1)).attr("y", ym - boxH / 2)
+      .attr("width", Math.max(1, x(stats.q3) - x(stats.q1))).attr("height", boxH)
+      .attr("fill", col + "2a").attr("stroke", col).attr("stroke-width", 1.5)
+      .attr("rx", 2).attr("opacity", 0.9);
+
+    // Median line
+    g.append("line")
+      .attr("x1", x(stats.median)).attr("y1", ym - boxH / 2)
+      .attr("x2", x(stats.median)).attr("y2", ym + boxH / 2)
+      .attr("stroke", col).attr("stroke-width", 2.5).attr("opacity", 0.95);
+
+    // Mean dot (just below box)
+    g.append("circle")
+      .attr("cx", x(stats.mean)).attr("cy", ym + boxH / 2 + 9)
+      .attr("r", 4).attr("fill", col).attr("opacity", 0.9)
+      .attr("stroke", C.bg).attr("stroke-width", 1.2);
+    g.append("line")
+      .attr("x1", x(stats.mean)).attr("y1", ym + boxH / 2 + 5)
+      .attr("x2", x(stats.mean)).attr("y2", ym + boxH / 2 + 14)
+      .attr("stroke", col).attr("stroke-width", 1).attr("opacity", 0.5);
+
+    // Method label
+    g.append("text").attr("x", -10).attr("y", ym + 4).attr("text-anchor", "end")
+      .attr("fill", col)
+      .attr("font-size", win ? 13 : 12)
+      .attr("font-weight", win ? "600" : "400")
+      .text(METHOD_LABELS[method] + (win ? " ✓" : ""));
+  });
+
+  // X axis
+  g.append("g").attr("transform", `translate(0,${iH})`)
+    .call(d3.axisBottom(x).ticks(6).tickFormat(d3.format(".3f")))
+    .call(ax => {
+      ax.select(".domain").attr("stroke", C.grd);
+      ax.selectAll(".tick line").attr("stroke", C.grd);
+      ax.selectAll("text").attr("fill", C.mid).attr("font-size", 11);
+    });
+
+  g.append("text")
+    .attr("x", iW / 2).attr("y", iH + 42).attr("text-anchor", "middle")
+    .attr("fill", C.mid).attr("font-size", 12)
+    .text(`Normalized RMSE — ${CAT_META[cat].label}  (lower = more accurate)`);
+
+  g.append("text")
+    .attr("x", 4).attr("y", iH + 42)
+    .attr("fill", C.acc).attr("font-size", 11).text("← better");
+
+  display(svg.node());
+}
+```
 
 ```js
 // Composite config table

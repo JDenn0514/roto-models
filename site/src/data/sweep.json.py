@@ -13,6 +13,7 @@ configs = []
 with open(Path("../data/sweep_results.csv"), newline="") as f:
     reader = csv.DictReader(f)
     for row in reader:
+        cats = ["R", "HR", "RBI", "SB", "AVG", "W", "SV", "ERA", "WHIP", "SO"]
         c = {
             "method": row["method"],
             "supp": row["use_supplemental"] == "True",
@@ -21,6 +22,9 @@ with open(Path("../data/sweep_results.csv"), newline="") as f:
             "h_buf": int(float(row["replacement_hitter_buffer"])),
             "nrmse": round(float(row["sgp_cv_nrmse"]), 5),
             "rank_corr": round(float(row["rank_correlation"]), 5),
+            "cat_nrmse": {
+                cat: round(float(row[f"nrmse_{cat}"]), 5) for cat in cats
+            },
         }
         configs.append(c)
 
