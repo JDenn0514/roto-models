@@ -235,6 +235,7 @@ The scatter below shows this data directly. Each dot is one team in one season. 
 
 ```js
 const scatterCat = Mutable("HR");
+const setScatterCat = (cat) => { scatterCat.value = cat; };
 ```
 
 ```js
@@ -252,7 +253,7 @@ const scatterCat = Mutable("HR");
     lbl.className = "filter-label";
     lbl.textContent = label + ":";
     bar.appendChild(lbl);
-    const pills = makePills(cats, scatterCat, cat => { scatterCat.value = cat; });
+    const pills = makePills(cats, scatterCat, setScatterCat);
     bar.appendChild(pills);
   }
 
@@ -371,7 +372,7 @@ const scatterCat = Mutable("HR");
     });
 
   // Legend
-  const leg = g.append("g").attr("transform", `translate(${iW - 170}, 4)`);
+  const leg = g.append("g").attr("transform", `translate(${iW - 170}, ${iH - 42})`);
   [{fill: C.pri, op: 0.78, lbl: "Primary years (2019–25)"},
    {fill: "#b0b0b0", op: 0.55, lbl: "Supplemental (2015–18)"}].forEach(({fill, op, lbl}, i) => {
     leg.append("circle").attr("cx", 0).attr("cy", i * 17).attr("r", 5)
