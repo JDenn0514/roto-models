@@ -1,6 +1,7 @@
 ---
 title: Moonlight Graham
 toc: false
+sidebar: false
 ---
 
 <div class="hub-header">
