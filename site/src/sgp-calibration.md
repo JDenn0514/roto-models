@@ -898,6 +898,7 @@ Wide scatter above and below the reference line means the category is volatile; 
 
 ```js
 const stabCat = Mutable("HR");
+const setStabCat = (cat) => { stabCat.value = cat; };
 ```
 
 ```js
@@ -914,7 +915,7 @@ const stabCat = Mutable("HR");
     const lbl = document.createElement("span");
     lbl.className = "filter-label"; lbl.textContent = label + ":";
     bar.appendChild(lbl);
-    const pills = makePills(cats, stabCat, cat => { stabCat.value = cat; });
+    const pills = makePills(cats, stabCat, setStabCat);
     bar.appendChild(pills);
   }
 
@@ -1063,7 +1064,7 @@ const stabCat = Mutable("HR");
    {fill: "#ccc", lbl: "Supplemental estimate"},
    {fill: C.sec, lbl: "Final composite estimate", dash: true}]
   .forEach(({fill, lbl, dash}, i) => {
-    const lx = 12, ly = 8 + i * 18;
+    const lx = 12, ly = iH - 52 + i * 18;
     if (dash) {
       g.append("line")
         .attr("x1", lx).attr("y1", ly - 4).attr("x2", lx + 18).attr("y2", ly - 4)
