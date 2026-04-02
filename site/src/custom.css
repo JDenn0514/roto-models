@@ -557,3 +557,28 @@ h1 a:hover, h2 a:hover, h3 a:hover {
   color: #ccc;
   letter-spacing: -0.2px;
 }
+
+/* ─── SGP calibration: composite config table ─────────────────────────────── */
+.config-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 16px 0 28px;
+}
+.config-table th {
+  text-align: left;
+  font-size: 11px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 14px;
+  border-bottom: 2px solid #ededeb;
+  white-space: nowrap;
+}
+.config-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid #f5f4f0;
+  color: #444;
+  vertical-align: middle;
+}
+.config-table tr:hover td { background: #f5f4f0; }
